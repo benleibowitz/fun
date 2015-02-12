@@ -28,7 +28,6 @@ public class Java8 {
 		
 		list
 			.stream()
-			.sorted()
 			.forEach(item -> {
 				System.out.println("Item in list: " + item);
 				
