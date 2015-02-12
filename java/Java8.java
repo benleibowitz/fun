@@ -27,17 +27,15 @@ public class Java8 {
 		Map<String, Integer> occurrencesOfItem = new HashMap<>();
 		
 		list
-			.parallelStream()
+			.stream()
 			.sorted()
 			.forEach(item -> {
 				System.out.println("Item in list: " + item);
 				
-				synchronized(occurrencesOfItem) {
-					if(!occurrencesOfItem.containsKey(item))
-						occurrencesOfItem.put(item, 1);
-					else
-						occurrencesOfItem.put(item, occurrencesOfItem.get(item) + 1);
-				}
+				if(!occurrencesOfItem.containsKey(item))
+					occurrencesOfItem.put(item, 1);
+				else
+					occurrencesOfItem.put(item, occurrencesOfItem.get(item) + 1);
 			});
 		
 		
