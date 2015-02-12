@@ -1,4 +1,3 @@
-import java.security.InvalidParameterException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+//thrown by rotateArray function
 class ArrayNotSquareException extends Exception {
 	ArrayNotSquareException() {
 	}
@@ -14,6 +14,7 @@ class ArrayNotSquareException extends Exception {
 	}
 }
 
+//runnable that counts number of occurances of each number in array
 class IterateThread implements Runnable {
 	int[] subArray;
 	HashMap<Integer, Integer> numberCount;
@@ -43,10 +44,6 @@ class IterateThread implements Runnable {
 
 public class InterviewQuestions {
 	static Random r = new Random();
-	
-	public static void main(String[] args) {
-    		testRandom();
-	}
 	
 	public static boolean arrayIsSquare(int[][] inputArray) {
 		boolean square = true;
@@ -94,12 +91,12 @@ public class InterviewQuestions {
 		
 		return outArray;
 	}
-
+	
+	//test out my random number methods
 	public static void testRandom() {
 		Map<Integer, Integer> m = new HashMap<>();
 		for(int i=0; i<1000000;i++) {
-			//int rr = random1to7();
-			int rr = myRandom3_12();
+			int rr = random3_12();
 			if(!m.containsKey(rr))
 				m.put(rr, 1);
 			else
@@ -117,18 +114,9 @@ public class InterviewQuestions {
 		}
 	}
 	
-	public static int random1to7() {
-		int outputNumber = 1;
-		
-		for(int i = 0; i < 7; i++) {
-			outputNumber += random1to5();
-			if(outputNumber > 7) outputNumber = outputNumber - 7;
-		}
-		
-		return outputNumber;
-	}
-	
-	public static int rejectionSampleRandom() {
+	//using only a function that generates a random number 1-5,
+	//and generate a random number 1-7
+	public static int random1_7() {
 		int output;
 		
 		do {
@@ -138,17 +126,9 @@ public class InterviewQuestions {
 		return(output % 7 + 1);
 	}
 	
-	public static int myRandom17() {
-		int output;
-		
-		do {
-			output = 7 * r1_7() + r1_7();
-		} while(output > 47);
-		
-		return(output % 5 + 1);
-	}
-	
-	public static int myRandom3_12() {
+	//using only a function that generates a random number 1-5,
+	//and generate a random number 3-12 
+	public static int random3_12() {
 		int output;
 		
 		do {
@@ -160,9 +140,6 @@ public class InterviewQuestions {
 	
 	public static int random1to5() {
 		return(r.nextInt(5) + 1);
-	}
-	public static int r1_7() { 
-		return(r.nextInt(7) + 1);
 	}
 
 	public static void testMultiThreadDistinctFind() {
@@ -204,58 +181,6 @@ public class InterviewQuestions {
 		findDistinctEle(foo);
 	}
 	
-	public static void testPrime() {
-		int[] foo = {2,3,4,5,6,7,8,9,10,20,40,59,47};
-		for(int i : foo) {
-			try {	
-				System.out.println(i + (isPrime(i) ? " is prime." : " is not prime"));
-			} catch (IllegalArgumentException e) { 
-			    e.printStackTrace(); 
-			}
-		}
-	}
-	
-	public static void testFib() {
-		ArrayList<Integer> l = fibon(1, 3);
-		for(int i : l) 
-			System.out.print(i + ", ");
-		System.out.println();
-	}
-	
-	public static void testIndex() {
-		List<Integer> l = new ArrayList<>();
-		l.add(3);l.add(4);l.add(9);l.add(1);l.add(6);l.add(5);l.add(5);l.add(35832);l.add(0);l.add(33);
-		System.out.println(findIndex(l));
-	}
-	
-	public static void testDuplicate() {
-		List<Integer> l = new ArrayList<>();
-		for(int i=0; i<300; i++) 
-			l.add(i);
-		l.add(24);
-		l.add(24);
-		//l.add(25);
-		try {
-			System.out.println(findDuplicate(l));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public static void testStrToInt() {
-		System.out.println(stringToInt("55387"));
-		System.out.println(stringToInt("-55387"));
-		try {
-			System.out.println(stringToInt(null));
-		} catch(Exception e) { e.printStackTrace(); }
-		try {
-			System.out.println(stringToInt("553883798798739877"));
-		} catch(Exception e) { e.printStackTrace(); }
-		try {
-			System.out.println(stringToInt("5623k"));
-		} catch(Exception e) { e.printStackTrace(); }
-	}
-	
 	public static boolean isPrime(int input) throws IllegalArgumentException {
 		boolean prime = true;
 		
@@ -282,10 +207,13 @@ public class InterviewQuestions {
 		}
 		
 		for(int num : numberCount.keySet()) {
-			/*if(numberCount.get(num) == 1)*/ System.out.println(num + " count: " + numberCount.get(num));
+			System.out.println(num + " count: " + numberCount.get(num));
 		}
 	}
 	
+	//attempts to find element in array where:
+	//sum of elements on left side = sum elements on right side.
+	//if can't find, return -1
 	public static int findIndex(List<Integer> list) {
 		int index = -1;
 		
@@ -307,8 +235,7 @@ public class InterviewQuestions {
 		return index;
 	}
 	
-	//throwing Exception is lazy, but we'll do it for now...
-	public static int findDuplicate(List<Integer> list) throws Exception {
+	public static int findDuplicate(List<Integer> list) throws IllegalArgumentException {
 		int duplicate = 0;
 		List<Integer> notDuplicates = new ArrayList<>();
 		List<Integer> duplicatesList = new ArrayList<>();
@@ -327,18 +254,18 @@ public class InterviewQuestions {
 		if(duplicatesList.size() == 1) 
 			duplicate = duplicatesList.get(0);
 		else 
-			throw new Exception("More than one duplicate in list");
+			throw new IllegalArgumentException("More than one duplicate in list");
 		
 		return duplicate;
 	}
 	
-	public static int stringToInt(String stringIn) {
+	public static int stringToInt(String stringIn) throws IllegalArgumentException {
 		final char[] digits = {'0','1','2','3','4','5','6','7','8','9'};
 		int intOut = 0;
 		boolean numNegative;
 		
 		if(stringIn == null || stringIn.length() == 0 || stringIn.length() > 9) 
-			throw new InvalidParameterException("String cannot be null, 0 length, or greater than 9 digits");
+			throw new IllegalArgumentException("String cannot be null, 0 length, or greater than 9 digits");
 		
 		char[] stringArray = stringIn.toCharArray();
 		
@@ -355,7 +282,8 @@ public class InterviewQuestions {
 					numIsInt = true;
 			}
 			
-			if(!numIsInt) throw new NumberFormatException("Number must only contain numerical digits");
+			if(!numIsInt)
+				throw new IllegalArgumentException("Number must only contain numerical digits");
 			
 			int localNum = stringArray[i] - '0';
 			
