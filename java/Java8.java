@@ -24,23 +24,26 @@ public class Java8 {
 	
 	//Java 8 style For Each loop
 	public static void useJava8ForEach(List<String> list) {
-		Map<String, Integer> occurancesOfItem = new HashMap<>();
+		Map<String, Integer> occurrencesOfItem = new HashMap<>();
 		
 		list
-			.stream()
+			.parallelStream()
+			.sorted()
 			.forEach(item -> {
 				System.out.println("Item in list: " + item);
 				
-				if(!occurancesOfItem.containsKey(item))
-					occurancesOfItem.put(item, 1);
-				else
-					occurancesOfItem.put(item, occurancesOfItem.get(item) + 1);
+				synchronized(occurrencesOfItem) {
+					if(!occurrencesOfItem.containsKey(item))
+						occurrencesOfItem.put(item, 1);
+					else
+						occurrencesOfItem.put(item, occurrencesOfItem.get(item) + 1);
+				}
 			});
 		
 		
-		//print occurances map
-		occurancesOfItem
+		//print occurrences map
+		occurrencesOfItem
 			.keySet()
-			.forEach(key -> System.out.println(key + " occurs: " + occurancesOfItem.get(key) + " times."));
+			.forEach(key -> System.out.println(key + " occurs: " + occurrencesOfItem.get(key) + " times."));
 	}
 }
