@@ -1,3 +1,8 @@
+/*
+ *	Below are some implementations of a few basic
+ *	interview questions in Java
+*/
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
