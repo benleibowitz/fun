@@ -44,5 +44,3 @@ public class Java8 {
 			.forEach(key -> System.out.println(key + " occurs: " + occurancesOfItem.get(key) + " times."));
 	}
 }
-
-}
