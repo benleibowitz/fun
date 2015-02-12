@@ -49,6 +49,67 @@ class IterateThread implements Runnable {
 
 public class InterviewQuestions {
 	static Random r = new Random();
+		
+	//test out my random number methods
+	public static void testRandom() {
+		Map<Integer, Integer> m = new HashMap<>();
+		for(int i=0; i<1000000;i++) {
+			int rr = random3_12();
+			if(!m.containsKey(rr))
+				m.put(rr, 1);
+			else
+				m.put(rr, m.get(rr)+1);
+		}
+		
+		int totalFrequency = 0;
+		for(int i : m.keySet()) {
+			totalFrequency += m.get(i);
+		}
+		
+		DecimalFormat df = new DecimalFormat("##.##");
+		for(int i : m.keySet()) {
+			System.out.println("Value:" + i + ", Percentage Occurance:" + df.format(100.0 * m.get(i) / totalFrequency));
+		}
+	}
+	
+	public static void testMultiThreadDistinctFind() {
+		final long len = 350000000;
+		final int shortLen = (int)Math.ceil(len / 3.0);
+		
+		int[] subArray1 = new int[shortLen];
+		int[] subArray2 = new int[shortLen];
+		int[] subArray3 = new int[shortLen];
+		int[][] totalArray = {subArray1, subArray2, subArray3};
+		for(int i=0; i<totalArray.length; i++) {
+			for(int j=0; j<totalArray[i].length; j++) {
+				totalArray[i][j] = 4+i;
+				totalArray[i][4] = 2+i;
+			}
+		}
+		
+		IterateThread r1 = new IterateThread(totalArray[0]);
+		IterateThread r2 = new IterateThread(totalArray[1]);
+		IterateThread r3 = new IterateThread(totalArray[2]);
+		r1.run();
+		r2.run();
+		r3.run();
+		HashMap<Integer, Integer> count1 = r1.getElementsCount();
+		HashMap<Integer, Integer> count2 = r2.getElementsCount();
+		HashMap<Integer, Integer> count3 = r3.getElementsCount();
+		for(int value : count1.keySet()) System.out.println("Value: " + value + " occurs: " + count1.get(value) + " times");
+		for(int value : count2.keySet()) System.out.println("Value: " + value + " occurs: " + count1.get(value) + " times");
+		for(int value : count3.keySet()) System.out.println("Value: " + value + " occurs: " + count1.get(value) + " times");
+		
+	}
+	
+	public static void testElementFind() {
+		int[] foo = new int[35000];
+		for(int i=0; i<35000; i++) 
+			foo[i] = 23;
+		foo[2] = 8;
+		foo[5] = 12;
+		findDistinctEle(foo);
+	}
 	
 	public static boolean arrayIsSquare(int[][] inputArray) {
 		boolean square = true;
@@ -96,29 +157,7 @@ public class InterviewQuestions {
 		
 		return outArray;
 	}
-	
-	//test out my random number methods
-	public static void testRandom() {
-		Map<Integer, Integer> m = new HashMap<>();
-		for(int i=0; i<1000000;i++) {
-			int rr = random3_12();
-			if(!m.containsKey(rr))
-				m.put(rr, 1);
-			else
-				m.put(rr, m.get(rr)+1);
-		}
-		
-		int totalFrequency = 0;
-		for(int i : m.keySet()) {
-			totalFrequency += m.get(i);
-		}
-		
-		DecimalFormat df = new DecimalFormat("##.##");
-		for(int i : m.keySet()) {
-			System.out.println("Value:" + i + ", Percentage Occurance:" + df.format(100.0 * m.get(i) / totalFrequency));
-		}
-	}
-	
+
 	//using only a function that generates a random number 1-5,
 	//and generate a random number 1-7
 	public static int random1_7() {
@@ -147,45 +186,6 @@ public class InterviewQuestions {
 		return(r.nextInt(5) + 1);
 	}
 
-	public static void testMultiThreadDistinctFind() {
-		final long len = 350000000;
-		final int shortLen = (int)Math.ceil(len / 3.0);
-		
-		int[] subArray1 = new int[shortLen];
-		int[] subArray2 = new int[shortLen];
-		int[] subArray3 = new int[shortLen];
-		int[][] totalArray = {subArray1, subArray2, subArray3};
-		for(int i=0; i<totalArray.length; i++) {
-			for(int j=0; j<totalArray[i].length; j++) {
-				totalArray[i][j] = 4+i;
-				totalArray[i][4] = 2+i;
-			}
-		}
-		
-		IterateThread r1 = new IterateThread(totalArray[0]);
-		IterateThread r2 = new IterateThread(totalArray[1]);
-		IterateThread r3 = new IterateThread(totalArray[2]);
-		r1.run();
-		r2.run();
-		r3.run();
-		HashMap<Integer, Integer> count1 = r1.getElementsCount();
-		HashMap<Integer, Integer> count2 = r2.getElementsCount();
-		HashMap<Integer, Integer> count3 = r3.getElementsCount();
-		for(int value : count1.keySet()) System.out.println("Value: " + value + " occurs: " + count1.get(value) + " times");
-		for(int value : count2.keySet()) System.out.println("Value: " + value + " occurs: " + count1.get(value) + " times");
-		for(int value : count3.keySet()) System.out.println("Value: " + value + " occurs: " + count1.get(value) + " times");
-		
-	}
-	
-	public static void testElementFind() {
-		int[] foo = new int[35000];
-		for(int i=0; i<35000; i++) 
-			foo[i] = 23;
-		foo[2] = 8;
-		foo[5] = 12;
-		findDistinctEle(foo);
-	}
-	
 	public static boolean isPrime(int input) throws IllegalArgumentException {
 		boolean prime = true;
 		
