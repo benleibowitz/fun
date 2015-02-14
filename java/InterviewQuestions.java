@@ -36,8 +36,10 @@ class IterateThread implements Runnable {
 	@Override
 	public void run() {
 		for(int num : subArray) {
-			if(!(numberCount.keySet().contains(num))) numberCount.put(num, 1);
-			else numberCount.put(num, numberCount.get(num)+1);
+			if(!(numberCount.keySet().contains(num)))
+				numberCount.put(num, 1);
+			else
+				numberCount.put(num, numberCount.get(num)+1);
 		}
 	}
 	
