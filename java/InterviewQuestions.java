@@ -113,15 +113,33 @@ public class InterviewQuestions {
 		findDistinctEle(foo);
 	}
 	
-	public static boolean arrayIsSquare(int[][] inputArray) {
-		boolean square = true;
-	    
-		for(int i = 0; i < inputArray.length; i++) {
-			if(inputArray[i].length != inputArray.length) 
-				square = false;
+	//find maximum number of nights candles array can be lit for
+	public int findMaxNights(int[] candles) {
+		int n = 1;
+		
+		while(canLightCandles(candles, n)) {
+			n++;
 		}
-	    
-	    	return square;
+		
+		return --n;
+	}
+		
+	private boolean canLightCandles(int[] candles, int nightNum) {
+		boolean canLight = false;
+		int candlesLit = 0;
+		
+		for(int i = 0; i < candles.length && !canLight; i++) {
+			if(candles[i] > 0) {
+				candles[i] = candles[i] - 1;
+				candlesLit++;
+			}
+			
+			if(candlesLit == nightNum)
+				canLight = true;
+			
+		}
+		
+		return canLight;
 	}
 	
 	//rotates array clockwise
@@ -158,6 +176,17 @@ public class InterviewQuestions {
 		}
 		
 		return outArray;
+	}
+
+	private static boolean arrayIsSquare(int[][] inputArray) {
+		boolean square = true;
+	    
+		for(int i = 0; i < inputArray.length; i++) {
+			if(inputArray[i].length != inputArray.length) 
+				square = false;
+		}
+	    
+	    	return square;
 	}
 
 	//using only a function that generates a random number 1-5,
