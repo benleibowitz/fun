@@ -114,8 +114,8 @@ public class InterviewQuestions {
 	}
 	
 	//implementation of basic "fizzbuzz" question
-	//for 1 through 100 inclusive, if divisible by 3, print FIZZ
-	//if divisible by 5, print BUZZ. if both, print FIZZBUZZ
+	//for 1 through 100 inclusive, if divisible by 3, print "fizz"
+	//if divisible by 5, print "buzz". if both, print "fizzbuzz"
 	public static void fizzBuzz() {
 		
 		for(int i = 1; i <= 100; i++) {
