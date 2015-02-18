@@ -135,6 +135,38 @@ public class InterviewQuestions {
 		
 	}
 	
+	
+	//Merge two already sorted String[], where each element is single letter String, ie "c"
+	public static String[] mergeTwo(String[] a, String[] b, int n) {
+		String[] outArray = new String[n];
+		int aIndex = 0;
+		int bIndex = 0;
+		  
+		for(int i = 0; i < n; i++) {
+			
+			//if a and b are long enough
+			// (if our index positions have not "used up" all the elements
+			if(a.length > aIndex && b.length > bIndex) {
+				  
+				if(a[aIndex].toLowerCase().compareTo(b[bIndex]) < 0)
+					outArray[i] = a[aIndex++];
+				else if(a[aIndex].toLowerCase().compareTo(b[bIndex]) > 0)
+					outArray[i] = b[bIndex++];
+				else
+					outArray[i] = a[aIndex++];
+			
+			//if only b is long enough
+			} else if(b.length > bIndex)
+				outArray[i] = b[bIndex++];
+			else if(a.length > aIndex)
+				outArray[i] = a[aIndex++];
+			else
+				throw new IllegalArgumentException("Cannot make array of length " + n + " with given input arrays");
+		}
+		  
+		return outArray;
+	}
+	
 	//find maximum number of nights candles array can be lit for
 	public int findMaxNights(int[] candles) {
 		int n = 1;
