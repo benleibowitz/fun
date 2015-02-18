@@ -113,6 +113,28 @@ public class InterviewQuestions {
 		findDistinctEle(foo);
 	}
 	
+	//implementation of basic "fizzbuzz" question
+	//for 1 through 100 inclusive, if divisible by 3, print FIZZ
+	//if divisible by 5, print BUZZ. if both, print FIZZBUZZ
+	public static void fizzBuzz() {
+		
+		for(int i = 1; i <= 100; i++) {
+			String outStr;
+			
+			if(i % 3 == 0 && i % 5 == 0)
+				outStr = "fizzbuzz";
+			else if(i % 3 == 0)
+				outStr = "fizz";
+			else if(i % 5 == 0)
+				outStr = "buzz";
+			else
+				outStr = String.valueOf(i);
+			
+			System.out.println(outStr);
+		}
+		
+	}
+	
 	//find maximum number of nights candles array can be lit for
 	public int findMaxNights(int[] candles) {
 		int n = 1;
