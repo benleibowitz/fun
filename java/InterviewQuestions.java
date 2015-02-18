@@ -51,6 +51,9 @@ class IterateThread implements Runnable {
 
 public class InterviewQuestions {
 	static Random r = new Random();
+	
+	public static void main(String[] args) {
+	}
 		
 	//test out my random number methods
 	public static void testRandom() {
