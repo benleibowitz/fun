@@ -1,6 +1,6 @@
 '''
 Created on Feb 7, 2015
-    Get points from reddit page source code
+    Get points from Reddit by parsing HTML
 @author: ben leibowitz
 '''
 from bs4 import BeautifulSoup
