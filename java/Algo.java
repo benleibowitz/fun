@@ -90,7 +90,8 @@ public class Algo {
 				
 			}
 			
-			if(!inserted) inArr[0] = key;
+			if(!inserted)
+				inArr[0] = key;
 			
 		}//close outer loop
 	}
