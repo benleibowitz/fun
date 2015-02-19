@@ -19,6 +19,15 @@ class ArrayNotSquareException extends Exception {
 	}
 }
 
+class IllegalArrayLengthException extends Exception {
+	IllegalArrayLengthException() {
+	}
+	IllegalArrayLengthException(String message) {
+		super(message);
+	}
+}
+
+
 //runnable that counts number of occurances of each number in array
 class IterateThread implements Runnable {
 	int[] subArray;
@@ -140,7 +149,7 @@ public class InterviewQuestions {
 	
 	
 	//Merge two already sorted String[], where each element is single letter String, ie "c"
-	public static String[] mergeTwo(String[] a, String[] b, int n) {
+	public static String[] mergeTwo(String[] a, String[] b, int n) throws IllegalArrayLengthException {
 		String[] outArray = new String[n];
 		int aIndex = 0;
 		int bIndex = 0;
@@ -164,7 +173,7 @@ public class InterviewQuestions {
 			else if(a.length > aIndex)
 				outArray[i] = a[aIndex++];
 			else
-				throw new IllegalArgumentException("Cannot make array of length " + n + " with given input arrays");
+				throw new IllegalArrayLengthException("Cannot make array of length " + n + " with given input arrays");
 		}
 		  
 		return outArray;
