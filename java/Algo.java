@@ -21,8 +21,10 @@ public class Algo {
 			int[] Rarray = new int[Rlength];
 			
 			//fill our new L and R arrays
-			for(int i=0; i<Llength; i++) Larray[i] = inputArray[i];
-			for(int i=0; i<Rlength; i++) Rarray[i] = inputArray[i+Llength];
+			for(int i=0; i<Llength; i++)
+				Larray[i] = inputArray[i];
+			for(int i=0; i<Rlength; i++)
+				Rarray[i] = inputArray[i + Llength];
 	
 			//recursively split arrays into smaller subarrays
 			Larray = mergeSort(Larray);
@@ -57,13 +59,10 @@ public class Algo {
 			else if(Rindex < Rarray.length) 
 				insertRval = true;
 			
-			if(insertLval) {
-				outArray[mainIndex] = Larray[Lindex];
-				Lindex++;
-			} else if(insertRval) {
-				outArray[mainIndex] = Rarray[Rindex];
-				Rindex++;
-			}
+			if(insertLval)
+				outArray[mainIndex] = Larray[Lindex++];
+			else if(insertRval)
+				outArray[mainIndex] = Rarray[Rindex++];
 			
 		}
 		
