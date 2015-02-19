@@ -17,6 +17,9 @@ class ArrayNotSquareException extends Exception {
 	ArrayNotSquareException(String message) {
 		super(message);
 	}
+	ArrayNotSquareException(Throwable cause) {
+		super(cause);
+	}
 }
 
 class IllegalArrayLengthException extends Exception {
@@ -24,6 +27,9 @@ class IllegalArrayLengthException extends Exception {
 	}
 	IllegalArrayLengthException(String message) {
 		super(message);
+	}
+	IllegalArrayLengthException(Throwable cause) {
+		super(cause);
 	}
 }
 
