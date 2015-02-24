@@ -49,8 +49,6 @@ public class PDFParse {
     }
     
     public static PDDocument readInputFile(String fileURL) throws IOException {
-        PDDocument pdDoc = null;
-        
         if(fileURL == null || fileURL.length() < 1)
             throw new IOException("File url: " + fileURL + " not found.");
 	
@@ -58,8 +56,7 @@ public class PDFParse {
 	RandomAccess scratchFile = new RandomAccessFile(tmp.createTemporaryFile(), "rw");
 	
 	File inputFile = new File(fileURL);
-	pdDoc = PDDocument.loadNonSeq(inputFile, scratchFile);
-        return pdDoc;
+	return PDDocument.loadNonSeq(inputFile, scratchFile);
     }
     
 }
