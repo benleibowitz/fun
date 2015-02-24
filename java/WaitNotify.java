@@ -56,7 +56,7 @@ public class WaitNotify {
     public static void main(String[] args) {
         final P p = new P();
         
-        Thread t = new Thread(new Runnable() {
+        Thread producer = new Thread(new Runnable() {
             
             @Override
             public void run() {
@@ -67,7 +67,7 @@ public class WaitNotify {
             
         });
 
-        Thread t1 = new Thread(new Runnable() {
+        Thread consumer = new Thread(new Runnable() {
             
             @Override
             public void run() {
@@ -78,13 +78,12 @@ public class WaitNotify {
             
         });
         
-        
-        t.start();
-        t1.start();
+        producer.start();
+        consumer.start();
         
         try {
-            t.join();
-            t1.join();
+            producer.join();
+            consumer.join();
         } catch(InterruptedException e) {
             e.printStackTrace();
         }
