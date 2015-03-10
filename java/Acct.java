@@ -1,8 +1,6 @@
 /*
- * Abstract class of Acct, which represents a simple bank account object
-*/
-/*
- * In implementing this object, user must set account currency (either
+ * Abstract class of Acct, which represents a simple bank account object.
+ * In implementing this object's subclasses, user must set account currency (either
  * through constructor or setter) before making transactions.
 */
 
