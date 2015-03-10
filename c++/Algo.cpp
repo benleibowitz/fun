@@ -33,6 +33,7 @@ void insertSort(int arr[], const unsigned int LENGTH) {
 int main() {
   const int L = 100;
   
+  //Create array and fill with some number so we can sort it
   int foo[L];
   for(int i=0;i<L;i++) foo[i] = 200 - 2*i;
 
