@@ -7,12 +7,17 @@ Note that this only sorts lists of numbers
 if there are strings, dictionaries, generators,
 or None types.
 
+Implementation has been benchmarked for performance
+to decide which is best approach 
+ie:
+    - "math.ceil(len(ary) / 2)" vs. "len(ary) // 2" vs. if/else statement for finding mid-point
+    - initializing full list and indexing into it vs. initializing empty list and appending
+
 '''
-import math
 
 def merge_sort(input_array):
     if len(input_array) > 1:
-        mid = math.ceil(len(input_array) / 2)
+        mid = len(input_array) // 2
 
         l_array = input_array[:mid]
         r_array = input_array[mid:]
