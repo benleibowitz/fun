@@ -41,7 +41,7 @@ class TestCase(unittest.TestCase):
     def testNestedLists(self):
         self.assertEqual(merge_sort(self.array4), sorted(self.array4))
 
-    def testEmptyArray(self):
+    def testEmptyList(self):
         self.assertEqual(merge_sort(self.array5), [])
         
     def testNone(self):
