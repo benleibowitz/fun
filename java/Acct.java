@@ -1,11 +1,19 @@
 /*
  * Abstract class of Acct, which represents a simple bank account object
 */
+/*
+ * In implementing this object, user must set account currency (either
+ * through constructor or setter) before making transactions.
+*/
+
 import java.util.Currency;
 import java.util.Locale;
 
 public abstract class Acct {
 	public class AccountNotInitializedException extends Exception {
+		/*
+		 * If account is not setup properly (ie, currency not set)
+		 */
 		AccountNotInitializedException() {
 			super();
 		}
@@ -15,6 +23,10 @@ public abstract class Acct {
 	}
 	
 	public class IllegalAccountActivityException extends Exception {
+		/*
+		 * Thrown when attempting to deposit or withdraw a negative number
+		 * (withdrawls and deposits must be positive)
+		 */
 		IllegalAccountActivityException() {
 			super();
 		}
@@ -54,6 +66,7 @@ public abstract class Acct {
 			throw new AccountNotInitializedException("Cannot set null currency");
 	}
 	
+	//If currency not set properly, throws AccountNotInitializedException
 	public String getCurrencySymbol() throws AccountNotInitializedException {
 		String symb;
 		
@@ -83,6 +96,8 @@ public abstract class Acct {
 		return symb;
 	}
 	
+	//Returns the currency code for the account (ie, EUR, USD).
+	//If currency not set properly, throws AccountNotInitializedException
 	public String getCurrencyCode() throws AccountNotInitializedException {
 		String symb;
 
