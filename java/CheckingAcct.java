@@ -1,5 +1,7 @@
 /*
- * CheckingAcct class, which inherits from abstract class Acct
+ * CheckingAcct class, which inherits from abstract class Acct.
+ * In implementing this object, user must set account currency (either
+ * through constructor or setter) before making transactions.
 */
 
 public class CheckingAcct extends Acct {
