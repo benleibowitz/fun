@@ -14,13 +14,14 @@ void insertSort(int arr[], const unsigned int LENGTH) {
         int prevKey = arr[j-1];
         
         if(prevKey > key) 
-	        arr[j] = prevKey;
+	  arr[j] = prevKey;
         else {
           arr[j] = key;
-	        inserted = true;
+	  inserted = true;
         }
 
-        if(j == 1 && !inserted) arr[0] = key;
+        if(j == 1 && !inserted)
+          arr[0] = key;
       }
 
 
