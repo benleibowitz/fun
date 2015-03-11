@@ -9,6 +9,7 @@ void insertSort(int arr[], const unsigned int LENGTH) {
     for(int i=1; i<LENGTH; i++) {
     
       int key = arr[i];
+      
       bool inserted = false;
       for(int j=i; j>0 && !inserted; j--) {
         int prevKey = arr[j-1];
