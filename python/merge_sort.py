@@ -34,12 +34,12 @@ def merge_sort(input_array):
 def _merge_2_ar(l_array, r_array):
     main_len = len(l_array) + len(r_array)
     
-    new_ar = []
+    new_ar = [None] * main_len
     
     l_idx = 0
     r_idx = 0
     
-    for _ in range(main_len):
+    for i in range(main_len):
         place_l_val = False
         place_r_val = False
         
@@ -55,10 +55,10 @@ def _merge_2_ar(l_array, r_array):
             
             
         if place_l_val:
-            new_ar.append(l_array[l_idx])
+            new_ar[i] = l_array[l_idx]
             l_idx += 1
         elif place_r_val:
-            new_ar.append(r_array[r_idx])
+            new_ar[i] = r_array[r_idx]
             r_idx += 1
 
     return new_ar
