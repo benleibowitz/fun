@@ -8,11 +8,12 @@ if there are strings, dictionaries, generators,
 or None types.
 
 Implementation has been benchmarked for performance
-to decide which is best approach 
+to decide which approaches are best.
 ie:
-    - "math.ceil(len(ary) / 2)" vs. "len(ary) // 2" vs. if/else statement for finding mid-point
-    - initializing full list and indexing into it vs. initializing empty list and appending (indexing
-        is about 7% faster is #elements gets large)
+    - "math.ceil(len(ary) / 2)" vs. "len(ary) // 2" vs. 
+        vs. "int( len(ary) / 2)" vs. if/else statement for finding mid-point
+    - initializing full list and indexing into it vs. initializing empty list and appending.. (indexing
+        is about 7% faster is # elements gets large)
 
 '''
 
