@@ -8,7 +8,8 @@ if there are strings, dictionaries, generators,
 or None types.
 
 Implementation has been benchmarked for performance
-to decide which approaches are best.
+to decide which approaches are best (Although if speed
+is critical, Python is probably not the best language).
 ie:
     - "math.ceil(len(ary) / 2)" vs. "len(ary) // 2" vs. 
         vs. "int( len(ary) / 2)" vs. if/else statement for finding mid-point
