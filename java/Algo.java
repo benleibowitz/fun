@@ -1,5 +1,5 @@
 /*
- *  A class in Java which contains a few basic algorithm functions
+ *  A class which contains a few basic algorithm implementations.
  *  Algo has the following functions, which modify arrays (* insertSort modifies array in place *)
  *  - void insertSort(int[]);
  *  - int[] mergeSort(int[]);
