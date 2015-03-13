@@ -186,12 +186,10 @@ public class InterviewQuestions {
 	
 	//rotates array clockwise
 	public static int[][] rotateArray(int[][] inArray) throws ArrayNotSquareException {
-		int[][] outArray;
-		
 		if(!arrayIsSquare(inArray))
 			throw new ArrayNotSquareException();
 		
-		outArray = new int[inArray.length][inArray.length];
+		int[][] outArray = new int[inArray.length][inArray.length];
 
 		//loop for each "ring/layer"
 		//ie. if array is 5x5, we loop 3 times. to rotate the outer layer, next layer, and middle layer
