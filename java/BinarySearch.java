@@ -43,18 +43,18 @@ public class BinarySearch {
 		if(inArray == null)
 			throw new IllegalArgumentException("Null input array");
 		
-		return recurse(inArray, 0, inArray.length - 1, searchKey);
+		return innerRecurse(inArray, 0, inArray.length - 1, searchKey);
 	}
 	
-	private static int recurse(int[] inArray, int lowerIdx, int upperIdx, int searchKey) {
+	private static int innerRecurse(int[] inArray, int lowerIdx, int upperIdx, int searchKey) {
 		int foundIdx = -1;
 		int midIdx = (lowerIdx + upperIdx) / 2;
 		
 		if(lowerIdx <= upperIdx) {
 			if(inArray[midIdx] > searchKey)
-				foundIdx = recurse(inArray, lowerIdx, midIdx - 1, searchKey);
+				foundIdx = innerRecurse(inArray, lowerIdx, midIdx - 1, searchKey);
 			else if(inArray[midIdx] < searchKey)
-				foundIdx = recurse(inArray, midIdx + 1, upperIdx, searchKey);
+				foundIdx = innerRecurse(inArray, midIdx + 1, upperIdx, searchKey);
 			else
 				foundIdx = midIdx;
 		}
