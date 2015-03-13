@@ -12,8 +12,8 @@ public class Factorial {
 	public static long findFactorial(int num) {
 		long factorial = 1;
 
-    if(num < 0)
-      throw new IllegalArgumentException("Factorial with negative input is undefined");
+		if(num < 0)
+    			throw new IllegalArgumentException("Factorial with negative input is undefined");
 
 		if(num == 0) 
 			factorial = 0;
@@ -26,11 +26,11 @@ public class Factorial {
 	}
 	
 	public static long findFactorialUp(int num) {
-    if(num < 0)
-      throw new IllegalArgumentException("Factorial with negative input is undefined");
+		if(num < 0)
+			throw new IllegalArgumentException("Factorial with negative input is undefined");
     
-    //if number is greater than 1, find factorial, else 
-    //number is 1 or 0, and return number.
+		//if number is greater than 1, find factorial, else 
+		//number is 1 or 0, and return number.
 		return (num > 1) ? findFactorialUp(1, num) : num;
 	}
 	
