@@ -33,37 +33,6 @@ class IllegalArrayLengthException extends Exception {
 	}
 }
 
-
-//runnable that counts number of occurances of each number in array
-class IterateThread implements Runnable {
-	int[] subArray;
-	HashMap<Integer, Integer> numberCount;
-	
-	IterateThread() {
-		numberCount = new HashMap<>();
-	}
-	
-	IterateThread(int[] arrayIn) {
-		subArray = arrayIn;
-		numberCount = new HashMap<>();
-	}
-	
-	@Override
-	public void run() {
-		for(int num : subArray) {
-			if(!(numberCount.keySet().contains(num)))
-				numberCount.put(num, 1);
-			else
-				numberCount.put(num, numberCount.get(num)+1);
-		}
-	}
-	
-	public HashMap<Integer, Integer> getElementsCount() {
-		return numberCount;
-	}
-	
-}
-
 public class InterviewQuestions {
 	static Random r = new Random();
 	
@@ -91,7 +60,7 @@ public class InterviewQuestions {
 			System.out.println("Value:" + i + ", Percentage Occurance:" + df.format(100.0 * m.get(i) / totalFrequency));
 		}
 	}
-	
+	/*
 	public static void testMultiThreadDistinctFind() {
 		final long len = 350000000;
 		final int shortLen = (int)Math.ceil(len / 3.0);
@@ -121,6 +90,7 @@ public class InterviewQuestions {
 		for(int value : count3.keySet()) System.out.println("Value: " + value + " occurs: " + count1.get(value) + " times");
 		
 	}
+	*/
 	
 	public static void testElementFind() {
 		int[] foo = new int[35000];
