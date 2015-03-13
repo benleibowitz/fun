@@ -190,31 +190,30 @@ public class InterviewQuestions {
 		
 		if(!arrayIsSquare(inArray))
 			throw new ArrayNotSquareException();
-		else {
-			outArray = new int[inArray.length][inArray.length];
+		
+		outArray = new int[inArray.length][inArray.length];
 
-			//loop for each "ring/layer"
-			//ie. if array is 5x5, we loop 3 times. to rotate the outer layer, next layer, and middle layer
-			//if array is 4x4, we loop 2x, rotating the outer layer, then the middle layer
-			for(int i = 0; i < ((inArray.length % 2 == 0) ? inArray.length / 2 : (inArray.length+1) / 2); i++) {
+		//loop for each "ring/layer"
+		//ie. if array is 5x5, we loop 3 times. to rotate the outer layer, next layer, and middle layer
+		//if array is 4x4, we loop 2x, rotating the outer layer, then the middle layer
+		for(int i = 0; i < ((inArray.length % 2 == 0) ? inArray.length / 2 : (inArray.length+1) / 2); i++) {
 
-				//move top arrays to the right side
-				for(int k = i; k < inArray.length - i; k++) 
-					outArray[k][inArray.length - 1 - i] = inArray[i][k];
+			//move top arrays to the right side
+			for(int k = i; k < inArray.length - i; k++) 
+				outArray[k][inArray.length - 1 - i] = inArray[i][k];
 
-				//move left arrays to top
-				for(int k = i; k < (inArray.length - 1 - i); k++) 
-					outArray[i][k] = inArray[inArray.length - 1 - k][i];
+			//move left arrays to top
+			for(int k = i; k < (inArray.length - 1 - i); k++) 
+				outArray[i][k] = inArray[inArray.length - 1 - k][i];
 
-				//move bottom arrays to the left
-				for(int k = i; k < inArray.length - i; k++) 
-					outArray[inArray.length - 1 - k][i] = inArray[inArray.length - 1 - i][inArray.length - 1 - k];
+			//move bottom arrays to the left
+			for(int k = i; k < inArray.length - i; k++) 
+				outArray[inArray.length - 1 - k][i] = inArray[inArray.length - 1 - i][inArray.length - 1 - k];
 
-				//move right arrays to the bottom
-				for(int k = inArray.length - i - 1; k >= i; k--) 
-					outArray[inArray.length - 1 - i][k] = inArray[inArray.length - 1 - k][inArray.length - 1 - i];
+			//move right arrays to the bottom
+			for(int k = inArray.length - i - 1; k >= i; k--) 
+				outArray[inArray.length - 1 - i][k] = inArray[inArray.length - 1 - k][inArray.length - 1 - i];
 
-			}
 		}
 		
 		return outArray;
