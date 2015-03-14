@@ -1,6 +1,6 @@
 /*
  * Implementation of Binary Search in Java, using
- * a while loop (search()), and recursion (recursiveSearch()).
+ * iteration (search()), and recursion (recursiveSearch()).
  * Both have been unit tested, and throw IllegalArgumentExceptions
  * if null has been passed into function as the input array.
  */
