@@ -14,7 +14,7 @@ public class BinarySearch {
 		if(inArray == null)
 			throw new IllegalArgumentException("Null input array");
 		
-		else if(inArray.length > 0) {
+		if(inArray.length > 0) {
 			int lowerIdx = 0;
 			int upperIdx = inArray.length - 1;
 			int midIdx;
