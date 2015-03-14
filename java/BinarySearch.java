@@ -43,7 +43,7 @@ public class BinarySearch {
 		if(inArray == null)
 			throw new IllegalArgumentException("Null input array");
 		
-		return innerRecurse(inArray, 0, inArray.length - 1, searchKey);
+		return recursiveSearch(inArray, 0, inArray.length - 1, searchKey);
 	}
 	
 	private static int recursiveSearch(int[] inArray, int lowerIdx, int upperIdx, int searchKey) {
