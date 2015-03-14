@@ -48,9 +48,10 @@ public class BinarySearch {
 	
 	private static int recursiveSearch(int[] inArray, int lowerIdx, int upperIdx, int searchKey) {
 		int foundIdx = -1;
-		int midIdx = (lowerIdx + upperIdx) / 2;
 		
 		if(lowerIdx <= upperIdx) {
+	        int midIdx = (lowerIdx + upperIdx) / 2;
+	        
 			if(inArray[midIdx] > searchKey)
 				foundIdx = recursiveSearch(inArray, lowerIdx, midIdx - 1, searchKey);
 			else if(inArray[midIdx] < searchKey)
