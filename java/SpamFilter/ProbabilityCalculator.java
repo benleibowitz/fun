@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ProbabilityCalculator {
-	//all strings must be lowercase
+	//all words in map must be lowercase
 	//probability map contains <word, { p(word is in spam message), p(word is in real message) }>
 	private Map<String, double[]> probabilityMap;
 	private static final String wordMapFile = "C:/Users/Ben/workspace/JavaProjects/src/spam/WordMap.csv";
