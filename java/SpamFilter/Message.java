@@ -1,7 +1,7 @@
 package spam;
 
 public class Message {
-	//Maybe add url links, subject, sender as well
+	//TODO - add url links, subject, sender
 	private String body;
 	
 	public Message(String body) {
