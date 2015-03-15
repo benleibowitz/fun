@@ -5,6 +5,9 @@ public class Message {
 	private String body;
 	
 	public Message(String body) {
+		if(body == null)
+			throw new IllegalArgumentException("Body cannot be null");
+		
 		this.body = body;
 	}
 	

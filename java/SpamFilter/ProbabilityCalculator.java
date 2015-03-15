@@ -58,7 +58,9 @@ public class ProbabilityCalculator {
 				probabilityReal *= probabilityMap.get(word)[1];
 			}
 		}
+		
 		System.out.println("Spam:" + probabilitySpam + " Real:" + probabilityReal);
+		
 		if(probabilitySpam > probabilityReal)
 			return true;
 		else
