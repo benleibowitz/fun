@@ -18,7 +18,7 @@ public class ProbabilityCalculator {
 	private void initialize() {
 		probabilityMap = new HashMap<>();
 		
-		//test read csv mapping
+		//TEST read csv mapping
 		BufferedReader br = null;
 		try {
 			br = new BufferedReader(new FileReader(wordMapFile));
@@ -51,11 +51,23 @@ public class ProbabilityCalculator {
 		double probabilityReal = 1;
 		
 		String[] bodyWords = message.getBodyWords();
-		for(String word : bodyWords) {
-			
+		for(int i = 0; i < bodyWords.length; i++) {
+			//check individual word
+			String word = bodyWords[i];
+
 			if(probabilityMap.containsKey(word)) {
 				probabilitySpam *= probabilityMap.get(word)[0];
 				probabilityReal *= probabilityMap.get(word)[1];
+			}
+			
+			if(i < (bodyWords.length - 1)) {
+				//check combination of 2 words
+				String comboWord = word + " " + bodyWords[i+1];
+				
+				if(probabilityMap.containsKey(comboWord)) {
+					probabilitySpam *= probabilityMap.get(comboWord)[0];
+					probabilityReal *= probabilityMap.get(comboWord)[1];
+				}
 			}
 		}
 		
