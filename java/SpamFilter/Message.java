@@ -14,4 +14,8 @@ public class Message {
 	public String getBody() {
 		return body;
 	}
+	
+	public String[] getBodyWords() {
+		return body.replaceAll("[^\\w^\\s]", "").split(" ");
+	}
 }

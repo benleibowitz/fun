@@ -9,7 +9,7 @@ public class ProbabilityCalculator {
 	//all strings must be lowercase
 	//probability map contains <word, { p(word is in spam message), p(word is in real message) }>
 	private Map<String, double[]> probabilityMap;
-	private static final String wordMapFile = "MySpamWords.csv";
+	private static final String wordMapFile = "C:/Users/Ben/workspace/JavaProjects/src/spam/WordMap.csv";
 	private static ProbabilityCalculator _instance;
 	
 	private ProbabilityCalculator() {
@@ -50,7 +50,7 @@ public class ProbabilityCalculator {
 		double probabilitySpam = 1;
 		double probabilityReal = 1;
 		
-		String[] bodyWords = message.getBody().toLowerCase().split(" ");
+		String[] bodyWords = message.getBodyWords();
 		for(String word : bodyWords) {
 			
 			if(probabilityMap.containsKey(word)) {
