@@ -1,2 +1,2 @@
-[ ] foo bar
-[ ] abc
+- [ ] foo bar
+- [ ] abc
