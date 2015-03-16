@@ -54,6 +54,7 @@ public class ProbabilityCalculator {
 		for(int i = 0; i < bodyWords.length; i++) {
 			//check individual word
 			//TODO - weight these less than 2 word matches
+			//TODO - make this more Bayesian. Redo calculation formula
 			String word = bodyWords[i];
 
 			if(probabilityMap.containsKey(word)) {
