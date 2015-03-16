@@ -53,6 +53,7 @@ public class ProbabilityCalculator {
 		String[] bodyWords = message.getBodyWords();
 		for(int i = 0; i < bodyWords.length; i++) {
 			//check individual word
+			//TODO - weight these less than 2 word matches
 			String word = bodyWords[i];
 
 			if(probabilityMap.containsKey(word)) {
