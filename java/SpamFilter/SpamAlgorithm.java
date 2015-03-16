@@ -1,7 +1,6 @@
 import java.util.Map;
 
 public interface SpamAlgorithm {
-	//Default constants:
 	
 	/*
 	 * If a word's probability of being a spam word is more than LEGITIMATE_WORD_THRESHOLD
