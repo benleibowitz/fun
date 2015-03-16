@@ -71,6 +71,7 @@ public class ProbabilityCalculator {
 			}
 		}
 		
+		//Testing
 		System.out.println("Spam:" + probabilitySpam + " Real:" + probabilityReal);
 		
 		if(probabilitySpam > probabilityReal)
