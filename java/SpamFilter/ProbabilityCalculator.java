@@ -60,7 +60,7 @@ public class ProbabilityCalculator {
 	}
 	
 	//TODO - make algorithm class interchangeable, maybe like so:
-	//public boolean isSpam(Message message, SpamAlgorithm myAlgo) {
+	//public boolean isSpam(Message message, MySpamAlgorithm myAlgo) {
 	public boolean isSpam(Message message) {
 		double probabilitySpam = 0;
 		double probabilityReal = 0;
