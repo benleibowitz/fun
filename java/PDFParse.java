@@ -56,9 +56,9 @@ public class PDFParse {
     
     }
     
-    public static PDDocument readInputFile(String fileURL) throws IOException {
+    public static PDDocument readInputFile(String fileURL) {
         if(fileURL == null || fileURL.length() < 1)
-            throw new IOException("File url: " + fileURL + " not found.");
+            throw new IllegalArgumentException("File URL cannot be null or empty");
 	
 	TemporaryResources tmp = new TemporaryResources();
 	RandomAccess scratchFile = new RandomAccessFile(tmp.createTemporaryFile(), "rw");
