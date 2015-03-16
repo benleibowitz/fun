@@ -3,7 +3,9 @@
  *  PDFParse.java takes a PDF file as input and
  *  extracts the text, and prints to console.
  *  (Does not use optical character recognition..
- *  Uses Apache PDFBox to strip text elements of PDF)
+ *  Uses Apache PDFBox to strip text elements of 
+ *  text-based PDF)
+ *
  */
 
 import java.io.File;
