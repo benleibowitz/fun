@@ -9,7 +9,9 @@ public class ProbabilityCalculator {
 	//all words in map must be lowercase
 	//probability map contains <word, { p(word is in spam message), p(word is in real message) }>
 	private Map<String, double[]> probabilityMap;
-	private static final String wordMapFile = "C:/Users/Ben/workspace/JavaProjects/src/spam/WordMap.csv";
+	
+	private static final String WORDBANK_FILE = "C:/Users/Ben/workspace/JavaProjects/src/spam/WordMap.csv";
+	private static final double PROBABILITY_SPAM = 0.5;
 	private static ProbabilityCalculator _instance;
 	
 	private ProbabilityCalculator() {
@@ -21,7 +23,7 @@ public class ProbabilityCalculator {
 		//TEST read csv mapping
 		BufferedReader br = null;
 		try {
-			br = new BufferedReader(new FileReader(wordMapFile));
+			br = new BufferedReader(new FileReader(WORDBANK_FILE));
 			String line;
 			br.readLine();
 			
