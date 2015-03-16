@@ -8,7 +8,7 @@ public class MessageReader {
 	
 	public void setMessage(Message message) {
 		if(message == null)
-			throw new NullPointerException("Message cannot be null");
+			throw new IllegalArgumentException("Message cannot be null");
 		
 		this.message = message;
 	}
@@ -20,7 +20,7 @@ public class MessageReader {
 	
 	public boolean isSpam() {
 		if(message == null)
-			throw new NullPointerException("Message cannot be null");
+			throw new IllegalArgumentException("Message cannot be null");
 		
 		ProbabilityCalculator probabilityCalc = ProbabilityCalculator.getInstance();
 		return probabilityCalc.isSpam(message);
