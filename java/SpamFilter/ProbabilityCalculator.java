@@ -104,8 +104,10 @@ public class ProbabilityCalculator {
 					double pDenom = (probSpamWord * PROBABILITY_SPAM_MESSAGE)
 							+ (probRealWord * (1 - PROBABILITY_SPAM_MESSAGE));
 					
-					sumLogsSpam += (Math.log(1 - pSpamNumerator/pDenom) - Math.log(pSpamNumerator/pDenom));
-					sumLogsReal += (Math.log(1 - pRealNumerator/pDenom) - Math.log(pRealNumerator/pDenom));
+					sumLogsSpam +=
+							(Math.log(1 - pSpamNumerator/pDenom) - Math.log(pSpamNumerator/pDenom));
+					sumLogsReal +=
+							(Math.log(1 - pRealNumerator/pDenom) - Math.log(pRealNumerator/pDenom));
 				}
 			}
 		}
