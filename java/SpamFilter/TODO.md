@@ -1,0 +1,5 @@
+- [ ] Algorithm class
+- [ ] Bayes Algorithm child
+- [ ] Training class
+- [ ] CSV mapping reader class
+- [ ] Put into Spring
