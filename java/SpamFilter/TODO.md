@@ -3,3 +3,4 @@
 - [ ] Training class
 - [ ] CSV mapping reader class
 - [ ] Put into Spring
+- [ ] Put constants in Algo class
