@@ -32,6 +32,7 @@ public class ProbabilityCalculator {
 		probabilityMap = new HashMap<>();
 		
 		//TEST read CSV word file
+		//TODO - implement CSV reader class
 		BufferedReader br = null;
 		try {
 			br = new BufferedReader(new FileReader(WORDBANK_FILE));
@@ -59,7 +60,7 @@ public class ProbabilityCalculator {
 		return _instance;
 	}
 	
-	//TODO - make algorithm class interchangeable, maybe like so:
+	//TODO - make algorithm interface, and bayes algorithm interchangeable, maybe like so:
 	//public boolean isSpam(Message message, MySpamAlgorithm myAlgo) {
 	public boolean isSpam(Message message) {
 		double probabilitySpam = 0;
