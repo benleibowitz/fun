@@ -7,7 +7,7 @@ public interface SpamAlgorithm {
 	 * away from 0.5, (ie, how far it is from 50/50), use the word in calculation.
 	 * This helps us avoid words that are 50%/50% spam/real, and Bayesian poisoning
 	 * EXAMPLE: if LEGITIMATE_WORD_THRESHOLD=0.2, word will be
-	 * used if probability spam word < .3 or > .7
+	 * used if probability spam of a given word is < .3 or > .7
 	*/
 	static final double LEGITIMATE_WORD_THRESHOLD = 0.35;
 	
