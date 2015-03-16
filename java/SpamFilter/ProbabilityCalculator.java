@@ -88,7 +88,7 @@ public class ProbabilityCalculator {
 				
 				//Check threshold and compute individual word
 				if(probabilityMap.containsKey(wordOrPhrase)
-						&& Math.abs(0.5 - probabilityMap.get(wordOrPhrase)[0]) > LEGITIMATE_WORD_THRESHOLD) {
+						&& (Math.abs(0.5 - probabilityMap.get(wordOrPhrase)[0]) > LEGITIMATE_WORD_THRESHOLD)) {
 					
 					double probSpamWord = probabilityMap.get(wordOrPhrase)[0];
 					double probRealWord = probabilityMap.get(wordOrPhrase)[1];
