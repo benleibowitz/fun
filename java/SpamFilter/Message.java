@@ -6,7 +6,7 @@ public class Message {
 	
 	public Message(String body) {
 		if(body == null)
-			throw new NullPointerException("Message body cannot be null");
+			throw new IllegalArgumentException("Message body cannot be null");
 		
 		this.body = body;
 	}
