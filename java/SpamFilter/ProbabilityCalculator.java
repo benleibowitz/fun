@@ -23,9 +23,12 @@ public class ProbabilityCalculator {
 	 * used if probability spam word < .3 or > .7
 	*/
 	private static final double LEGITIMATE_WORD_THRESHOLD = 0.35;
-	private static ProbabilityCalculator _instance;
 	
-	private ProbabilityCalculator() {
+	private SpamAlgorithm algorithm;
+	
+	public ProbabilityCalculator(SpamAlgorithm algorithm) {
+		this.algorithm = algorithm;
+		initialize();
 	}
 	
 	private void initialize() {
@@ -51,77 +54,7 @@ public class ProbabilityCalculator {
 		}
 	}
 	
-	public static ProbabilityCalculator getInstance() {
-		if(_instance == null) {
-			_instance = new ProbabilityCalculator();
-			_instance.initialize();
-		}
-		
-		return _instance;
-	}
-	
-	//TODO - make algorithm interface, and bayes algorithm interchangeable, maybe like so:
-	//public boolean isSpam(Message message, MySpamAlgorithm myAlgo) {
 	public boolean isSpam(Message message) {
-		double probabilitySpam = 0;
-		double probabilityReal = 0;
-		double sumLogsSpam = 0;
-		double sumLogsReal = 0;
-		
-		String[] bodyWords = message.getBodyWords();
-		
-		/*
-		 * For each word in message body, check the word and
-		 * combo of (previous word + current word) for matches in the mapping.
-		 * If found, 
-		 */
-		for(int i = 0; i < bodyWords.length; i++) {
-			String word = bodyWords[i];
-			String adjacentWords;
-			String[] wordCombos = new String[]{word};
-			
-			if(i > 0) {
-				adjacentWords = bodyWords[i] + " " + word;
-				wordCombos = new String[]{word, adjacentWords};
-			}
-				
-			for(String wordOrPhrase : wordCombos) {
-				
-				//Check threshold and compute individual word
-				if(probabilityMap.containsKey(wordOrPhrase)
-						&& (Math.abs(0.5 - probabilityMap.get(wordOrPhrase)[0]) > LEGITIMATE_WORD_THRESHOLD)) {
-					
-					double probSpamWord = probabilityMap.get(wordOrPhrase)[0];
-					double probRealWord = probabilityMap.get(wordOrPhrase)[1];
-					
-					//Don't want 0 numerator, as Math.log(0) returns negative infinity.
-					if(probSpamWord == 0)
-						probSpamWord = 0.001;
-					if(probRealWord == 0)
-						probSpamWord = 0.001;
-					
-					double pSpamNumerator = probSpamWord * PROBABILITY_SPAM_MESSAGE;
-					double pRealNumerator = probRealWord * (1 - PROBABILITY_SPAM_MESSAGE);
-					double pDenom = (probSpamWord * PROBABILITY_SPAM_MESSAGE)
-							+ (probRealWord * (1 - PROBABILITY_SPAM_MESSAGE));
-					
-					sumLogsSpam +=
-							(Math.log(1 - pSpamNumerator/pDenom) - Math.log(pSpamNumerator/pDenom));
-					sumLogsReal +=
-							(Math.log(1 - pRealNumerator/pDenom) - Math.log(pRealNumerator/pDenom));
-				}
-			}
-		}
-		
-		probabilitySpam = 1 / (1 + Math.pow(Math.E, sumLogsSpam));
-		probabilityReal = 1 / (1 + Math.pow(Math.E, sumLogsReal));
-		
-		//Testing
-		System.out.println("Spam:" + probabilitySpam + " Real:" + probabilityReal);
-		
-		if(probabilitySpam > probabilityReal)
-			return true;
-		else
-			return false;
+		return algorithm.isSpam(message, probabilityMap);
 	}
 }
