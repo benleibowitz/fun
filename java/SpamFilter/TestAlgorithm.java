@@ -1,4 +1,5 @@
 package spam;
+import java.util.Map;
 
 class TestAlgorithm implements SpamAlgorithm {
 	@Override
