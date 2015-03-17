@@ -5,12 +5,10 @@
 
 
 	<bean id="spamalgorithm" name="naivebayes"
-		class="spam.NaiveBayesAlgorithm">
-	</bean>
-	<bean id="probabilitycalculator" name="probabilitycalculator"
+		class="spam.NaiveBayesAlgorithm"/>
+	<bean name="probabilitycalculator"
 		class="spam.ProbabilityCalculator">
 	<constructor-arg name="algorithm" ref="spamalgorithm"
-		type="spam.SpamAlgorithm">
-	</constructor-arg>
+		type="spam.SpamAlgorithm"/>
 	</bean>
 </beans>
