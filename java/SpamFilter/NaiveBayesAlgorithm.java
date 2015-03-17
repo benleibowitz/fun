@@ -13,8 +13,8 @@
  * The combined probability P that an entire message is spam is calculated as:		
  * 	P = 1 / (1 + e^n)		
  * 		WHERE:		
- *		n	-> SUM(1->N){ ln(1 - pW) - ln(pW) }		
- * 		pW	-> P(S|W) for each word W
+ *		n	-> SUM(1->N){ ln(1 - P(S|Wi)) - ln( P(S|Wi) ) }		
+ * 		P(S|Wi)	-> P(S|W) for each word Wi
  *		
  */
 package spam;
