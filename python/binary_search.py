@@ -13,7 +13,7 @@ def binary_search(in_array, key):
 def _recurse(in_array, low_idx, hi_idx, key):
     found_idx = -1
     
-    mid = int((low_idx + hi_idx) / 2)
+    mid = (low_idx + hi_idx) // 2
     
     if low_idx <= hi_idx:
         if in_array[mid] > key:
