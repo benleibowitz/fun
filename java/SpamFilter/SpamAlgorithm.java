@@ -13,7 +13,7 @@ public interface SpamAlgorithm {
 	static final double LEGITIMATE_WORD_THRESHOLD = 0.35;
 	
 	//The probability that any message is spam
-	//(statistics say it's anywhere from 0.5 to 0.8
+	//(statistics say it's anywhere from 0.5 to 0.8)
 	static final double PROBABILITY_SPAM_MESSAGE = 0.5;
 	
 	public boolean isSpam(Message message, Map<String, double[]> probabilityMap);
