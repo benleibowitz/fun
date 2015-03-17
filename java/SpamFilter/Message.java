@@ -8,7 +8,7 @@ public class Message {
 		if(body == null)
 			throw new IllegalArgumentException("Message body cannot be null");
 		
-		this.body = body;
+		this.body = body.replaceAll("[^\\w^\\s]|_", "").toLowerCase();
 	}
 	
 	public String getBody() {
@@ -16,6 +16,6 @@ public class Message {
 	}
 	
 	public String[] getBodyWords() {
-		return body.replaceAll("[^\\w^\\s]", "").split(" ");
+		return body.split(" ");
 	}
 }
