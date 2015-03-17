@@ -14,7 +14,7 @@
  * 	P = 1 / (1 + e^n)		
  * 		WHERE:		
  *		n	-> SUM(1->N){ ln(1 - pW) - ln(pW) }		
- * 		pW	-> P(S|W) for each word W *		
+ * 		pW	-> P(S|W) for each word W
  *		
  */
 package spam;
