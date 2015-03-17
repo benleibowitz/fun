@@ -1,5 +1,5 @@
+package spam;
 import java.util.Map;
-
 
 public class NaiveBayesAlgorithm implements SpamAlgorithm {
 	
@@ -35,12 +35,12 @@ public class NaiveBayesAlgorithm implements SpamAlgorithm {
 					//Calculate probability of spam / real
 					double probSpamWord = probabilityMap.get(wordOrPhrase)[0];
 					double probRealWord = probabilityMap.get(wordOrPhrase)[1];
-					
+
 					//Don't want 0 numerator, as Math.log(0) returns negative infinity.
 					if(probSpamWord == 0)
-						probSpamWord = 0.001;
+						probSpamWord = 0.05;
 					if(probRealWord == 0)
-						probSpamWord = 0.001;
+						probRealWord = 0.05;
 					
 					double pSpamNumerator = probSpamWord * PROBABILITY_SPAM_MESSAGE;
 					double pRealNumerator = probRealWord * (1 - PROBABILITY_SPAM_MESSAGE);
@@ -51,6 +51,7 @@ public class NaiveBayesAlgorithm implements SpamAlgorithm {
 							(Math.log(1 - pSpamNumerator/pDenom) - Math.log(pSpamNumerator/pDenom));
 					sumLogsReal +=
 							(Math.log(1 - pRealNumerator/pDenom) - Math.log(pRealNumerator/pDenom));
+					
 				}
 			}
 		}

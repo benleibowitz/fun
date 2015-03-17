@@ -1,3 +1,4 @@
+package spam;
 import java.util.Map;
 
 public interface SpamAlgorithm {

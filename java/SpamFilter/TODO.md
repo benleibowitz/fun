@@ -1,6 +1,1 @@
-- [x] Algorithm class
-- [x] Bayes Algorithm child
-- [ ] Training class
-- [ ] CSV mapping reader class
-- [ ] Put into Spring
-- [x] Put constants in Algo class
+- [ ] CSV mapping reader class (opencsv?)
