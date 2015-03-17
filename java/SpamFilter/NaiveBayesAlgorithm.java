@@ -1,23 +1,3 @@
-/*
- * The calculation for this Bayes algorithm is:
- * for each word, W, in an email message
- * the probability P(S|W) that given W, the message is spam
- * is:
- * 	P(S|W) = P(W|S) * P(S) / ( P(W|S) * P(S) + P(W|R) * P(R) )
- *		 WHERE:
- *		 P(W|S) -> probability that word W appears in spam messages
- *		 P(S)   -> probability that any message is spam
- *		 P(W|R) -> probability that word W appears in real messages
- *		 P(R)   -> probability that any message is real (1 - P(S))
- *
- * The combined probability P that an entire message is spam is calculated as:
- * 	P = 1 / (1 + e^n)
- * 		WHERE:
- *		n	-> SUM(1->N){ ln(1 - pW) - ln(pW) }
- * 		pW	-> P(S|W) for each word W *
- *
- */
- 
 package spam;
 import java.util.Map;
 
@@ -26,9 +6,7 @@ public class NaiveBayesAlgorithm implements SpamAlgorithm {
 	@Override
 	public boolean isSpam(Message message, Map<String, double[]> probabilityMap) {
 		double probabilitySpam = 0;
-		double probabilityReal = 0;
 		double sumLogsSpam = 0;
-		double sumLogsReal = 0;
 		
 		String[] bodyWords = message.getBodyWords();
 		
@@ -63,26 +41,22 @@ public class NaiveBayesAlgorithm implements SpamAlgorithm {
 						probRealWord = 0.05;
 					
 					double pSpamNumerator = probSpamWord * PROBABILITY_SPAM_MESSAGE;
-					double pRealNumerator = probRealWord * (1 - PROBABILITY_SPAM_MESSAGE);
 					double pDenom = (probSpamWord * PROBABILITY_SPAM_MESSAGE)
 							+ (probRealWord * (1 - PROBABILITY_SPAM_MESSAGE));
 					
 					sumLogsSpam +=
 							(Math.log(1 - pSpamNumerator/pDenom) - Math.log(pSpamNumerator/pDenom));
-					sumLogsReal +=
-							(Math.log(1 - pRealNumerator/pDenom) - Math.log(pRealNumerator/pDenom));
 					
 				}
 			}
 		}
 		
 		probabilitySpam = 1 / (1 + Math.pow(Math.E, sumLogsSpam));
-		probabilityReal = 1 / (1 + Math.pow(Math.E, sumLogsReal));
 		
 		//Testing
-		System.out.println("Spam:" + probabilitySpam + " Real:" + probabilityReal);
+		System.out.println("Spam:" + probabilitySpam + " Real:" + (1-probabilitySpam));
 		
-		if(probabilitySpam > probabilityReal)
+		if(probabilitySpam > 0.5)
 			return true;
 		else
 			return false;
