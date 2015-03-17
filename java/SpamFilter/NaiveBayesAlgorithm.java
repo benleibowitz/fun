@@ -1,3 +1,23 @@
+/*
+ * The calculation for this Bayes algorithm is:
+ * for each word, W, in an email message
+ * the probability P(S|W) that given W, the message is spam
+ * is:
+ * 	P(S|W) = P(W|S) * P(S) / ( P(W|S) * P(S) + P(W|R) * P(R) )
+ *		 WHERE:
+ *		 P(W|S) -> probability that word W appears in spam messages
+ *		 P(S)   -> probability that any message is spam
+ *		 P(W|R) -> probability that word W appears in real messages
+ *		 P(R)   -> probability that any message is real (1 - P(S))
+ *
+ * The combined probability P that an entire message is spam is calculated as:
+ * 	P = 1 / (1 + e^n)
+ * 		WHERE:
+ *		n	-> SUM(1->N){ ln(1 - pW) - ln(pW) }
+ * 		pW	-> P(S|W) for each word W *
+ *
+ */
+ 
 package spam;
 import java.util.Map;
 
