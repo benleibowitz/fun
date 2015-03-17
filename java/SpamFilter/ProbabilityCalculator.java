@@ -14,6 +14,9 @@ public class ProbabilityCalculator {
 	private SpamAlgorithm algorithm;
 	
 	public ProbabilityCalculator(SpamAlgorithm algorithm) {
+		if(algorithm == null)
+			throw new IllegalArgumentException("Algorithm cannot be null");
+		
 		this.algorithm = algorithm;
 		initialize();
 	}
