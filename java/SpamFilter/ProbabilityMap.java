@@ -1,6 +1,4 @@
 package spam;
 
-public abstract class ProbabilityMap {
-  public ProbabilityMap() {
-  }
+public interface ProbabilityMap {
 }
