@@ -1,7 +1,7 @@
 package spam;
 
 public class Message {
-	//TODO - add url links, subject, sender
+	//TODO - add url links
 	private String sender;
 	private String subject;
 	private String body;
@@ -24,10 +24,6 @@ public class Message {
 	
 	public String getBody() {
 		return body;
-	}
-	
-	public String[] getBodyWords() {
-		return body.split(" ");
 	}
 	
 	public String getSender() {

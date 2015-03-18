@@ -28,7 +28,7 @@ public class BayesProbabilityTrainer implements ProbabilityTrainer {
 	
 	@Override
 	public void commit() {
-		probabilityMap.write();
+		scoringSystem.write();
 	}
 	
 	@Override

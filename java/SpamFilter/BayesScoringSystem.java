@@ -1,9 +1,10 @@
 package spam;
 
 public class BayesScoringSystem {
-	private static final String BODYMAP_FILE = "C:/Users/Ben/workspace/JavaProjects/src/spam/bodyMap.csv";
-	private static final String SUBJECTMAP_FILE = "C:/Users/Ben/workspace/JavaProjects/src/spam/subjectMap.csv";
-	private static final String SENDERMAP_FILE = "C:/Users/Ben/workspace/JavaProjects/src/spam/senderMap.csv";
+    private static final String BASE_URL = "";
+	private static final String BODYMAP_FILE = BASE_URL + "bodyMap.csv";
+	private static final String SUBJECTMAP_FILE = BASE_URL + "subjectMap.csv";
+	private static final String SENDERMAP_FILE = BASE_URL + "senderMap.csv";
 	
 	//All words in map are lowercase.
 	//Probability map contains: <word, { P(word is in spam message), P(word is in real message) }>
@@ -18,7 +19,7 @@ public class BayesScoringSystem {
 	}
 	
 	private void initialize() {
-    		bodyProbabilityMap = new HashMap<>();
+    	bodyProbabilityMap = new HashMap<>();
 		senderProbabilityMap = new HashMap<>();
 		subjectProbabilityMap = new HashMap<>();
 		
@@ -58,6 +59,45 @@ public class BayesScoringSystem {
 			}
 		}
 	}
+	
+	public void write() {
+	    
+	    for(String fileName : fileMap.keySet()) {
+	    //Write new word map to file
+            BufferedWriter bufferedWriter = null;
+            Map<String, ArrayList<Double>> probabilityMap = fileMap.get(fileName);
+                    
+            try {
+                bufferedWriter = new BufferedWriter(new FileWriter(
+                        new File(fileName)));
+                
+                //Write headers
+                bufferedWriter.write("Word,MessagesFoundIn,SpamMessages,RealMessages\n");
+                
+                for(String w : probabilityMap.keySet()) {
+                    
+                    bufferedWriter.write(w + "," + probabilityMap.get(w).get(0) + "," +
+                            probabilityMap.get(w).get(1) + "," + probabilityMap.get(w).get(2)
+                            + "\n" );
+                }
+                
+            } catch(IOException e) {
+                e.printStackTrace();
+            }  finally {
+                if(bufferedWriter != null) {
+                    try {
+                        bufferedWriter.close();
+                    } catch(IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+	    }
+        
+    }
+	}
+	
+	
   
   public void setBodyProbabilityMap(Map<String, double[]> bodyProbabilityMap) {
     this.bodyProbabilityMap = bodyProbabilityMap;
