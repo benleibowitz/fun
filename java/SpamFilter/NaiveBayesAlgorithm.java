@@ -22,8 +22,8 @@ import java.util.Map;
 
 public class NaiveBayesAlgorithm implements SpamAlgorithm {
 	private static final double BODY_WEIGHT = 0.4;
-	private static final double SENDER_WEIGHT = 0.3;
-	private static final double SUBJECT_WEIGHT = 0.3;
+	private static final double SENDER_WEIGHT = 0.2;
+	private static final double SUBJECT_WEIGHT = 0.4;
 	
 	private BayesScoringSystem scoringSystem;
 	
