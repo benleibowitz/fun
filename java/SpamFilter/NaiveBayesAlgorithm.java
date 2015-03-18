@@ -21,13 +21,28 @@ package spam;
 import java.util.Map;
 
 public class NaiveBayesAlgorithm implements SpamAlgorithm {
+	private static final double BODY_WEIGHT = 0.4;
+	private static final double SENDER_WEIGHT = 0.3;
+	private static final double SUBJECT_WEIGHT = 0.3;
 	
 	@Override
-	public boolean isSpam(Message message, Map<String, double[]> probabilityMap) {
+	public boolean isSpam(Message message, Map<String, double[]> bodyProbabilityMap,
+			Map<String, double[]> senderProbabilityMap,
+			Map<String, double[]> subjectProbabilityMap) {
+		double weightedProbability = BODY_WEIGHT * processText(message.getBody(), bodyProbabilityMap)
+				+ SENDER_WEIGHT * processText(message.getSender(), senderProbabilityMap)
+				+ SUBJECT_WEIGHT * processText(message.getSubject(), subjectProbabilityMap);
+		
+		if(weightedProbability > 0.5)
+			return true;
+		return false;
+	}
+	
+	private double processText(String text, Map<String, double[]> probabilityMap) {
 		double probabilitySpam = 0;
 		double sumLogsSpam = 0;
 		
-		String[] bodyWords = message.getBodyWords();
+		String[] bodyWords = text.split(" ");
 		
 		/*
 		 * For each word in message body, check the word and
@@ -72,12 +87,6 @@ public class NaiveBayesAlgorithm implements SpamAlgorithm {
 		
 		probabilitySpam = 1 / (1 + Math.pow(Math.E, sumLogsSpam));
 		
-		//Testing
-		System.out.println("Spam:" + probabilitySpam + " Real:" + (1-probabilitySpam));
-		
-		if(probabilitySpam > 0.5)
-			return true;
-		else
-			return false;
+		return probabilitySpam;
 	}
 }

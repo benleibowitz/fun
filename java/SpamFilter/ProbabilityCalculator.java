@@ -2,15 +2,23 @@ package spam;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ProbabilityCalculator {
-	private static final String WORDBANK_FILE = "C:/Users/Ben/workspace/JavaProjects/src/spam/WordMap.csv";
+	private static final String BODYMAP_FILE = "C:/Users/Ben/workspace/JavaProjects/src/spam/bodyMap.csv";
+	private static final String SUBJECTMAP_FILE = "C:/Users/Ben/workspace/JavaProjects/src/spam/subjectMap.csv";
+	private static final String SENDERMAP_FILE = "C:/Users/Ben/workspace/JavaProjects/src/spam/senderMap.csv";
 	
 	//All words in map are lowercase.
 	//Probability map contains: <word, { P(word is in spam message), P(word is in real message) }>
-	private Map<String, double[]> probabilityMap;
+	private Map<String, double[]> bodyProbabilityMap;
+	private Map<String, double[]> subjectProbabilityMap;
+	private Map<String, double[]> senderProbabilityMap;
+	
+	private Map<String, Map<String, double[]>> fileMap = new HashMap<>();
+	
 	private SpamAlgorithm algorithm;
 	
 	public ProbabilityCalculator(SpamAlgorithm algorithm) {
@@ -22,29 +30,49 @@ public class ProbabilityCalculator {
 	}
 	
 	private void initialize() {
-		probabilityMap = new HashMap<>();
+		bodyProbabilityMap = new HashMap<>();
+		senderProbabilityMap = new HashMap<>();
+		subjectProbabilityMap = new HashMap<>();
+		
+		fileMap.put(BODYMAP_FILE, bodyProbabilityMap);
+		fileMap.put(SENDERMAP_FILE, senderProbabilityMap);
+		fileMap.put(SUBJECTMAP_FILE, subjectProbabilityMap);
 		
 		//TEST read CSV word file
 		//TODO - implement CSV reader class
-		BufferedReader br = null;
-		try {
-			br = new BufferedReader(new FileReader(WORDBANK_FILE));
-			String line;
-			br.readLine();
+		for(String fileName : fileMap.keySet()) {
+			Map<String, double[]> probabilityMap = fileMap.get(fileName);
 			
-			while((line = br.readLine()) != null) {
-				String[] ar = line.split(",");
-				double totMessages = Double.valueOf(ar[1]);
-				double spamMessages = Double.valueOf(ar[2]);
-				double realMessages = Double.valueOf(ar[3]);
-				probabilityMap.put(ar[0], new double[]{spamMessages/totMessages, realMessages/totMessages});
+			BufferedReader br = null;
+			try {
+				br = new BufferedReader(new FileReader(fileName));
+				String line;
+				br.readLine();
+				
+				while((line = br.readLine()) != null) {
+					String[] ar = line.split(",");
+					double totMessages = Double.valueOf(ar[1]);
+					double spamMessages = Double.valueOf(ar[2]);
+					double realMessages = Double.valueOf(ar[3]);
+					probabilityMap.put(ar[0], new double[]{spamMessages/totMessages, realMessages/totMessages});
+				}
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+			} finally {
+				if(br != null) {
+					try {
+						br.close();
+					} catch(IOException e) {
+						e.printStackTrace();
+					}
+				}
 			}
-		} catch(Exception e) {
-			e.printStackTrace();
 		}
 	}
 	
 	public boolean isSpam(Message message) {
-		return algorithm.isSpam(message, probabilityMap);
+		return algorithm.isSpam(message, bodyProbabilityMap,
+				senderProbabilityMap, subjectProbabilityMap);
 	}
 }
