@@ -36,6 +36,8 @@ public class NaiveBayesAlgorithm implements SpamAlgorithm {
 	
 	@Override
 	public boolean isSpam(Message message) {
+		if(message == null)
+			throw new IllegalArgumentException("Message cannot be null");
 		
 		double weightedProbability = BODY_WEIGHT * processText(message.getBody(), scoringSystem.getBodyProbabilityMap())
 				+ SENDER_WEIGHT * processText(message.getSender(), scoringSystem.getSenderProbabilityMap())
