@@ -19,7 +19,8 @@ public class Message {
 		return text.toLowerCase()
 				.replace("-", " ")
 				.replaceAll("<br>|[^\\w^\\s]|_", "")
-				.replaceAll("[\\s]{2,}", " ");
+				.replaceAll("[\\s]{2,}", " ")
+				.trim();
 	}
 	
 	public String getBody() {

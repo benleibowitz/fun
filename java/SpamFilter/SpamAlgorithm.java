@@ -1,5 +1,4 @@
 package spam;
-import java.util.Map;
 
 public interface SpamAlgorithm {
 	
@@ -15,8 +14,6 @@ public interface SpamAlgorithm {
 	//The probability that any message is spam
 	//(statistics say it's anywhere from 0.5 to 0.8)
 	static final double PROBABILITY_SPAM_MESSAGE = 0.5;
-	
-	final ScoringSystem scoringSystem;
 	
 	public boolean isSpam(Message message);
 }

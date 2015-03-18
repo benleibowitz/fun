@@ -18,20 +18,23 @@ public class test {
 		ApplicationContext c = new ClassPathXmlApplicationContext("beans.xml");
 		ProbabilityCalculator probCalc = (ProbabilityCalculator)c.getBean("probabilitycalculator");
 		
-		Message m = new Message("Online Discount pharmacy", "Big sale!!", "Bestsellers: pain pills viagra");
-		System.out.println(probCalc.isSpam(m));
-		//Scanner s = new Scanner(System.in);
-		//BayesProbabilityTrainer t = (BayesProbabilityTrainer)c.getBean("probabilitytrainer");
-		//Message m = new Message("Top-quality  -   woo");
+		//Message m = new Message("Online Discount pharmacy", "Big sale!!", "Bestsellers: pain pills viagra");
+		//System.out.println(probCalc.isSpam(m));
+		Scanner s = new Scanner(System.in);
+		BayesProbabilityTrainer t = (BayesProbabilityTrainer)c.getBean("probabilitytrainer");
 		//System.out.println(m.getBody());
-		/*
+		
 		while(true) {
-			System.out.println("message:");
-			String inp = s.nextLine();
-			if(inp.equals("@")) break;
-			t.train(new Message(inp), true);
+			System.out.print("sender or @ to break:");
+			String se = s.nextLine();
+			System.out.print("subject:");
+			String sub = s.nextLine();
+			System.out.print("message:");
+			String mess = s.nextLine();
+			if(se.equals("@")) break;
+			t.train(new Message(se, sub, mess), true);
 		}
 		t.commit();
-		*/
+		
 	 }
 }

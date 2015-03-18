@@ -42,7 +42,7 @@ public class NaiveBayesAlgorithm implements SpamAlgorithm {
 		double weightedProbability = BODY_WEIGHT * processText(message.getBody(), scoringSystem.getBodyProbabilityMap())
 				+ SENDER_WEIGHT * processText(message.getSender(), scoringSystem.getSenderProbabilityMap())
 				+ SUBJECT_WEIGHT * processText(message.getSubject(), scoringSystem.getSubjectProbabilityMap());
-		
+		System.out.println(weightedProbability);
 		if(weightedProbability > 0.5)
 			return true;
 		return false;
@@ -70,27 +70,27 @@ public class NaiveBayesAlgorithm implements SpamAlgorithm {
 				
 			for(String wordOrPhrase : wordCombos) {
 				
-				//Check threshold and compute individual word
-				if(probabilityMap.containsKey(wordOrPhrase)
-						&& (Math.abs(0.5 - probabilityMap.get(wordOrPhrase)[0]) > LEGITIMATE_WORD_THRESHOLD)) {
-					
+				if(probabilityMap.containsKey(wordOrPhrase)) {
 					//Calculate probability of spam / real
 					double probSpamWord = probabilityMap.get(wordOrPhrase)[0];
 					double probRealWord = probabilityMap.get(wordOrPhrase)[1];
+					
+					//Check threshold and add to total probability
+					if(Math.abs(0.5 - probSpamWord) > LEGITIMATE_WORD_THRESHOLD) {
 
-					//Don't want 0 numerator, as Math.log(0) returns negative infinity.
-					if(probSpamWord == 0)
-						probSpamWord = 0.05;
-					if(probRealWord == 0)
-						probRealWord = 0.05;
-					
-					double pSpamNumerator = probSpamWord * PROBABILITY_SPAM_MESSAGE;
-					double pDenom = (probSpamWord * PROBABILITY_SPAM_MESSAGE)
-							+ (probRealWord * (1 - PROBABILITY_SPAM_MESSAGE));
-					
-					sumLogsSpam +=
-							(Math.log(1 - pSpamNumerator/pDenom) - Math.log(pSpamNumerator/pDenom));
-					
+						//Don't want 0 numerator, as Math.log(0) returns negative infinity.
+						if(probSpamWord == 0)
+							probSpamWord = 0.05;
+						if(probRealWord == 0)
+							probRealWord = 0.05;
+						
+						double pSpamNumerator = probSpamWord * PROBABILITY_SPAM_MESSAGE;
+						double pDenom = (probSpamWord * PROBABILITY_SPAM_MESSAGE)
+								+ (probRealWord * (1 - PROBABILITY_SPAM_MESSAGE));
+						
+						sumLogsSpam +=
+								(Math.log(1 - pSpamNumerator/pDenom) - Math.log(pSpamNumerator/pDenom));
+					}
 				}
 			}
 		}
