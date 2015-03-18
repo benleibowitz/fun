@@ -10,6 +10,6 @@
 		<constructor-arg name="algorithm" ref="spamalgorithm" type="spam.SpamAlgorithm"/>
 	</bean>
 	<bean name="probabilitytrainer" class="spam.ProbabilityTrainer">
-		<constructor-arg name="scoringSystem" ref="bayesscoringsystem" type="spam.BayesProbabilityTrainer"/>
+		<constructor-arg name="scoringSystem" ref="bayesscoringsystem" type="spam.BayesScoringSystem"/>
 	</bean>
 </beans>
