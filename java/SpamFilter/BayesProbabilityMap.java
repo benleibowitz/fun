@@ -1,6 +1,6 @@
 package spam;
 
-public class BayesProbabilityMap implements ProbabilityMap {
+public class BayesScoringSystem implements ScoringSystem {
 	private static final String BODYMAP_FILE = "C:/Users/Ben/workspace/JavaProjects/src/spam/bodyMap.csv";
 	private static final String SUBJECTMAP_FILE = "C:/Users/Ben/workspace/JavaProjects/src/spam/subjectMap.csv";
 	private static final String SENDERMAP_FILE = "C:/Users/Ben/workspace/JavaProjects/src/spam/senderMap.csv";
