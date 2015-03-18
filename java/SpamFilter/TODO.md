@@ -1,2 +1,2 @@
 - [ ] CSV mapping reader class (opencsv?)
-- [ ] Add links, subject, sender in Message class
+- [ ] Add links
