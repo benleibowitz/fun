@@ -8,14 +8,14 @@ import java.util.Map;
 
 public class ProbabilityCalculator {
 	private SpamAlgorithm algorithm;
-	private ProbabilityMap probabilityMap;
+	private ScoringSystem scoringSystem;
 	
-	public ProbabilityCalculator(SpamAlgorithm algorithm, ProbabilityMap, probabilityMap) {
-		if(algorithm == null || probabilityMap == null)
+	public ProbabilityCalculator(SpamAlgorithm algorithm, ScoringSystem scoringSystem) {
+		if(algorithm == null || scoringSystem == null)
 			throw new IllegalArgumentException("ProbabilityCalculator arguments cannot be null");
 		
 		this.algorithm = algorithm;
-		this.probabilityMap = probabilityMap;
+		this.scoringSystem = scoringSystem;
 		initialize();
 	}
 	
@@ -24,6 +24,6 @@ public class ProbabilityCalculator {
 	}
 	
 	public boolean isSpam(Message message) {
-		return algorithm.isSpam(message, probabilityMap);
+		return algorithm.isSpam(message, scoringSystem);
 	}
 }
