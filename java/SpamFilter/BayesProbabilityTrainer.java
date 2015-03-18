@@ -20,6 +20,7 @@ public class BayesProbabilityTrainer implements ProbabilityTrainer {
 	}
 	
 	public void initialize() {
+		//Do any initialization work here
 	}
 	
 	@Override
