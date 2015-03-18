@@ -59,6 +59,18 @@ public class BayesProbabilityMap implements ProbabilityMap {
 		}
 	}
   
+  public void setBodyProbabilityMap(Map<String, double[]> bodyProbabilityMap) {
+    this.bodyProbabilityMap = bodyProbabilityMap;
+  }
+  
+  public void setSenderProbabilityMap(Map<String, double[]> senderProbabilityMap) {
+    this.senderProbabilityMap = senderProbabilityMap;
+  }
+  
+  public void setSubjectProbabilityMap(Map<String, double[]> subjectProbabilityMap) {
+    this.subjectProbabilityMap = subjectProbabilityMap;
+  }
+  
   public Map<String, double[]> getBodyProbabilityMap() {
     return bodyProbabilityMap;
   }
