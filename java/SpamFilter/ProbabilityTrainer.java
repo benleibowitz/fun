@@ -11,114 +11,27 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class ProbabilityTrainer {
-	private static final String BODYMAP_FILE = "C:/Users/Ben/workspace/JavaProjects/src/spam/bodyMap.csv";
-	private static final String SUBJECTMAP_FILE = "C:/Users/Ben/workspace/JavaProjects/src/spam/subjectMap.csv";
-	private static final String SENDERMAP_FILE = "C:/Users/Ben/workspace/JavaProjects/src/spam/senderMap.csv";
+public class BayesProbabilityTrainer implements ProbabilityTrainer {
+	private ProbabilityMap probabilityMap;
 	
-	//All words in map are lowercase.
-	//Probability map contains: <word, { P(word is in spam message), P(word is in real message) }>
-	private Map<String, ArrayList<Double>> bodyProbabilityMap;
-	private Map<String, ArrayList<Double>> subjectProbabilityMap;
-	private Map<String, ArrayList<Double>> senderProbabilityMap;
-	
-	private Map<String, Map<String, ArrayList<Double>>> fileMap = new HashMap<>();
-	
-	ProbabilityTrainer() {
+	ProbabilityTrainer(ProbabilityMap probabilityMap) {
+		this.probabilityMap = probabilityMap;
 		initialize();
 	}
 	
 	public void initialize() {
-		bodyProbabilityMap = new HashMap<>();
-		senderProbabilityMap = new HashMap<>();
-		subjectProbabilityMap = new HashMap<>();
-		
-		fileMap.put(BODYMAP_FILE, bodyProbabilityMap);
-		fileMap.put(SENDERMAP_FILE, senderProbabilityMap);
-		fileMap.put(SUBJECTMAP_FILE, subjectProbabilityMap);
-		
-		readMapping();
 	}
 	
-	private void readMapping() {
-
-		for(String fileName : fileMap.keySet()) {
-			Map<String, ArrayList<Double>> probabilityMap = fileMap.get(fileName);
-			
-			//TODO - use OPENCSV
-			BufferedReader bufferedReader = null;
-			
-			try {
-				bufferedReader = new BufferedReader(new FileReader(new File(fileName)));
-				bufferedReader.readLine();
-				String line;
-				
-				while((line = bufferedReader.readLine()) != null) {
-					String[] words = line.toLowerCase().split(",");
-					
-					ArrayList<Double> l = new ArrayList<>();
-					l.add(Double.valueOf(words[1]));
-					l.add(Double.valueOf(words[2]));
-					l.add(Double.valueOf(words[3]));
-					
-					probabilityMap.put(words[0], l);
-				}
-			} catch(IOException e) {
-				e.printStackTrace();
-			} finally {
-				if(bufferedReader != null) {
-					try {
-						bufferedReader.close();
-					} catch(IOException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-		
-		}
-	}
-	
+	@Override
 	public void commit() {
-		
-		for(String fileName : fileMap.keySet()) {
-			Map<String, ArrayList<Double>> probabilityMap = fileMap.get(fileName);
-			
-			//Write new word map to file
-			BufferedWriter bufferedWriter = null;
-			
-			try {
-				bufferedWriter = new BufferedWriter(new FileWriter(
-						new File(fileName)));
-				
-				//Write headers
-				bufferedWriter.write("Word,MessagesFoundIn,SpamMessages,RealMessages\n");
-				
-				for(String w : probabilityMap.keySet()) {
-					
-					bufferedWriter.write(w + "," + probabilityMap.get(w).get(0) + "," +
-							probabilityMap.get(w).get(1) + "," + probabilityMap.get(w).get(2)
-							+ "\n" );
-				}
-				
-			} catch(IOException e) {
-				e.printStackTrace();
-			}  finally {
-				if(bufferedWriter != null) {
-					try {
-						bufferedWriter.close();
-					} catch(IOException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-		}
-		
+		probabilityMap.write();
 	}
 	
+	@Override
 	public void train(Message message, boolean spam) {
-		train(message.getBody(), spam, bodyProbabilityMap);
-		train(message.getSender(), spam, senderProbabilityMap);
-		train(message.getSubject(), spam, subjectProbabilityMap);
+		train(message.getBody(), spam, probabilityMap.getBodyProbabilityMap());
+		train(message.getSender(), spam, probabilityMap.getSenderProbabilityMap());
+		train(message.getSubject(), spam, probabilityMap.getSubjectProbabilityMap());
 	}
 	
 	private void train(String text, boolean spam, Map<String, ArrayList<Double>> probabilityMap) {
