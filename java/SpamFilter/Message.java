@@ -8,7 +8,11 @@ public class Message {
 		if(body == null)
 			throw new IllegalArgumentException("Message body cannot be null");
 		
-		this.body = body.replaceAll("[^\\w^\\s]|_", "").toLowerCase();
+		this.body = body.toLowerCase()
+						.replace("-", " ")
+						.replaceAll("<br>|[^\\w^\\s]|_", "")
+						.replaceAll("[\\s]{2,}", " ");
+		System.out.println(this.body);
 	}
 	
 	public String getBody() {

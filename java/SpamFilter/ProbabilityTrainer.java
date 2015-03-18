@@ -26,7 +26,7 @@ public class ProbabilityTrainer {
 		readMapping();
 	}
 	
-	public void readMapping() {
+	private void readMapping() {
 
 		//TODO - use OPENCSV
 		BufferedReader bufferedReader = null;

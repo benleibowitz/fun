@@ -10,11 +10,11 @@ public interface SpamAlgorithm {
 	 * EXAMPLE: if LEGITIMATE_WORD_THRESHOLD=0.2, word will be
 	 * used if probability spam of a given word is < .3 or > .7
 	*/
-	protected static final double LEGITIMATE_WORD_THRESHOLD = 0.35;
+	static final double LEGITIMATE_WORD_THRESHOLD = 0.35;
 	
 	//The probability that any message is spam
 	//(statistics say it's anywhere from 0.5 to 0.8)
-	protected static final double PROBABILITY_SPAM_MESSAGE = 0.5;
+	static final double PROBABILITY_SPAM_MESSAGE = 0.5;
 	
 	public boolean isSpam(Message message, Map<String, double[]> probabilityMap);
 }
