@@ -12,10 +12,10 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class BayesProbabilityTrainer implements ProbabilityTrainer {
-	private ProbabilityMap probabilityMap;
+	private ScoringSystem scoringSystem;
 	
-	ProbabilityTrainer(ProbabilityMap probabilityMap) {
-		this.probabilityMap = probabilityMap;
+	ProbabilityTrainer(ScoringSystem scoringSystem) {
+		this.scoringSystem = scoringSystme;
 		initialize();
 	}
 	
@@ -29,9 +29,9 @@ public class BayesProbabilityTrainer implements ProbabilityTrainer {
 	
 	@Override
 	public void train(Message message, boolean spam) {
-		train(message.getBody(), spam, probabilityMap.getBodyProbabilityMap());
-		train(message.getSender(), spam, probabilityMap.getSenderProbabilityMap());
-		train(message.getSubject(), spam, probabilityMap.getSubjectProbabilityMap());
+		train(message.getBody(), spam, scoringSystem.getBodyProbabilityMap());
+		train(message.getSender(), spam, scoringSystem.getSenderProbabilityMap());
+		train(message.getSubject(), spam, scoringSystem.getSubjectProbabilityMap());
 	}
 	
 	private void train(String text, boolean spam, Map<String, ArrayList<Double>> probabilityMap) {
