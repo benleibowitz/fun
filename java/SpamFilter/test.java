@@ -21,7 +21,7 @@ public class test {
 		Message m = new Message("Online Discount pharmacy", "Big sale!!", "Bestsellers: pain pills viagra");
 		System.out.println(probCalc.isSpam(m));
 		//Scanner s = new Scanner(System.in);
-		//ProbabilityTrainer t = new ProbabilityTrainer();
+		//BayesProbabilityTrainer t = (BayesProbabilityTrainer)c.getBean("probabilitytrainer");
 		//Message m = new Message("Top-quality  -   woo");
 		//System.out.println(m.getBody());
 		/*
