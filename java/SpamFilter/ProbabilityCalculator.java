@@ -22,6 +22,9 @@ public class ProbabilityCalculator {
 	}
 	
 	public boolean isSpam(Message message) {
+		if(message == null)
+			throw new IllegalArgumentException("Message cannot be null");
+			
 		return algorithm.isSpam(message);
 	}
 }
