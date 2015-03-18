@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="bayesscoringsystem" name="bayesscoring" class="spam.BayesScoringSystem"/>
 	<bean id="spamalgorithm" name="naivebayes" class="spam.NaiveBayesAlgorithm"/>
+		<constructor-arg name="scoringSystem" ref="bayesscoringsystem" type="spam.BayesScoringSystem"/>
+	</bean>
 	<bean name="probabilitycalculator" class="spam.ProbabilityCalculator">
 		<constructor-arg name="algorithm" ref="spamalgorithm" type="spam.SpamAlgorithm"/>
 	</bean>
