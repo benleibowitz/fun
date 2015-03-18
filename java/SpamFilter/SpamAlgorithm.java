@@ -16,5 +16,5 @@ public interface SpamAlgorithm {
 	//(statistics say it's anywhere from 0.5 to 0.8)
 	static final double PROBABILITY_SPAM_MESSAGE = 0.5;
 	
-	public boolean isSpam(Message message, ProbabilityMap probMap);
+	public boolean isSpam(Message message, ScoringSystem scoringSystem);
 }
