@@ -28,6 +28,9 @@ public class NaiveBayesAlgorithm implements SpamAlgorithm {
 	private BayesScoringSystem scoringSystem;
 	
 	public NaiveBayesAlgorithm(BayesScoringSystem scoringSystem) {
+		if(scoringSystem == null)
+			throw new IllegalArgumentException("Scoring system cannot be null");
+			
 		this.scoringSystem = scoringSystem;
 	}
 	
