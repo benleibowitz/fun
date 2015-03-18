@@ -29,6 +29,7 @@ public class NaiveBayesAlgorithm implements SpamAlgorithm {
 	public boolean isSpam(Message message, Map<String, double[]> bodyProbabilityMap,
 			Map<String, double[]> senderProbabilityMap,
 			Map<String, double[]> subjectProbabilityMap) {
+		
 		double weightedProbability = BODY_WEIGHT * processText(message.getBody(), bodyProbabilityMap)
 				+ SENDER_WEIGHT * processText(message.getSender(), senderProbabilityMap)
 				+ SUBJECT_WEIGHT * processText(message.getSubject(), subjectProbabilityMap);
