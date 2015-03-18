@@ -1,3 +1,4 @@
 - [ ] CSV mapping reader class (opencsv?)
 - [ ] Add links
 - [ ] process subject method
+- [ ] probability map class
