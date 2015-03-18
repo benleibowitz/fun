@@ -1,7 +1,7 @@
 package spam;
 
 public class BayesProbabilityMap implements ProbabilityMap {
-  private static final String BODYMAP_FILE = "C:/Users/Ben/workspace/JavaProjects/src/spam/bodyMap.csv";
+	private static final String BODYMAP_FILE = "C:/Users/Ben/workspace/JavaProjects/src/spam/bodyMap.csv";
 	private static final String SUBJECTMAP_FILE = "C:/Users/Ben/workspace/JavaProjects/src/spam/subjectMap.csv";
 	private static final String SENDERMAP_FILE = "C:/Users/Ben/workspace/JavaProjects/src/spam/senderMap.csv";
 	
@@ -13,12 +13,12 @@ public class BayesProbabilityMap implements ProbabilityMap {
 	
 	private Map<String, Map<String, double[]>> fileMap = new HashMap<>();
 	
-  BayesProbabilityMap() {
-    initialize();
-  }
-  
-  private void initialize() {
-    bodyProbabilityMap = new HashMap<>();
+	BayesProbabilityMap() {
+		initialize();
+	}
+	
+	private void initialize() {
+    		bodyProbabilityMap = new HashMap<>();
 		senderProbabilityMap = new HashMap<>();
 		subjectProbabilityMap = new HashMap<>();
 		
