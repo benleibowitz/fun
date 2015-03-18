@@ -13,7 +13,7 @@ public class BayesProbabilityMap implements ProbabilityMap {
 	
 	private Map<String, Map<String, double[]>> fileMap = new HashMap<>();
 	
-	BayesProbabilityMap() {
+	public BayesProbabilityMap() {
 		initialize();
 	}
 	
