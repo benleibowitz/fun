@@ -20,6 +20,7 @@ public class ProbabilityCalculator {
 	}
 	
 	private void initialize() {
+		//do any remaining initialization work here
 	}
 	
 	public boolean isSpam(Message message) {
