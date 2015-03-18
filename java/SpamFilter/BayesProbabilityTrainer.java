@@ -12,10 +12,10 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class BayesProbabilityTrainer implements ProbabilityTrainer {
-	private ScoringSystem scoringSystem;
+	private BayesScoringSystem scoringSystem;
 	
-	ProbabilityTrainer(ScoringSystem scoringSystem) {
-		this.scoringSystem = scoringSystme;
+	ProbabilityTrainer(BayesScoringSystem scoringSystem) {
+		this.scoringSystem = scoringSystem;
 		initialize();
 	}
 	
