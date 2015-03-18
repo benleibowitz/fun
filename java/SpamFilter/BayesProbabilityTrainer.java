@@ -15,6 +15,9 @@ public class BayesProbabilityTrainer implements ProbabilityTrainer {
 	private BayesScoringSystem scoringSystem;
 	
 	ProbabilityTrainer(BayesScoringSystem scoringSystem) {
+		if(scoringSystem == null)
+			throw new IllegalArgumentException("Scoring system cannot be null");
+			
 		this.scoringSystem = scoringSystem;
 		initialize();
 	}
@@ -30,6 +33,9 @@ public class BayesProbabilityTrainer implements ProbabilityTrainer {
 	
 	@Override
 	public void train(Message message, boolean spam) {
+		if(message == null || spam == null)
+			throw new IllegalArgumentException("Arguments cannot be null for train");
+		
 		train(message.getBody(), spam, scoringSystem.getBodyProbabilityMap());
 		train(message.getSender(), spam, scoringSystem.getSenderProbabilityMap());
 		train(message.getSubject(), spam, scoringSystem.getSubjectProbabilityMap());
