@@ -25,16 +25,18 @@ public class NaiveBayesAlgorithm implements SpamAlgorithm {
 	private static final double SENDER_WEIGHT = 0.3;
 	private static final double SUBJECT_WEIGHT = 0.3;
 	
-	private Map<String, double[]> bodyProbabilityMap;
-	private Map<String, double[]> senderProbabilityMap;
-	private Map<String, double[]> subjectProbabilityMap;
+	private BayesScoringSystem scoringSystem;
+	
+	public NaiveBayesAlgorithm(BayesScoringSystem scoringSystem) {
+		this.scoringSystem = scoringSystem;
+	}
 	
 	@Override
-	public boolean isSpam(Message message, ScoringSystem scoringSystem) {
+	public boolean isSpam(Message message) {
 		
-		double weightedProbability = BODY_WEIGHT * processText(message.getBody(), bodyProbabilityMap)
-				+ SENDER_WEIGHT * processText(message.getSender(), senderProbabilityMap)
-				+ SUBJECT_WEIGHT * processText(message.getSubject(), subjectProbabilityMap);
+		double weightedProbability = BODY_WEIGHT * processText(message.getBody(), scoringSystem.getBodyProbabilityMap())
+				+ SENDER_WEIGHT * processText(message.getSender(), scoringSystem.getSenderProbabilityMap())
+				+ SUBJECT_WEIGHT * processText(message.getSubject(), scoringSystem.getSubjectProbabilityMap());
 		
 		if(weightedProbability > 0.5)
 			return true;
