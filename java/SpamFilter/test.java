@@ -18,12 +18,12 @@ public class test {
 		ApplicationContext c = new ClassPathXmlApplicationContext("beans.xml");
 		ProbabilityCalculator probCalc = (ProbabilityCalculator)c.getBean("probabilitycalculator");
 		
-		//Message m = new Message("Online Discount pharmacy", "Big sale!!", "Bestsellers: pain pills viagra");
-		//System.out.println(probCalc.isSpam(m));
-		Scanner s = new Scanner(System.in);
+		Message m = new Message("Online Discount pharmacy", "Big sale!!", "Bestsellers: pain pills viagra");
+		System.out.println(probCalc.isSpam(m));
+		//Scanner s = new Scanner(System.in);
 		BayesProbabilityTrainer t = (BayesProbabilityTrainer)c.getBean("probabilitytrainer");
 		//System.out.println(m.getBody());
-		
+		/*
 		while(true) {
 			System.out.print("sender or @ to break:");
 			String se = s.nextLine();
@@ -35,6 +35,7 @@ public class test {
 			t.train(new Message(se, sub, mess), true);
 		}
 		t.commit();
+		*/
 		
 	 }
 }
