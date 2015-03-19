@@ -1,6 +1,6 @@
 package spam;
 
-public class Message {
+public class Email implements Message {
 	//TODO - add url links
 	private String sender;
 	private String subject;
