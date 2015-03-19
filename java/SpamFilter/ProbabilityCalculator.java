@@ -9,11 +9,6 @@ public class ProbabilityCalculator {
 			throw new IllegalArgumentException("ProbabilityCalculator arguments cannot be null");
 		
 		this.algorithm = algorithm;
-		initialize();
-	}
-	
-	private void initialize() {
-		//do any remaining initialization work here
 	}
 	
 	public boolean isSpam(Message message) {
