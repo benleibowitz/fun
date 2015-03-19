@@ -3,7 +3,7 @@
 	
 	<bean id="bayesscoringsystem" name="bayesscoring" class="spam.BayesEmailScoringSystem"/>
 	
-	<bean id="spamalgorithm" name="naivebayes" class="spam.NaiveBayesAlgorithm">
+	<bean id="spamalgorithm" name="naivebayes" class="spam.NaiveBayesEmailAlgorithm">
 		<constructor-arg name="scoringSystem" ref="bayesscoringsystem" type="spam.BayesEmailScoringSystem"/>
 	</bean>
 	<bean name="probabilitycalculator" class="spam.ProbabilityCalculator">
