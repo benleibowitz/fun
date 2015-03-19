@@ -25,9 +25,9 @@ public class NaiveBayesAlgorithm implements SpamAlgorithm {
 	private static final double SENDER_WEIGHT = 0.3;
 	private static final double SUBJECT_WEIGHT = 0.35;
 	
-	private BayesScoringSystem scoringSystem;
+	private BayesEmailScoringSystem scoringSystem;
 	
-	public NaiveBayesAlgorithm(BayesScoringSystem scoringSystem) {
+	public NaiveBayesAlgorithm(BayesEmailScoringSystem scoringSystem) {
 		if(scoringSystem == null)
 			throw new IllegalArgumentException("Scoring system cannot be null");
 			
