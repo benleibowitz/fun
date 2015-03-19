@@ -3,9 +3,9 @@ package spam;
 import java.util.Map;
 
 public class BayesProbabilityTrainer implements ProbabilityTrainer {
-	private BayesScoringSystem scoringSystem;
+	private BayesEmailScoringSystem scoringSystem;
 	
-	public BayesProbabilityTrainer(BayesScoringSystem scoringSystem) {
+	public BayesProbabilityTrainer(BayesEmailScoringSystem scoringSystem) {
 		if(scoringSystem == null)
 			throw new IllegalArgumentException("Scoring system cannot be null");
 			
