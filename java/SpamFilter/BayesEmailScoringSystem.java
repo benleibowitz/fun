@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BayesScoringSystem {
+public class BayesEmailScoringSystem {
     private static final String BASE_URL = "";
 	private static final String BODYMAP_FILE = BASE_URL + "bodyMap.csv";
 	private static final String SUBJECTMAP_FILE = BASE_URL + "subjectMap.csv";
@@ -34,7 +34,7 @@ public class BayesScoringSystem {
 	//Contains <MappingFileURLString, respectiveProbabilityMap>
 	private Map<String, Map<String, double[]>> fileMap = new HashMap<>();
 	
-	public BayesScoringSystem() {
+	public BayesEmailScoringSystem() {
 		initialize();
 	}
 	
