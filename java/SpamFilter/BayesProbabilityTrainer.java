@@ -10,11 +10,6 @@ public class BayesProbabilityTrainer implements ProbabilityTrainer {
 			throw new IllegalArgumentException("Scoring system cannot be null");
 			
 		this.scoringSystem = scoringSystem;
-		initialize();
-	}
-	
-	public void initialize() {
-		//Do any initialization work here
 	}
 	
 	@Override
