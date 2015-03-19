@@ -32,9 +32,11 @@ public class BayesProbabilityTrainer implements ProbabilityTrainer {
 		for(int i = 0; i < words.length; i++) {
 			
 			//Setup String[] with current word, and combo of (current word + previous word)
-			String[] wordOrPhrase = new String[]{ words[i] };
+			String[] wordOrPhrase;
 			
-			if(i > 0)
+			if(i == 0)
+				wordOrPhrase = new String[]{ words[i] };
+			else
 				wordOrPhrase = new String[]{ words[i], words[i] + " " + words[i - 1]};
 				
 			for(String word : wordOrPhrase) {
