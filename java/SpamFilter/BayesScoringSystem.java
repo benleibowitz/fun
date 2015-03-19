@@ -1,3 +1,13 @@
+/*
+ * BayesScoringSystem is an object containing probability maps for
+ * sender, subject, and message body. Each probability map is in 
+ * form:
+ * 	Map<String wordOrPhrase, double[]{probSpamMessage, probRealMessage} >
+ * WHERE:
+ *	probSpamMessage = (# spam messages containing word) / (# total messages containing word)
+ *	probRealMessage = (# real messages containing word) / (# total messages containing word)
+ *
+ */
 package spam;
 
 import java.io.BufferedReader;
