@@ -31,6 +31,7 @@ public class BayesScoringSystem {
 	private Map<String, double[]> subjectProbabilityMap;
 	private Map<String, double[]> senderProbabilityMap;
 	
+	//Contains <MappingFileURLString, respectiveProbabilityMap>
 	private Map<String, Map<String, double[]>> fileMap = new HashMap<>();
 	
 	public BayesScoringSystem() {
@@ -38,7 +39,7 @@ public class BayesScoringSystem {
 	}
 	
 	private void initialize() {
-    	bodyProbabilityMap = new HashMap<>();
+    		bodyProbabilityMap = new HashMap<>();
 		senderProbabilityMap = new HashMap<>();
 		subjectProbabilityMap = new HashMap<>();
 		
