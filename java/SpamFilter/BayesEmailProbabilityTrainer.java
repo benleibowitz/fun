@@ -2,10 +2,10 @@ package spam;
 
 import java.util.Map;
 
-public class BayesProbabilityTrainer implements ProbabilityTrainer {
+public class BayesEmailProbabilityTrainer implements ProbabilityTrainer {
 	private BayesEmailScoringSystem scoringSystem;
 	
-	public BayesProbabilityTrainer(BayesEmailScoringSystem scoringSystem) {
+	public BayesEmailProbabilityTrainer(BayesEmailScoringSystem scoringSystem) {
 		if(scoringSystem == null)
 			throw new IllegalArgumentException("Scoring system cannot be null");
 			
