@@ -58,12 +58,10 @@ public class NaiveBayesCommentAlgorithm implements SpamAlgorithm {
 		 * combo of (previous word + current word) for matches in the mapping.
 		 */
 		for(int i = 0; i < bodyWords.length; i++) {
-			String word = bodyWords[i];
-			String adjacentWords;
-			String[] wordCombos = new String[]{word};
+			String[] wordCombos = new String[]{bodyWords[i]};
 			
 			if(i > 0) {
-				adjacentWords = bodyWords[i] + " " + word;
+				String adjacentWords = bodyWords[i-1] + " " + bodyWords[i];
 				wordCombos = new String[]{word, adjacentWords};
 			}
 				
