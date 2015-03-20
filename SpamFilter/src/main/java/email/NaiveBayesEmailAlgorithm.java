@@ -55,8 +55,10 @@ public class NaiveBayesEmailAlgorithm implements SpamAlgorithm {
 		String[] bodyWords = text.split(" ");
 		
 		/*
-		 * For each word in message body, check the word and
+		 * For each word in message body, check the both the current word and
 		 * combo of (previous word + current word) for matches in the mapping.
+		 * EXAMPLE: if word is "here" and previous word is "click",
+		 * get P(S|"click") and P(S|"click here")
 		 */
 		for(int i = 0; i < bodyWords.length; i++) {
 			String[] wordCombos = new String[]{word};
