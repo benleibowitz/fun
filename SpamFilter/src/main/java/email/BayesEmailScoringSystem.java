@@ -176,7 +176,7 @@ public class BayesEmailScoringSystem {
 		return subjectProbabilityMap;
 	}
 	
-	public ArrayList<String> getGenericWordsMap() {
+	public ArrayList<String> getGenericWords() {
 		return genericWords;
 	}
   
