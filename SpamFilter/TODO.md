@@ -1,2 +1,2 @@
 - [ ] doubles in maps/csvs to integers
-- [ ] probabilities for hotwords ?
+- [ ] separate probabilities for hotwords ?
