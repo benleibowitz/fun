@@ -37,9 +37,9 @@ public class BayesCommentScoringSystem {
 	
 	private void initialize() {
 		bodyProbabilityMap = new HashMap<>();
+		trainingCountMap = new HashMap<>();
 		
 		fileMap.put(BODYMAP_FILE, bodyProbabilityMap);
-		trainingCountMap = new HashMap<>();
 		
 		//TEST read CSV word file
 		//TODO - implement CSV reader class
