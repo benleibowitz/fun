@@ -10,6 +10,14 @@ public class Comment {
 		this.body = processText(body);
 	}
 	
+	/*
+	* processText(String) takes in a text body and cleans
+	* it per regexes below. Punctuation/special chars should be removed,
+	* all letters lowercase, periods replcaed with space,
+	* and all spaces to one space. example:
+	* INPUT:[   foo-bar!..?..$do   #run @run..do run_, run?]
+	* OUTPUT:[foo bar do run run do run run]
+	*/
 	private String processText(String text) {
 		return text.toLowerCase()
 				.replace("-", " ")
