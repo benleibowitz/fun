@@ -2,10 +2,11 @@ public class MyLinkedList {
 	
 	private class Node {
 		private Object object;
-		private Node nextNode = null;
+		private Node nextNode;
 		
 		Node(Object object) {
 			this.object = object;
+			nextNode = null;
 		}
 		
 		private void setNextNode(Node nextNode) {
