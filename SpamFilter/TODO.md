@@ -1,2 +1,3 @@
 - [ ] doubles in maps/csvs to integers
 - [ ] separate probabilities for hotwords ?
+- [ ] regex text processing class
