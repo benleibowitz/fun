@@ -1,6 +1,7 @@
 package email;
 
 import java.util.Map;
+import java.util.List;
 
 public class BayesEmailProbabilityTrainer implements ProbabilityTrainer {
 	private BayesEmailScoringSystem scoringSystem;
@@ -28,7 +29,7 @@ public class BayesEmailProbabilityTrainer implements ProbabilityTrainer {
 	}
 	
 	private void train(String text, boolean spam, Map<String, double[]> probabilityMap) {
-		ArrayList<String> genericWords = scoringSystem.getGenericWords();
+		List<String> genericWords = scoringSystem.getGenericWords();
 		
 		String[] words = text.split(" ");
 		for(int i = 0; i < words.length; i++) {
