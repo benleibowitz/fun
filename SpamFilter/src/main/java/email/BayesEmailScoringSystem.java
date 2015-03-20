@@ -18,6 +18,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
 import java.util.ArrayList;
 
 public class BayesEmailScoringSystem {
@@ -37,7 +38,7 @@ public class BayesEmailScoringSystem {
 	private Map<String, Map<String, double[]>> fileMap;
 	
 	//Contains words like "if" "and" "the" "I"
-	private ArrayList<String> genericWords;
+	private List<String> genericWords;
 	
 	public BayesEmailScoringSystem() {
 		initialize();
@@ -177,7 +178,7 @@ public class BayesEmailScoringSystem {
 		return subjectProbabilityMap;
 	}
 	
-	public ArrayList<String> getGenericWords() {
+	public List<String> getGenericWords() {
 		return genericWords;
 	}
   
