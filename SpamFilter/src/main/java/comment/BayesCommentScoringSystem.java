@@ -7,6 +7,7 @@
  *	probSpamMessage = (# spam messages containing word) / (# total messages containing word)
  *	probRealMessage = (# real messages containing word) / (# total messages containing word)
  *
+ * trainingCountMap holds <String wordOrPhrase, double[]{TotalSpamMessagesCount, TotalRealMessagesCount}>
  */
 package comment;
 
