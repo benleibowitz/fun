@@ -20,12 +20,12 @@
 package comment;
 import java.util.Map;
 
-public class NaiveBayesCommentAlgorithm implements SpamAlgorithm {
+public class BayesCommentAlgorithm implements SpamAlgorithm {
 	private static final double BODY_WEIGHT = 0.35;
 	
 	private BayesCommentScoringSystem scoringSystem;
 	
-	public NaiveBayesCommentAlgorithm(BayesCommentScoringSystem scoringSystem) {
+	public BayesCommentAlgorithm(BayesCommentScoringSystem scoringSystem) {
 		if(scoringSystem == null)
 			throw new IllegalArgumentException("Scoring system cannot be null");
 			
