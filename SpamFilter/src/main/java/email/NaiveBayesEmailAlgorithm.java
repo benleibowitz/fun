@@ -19,7 +19,7 @@
  */
 package email;
 import java.util.Map;
-import java.util.ArrayList;
+import java.util.List;
 
 public class NaiveBayesEmailAlgorithm implements SpamAlgorithm {
 	private static final double BODY_WEIGHT = 0.35;
@@ -51,7 +51,7 @@ public class NaiveBayesEmailAlgorithm implements SpamAlgorithm {
 	}
 	
 	private double processText(String text, Map<String, double[]> probabilityMap) {
-		ArrayList<String> genericWords = scoringSystem.getGenericWords();
+		List<String> genericWords = scoringSystem.getGenericWords();
 		double probabilitySpam = 0;
 		double sumLogsSpam = 0;
 		
