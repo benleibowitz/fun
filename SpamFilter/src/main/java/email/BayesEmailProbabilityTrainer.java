@@ -37,7 +37,7 @@ public class BayesEmailProbabilityTrainer implements ProbabilityTrainer {
 			if(i == 0)
 				wordOrPhrase = new String[]{ words[i] };
 			else
-				wordOrPhrase = new String[]{ words[i], words[i] + " " + words[i - 1]};
+				wordOrPhrase = new String[]{ words[i], words[i-1] + " " + words[i]};
 				
 			for(String word : wordOrPhrase) {
 				double[] probs;
