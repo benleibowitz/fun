@@ -21,8 +21,8 @@ package comment;
 import java.util.Map;
 
 public class NaiveBayesCommentAlgorithm implements SpamAlgorithm {
-	private static final double BODY_WEIGHT = 0.35;
 	private static final double LEGITIMATE_WORD_THRESHOLD = 0.35
+	private static final double PROBABILITY_SPAM_MESSAGE = 0.3;
 	
 	private BayesCommentScoringSystem scoringSystem;
 	
@@ -43,7 +43,8 @@ public class NaiveBayesCommentAlgorithm implements SpamAlgorithm {
 		System.out.println(weightedProbability);
 		if(weightedProbability > 0.5)
 			return true;
-		return false;
+		else
+			return false;
 	}
 	
 	private double processText(String text, Map<String, double[]> probabilityMap) {
