@@ -49,6 +49,7 @@ public class NaiveBayesEmailAlgorithm implements SpamAlgorithm {
 	}
 	
 	private double processText(String text, Map<String, double[]> probabilityMap) {
+		ArrayList<String> genericWords = scoringSystem.getGenericWords();
 		double probabilitySpam = 0;
 		double sumLogsSpam = 0;
 		
@@ -70,7 +71,7 @@ public class NaiveBayesEmailAlgorithm implements SpamAlgorithm {
 				
 			for(String wordOrPhrase : wordCombos) {
 				
-				if(probabilityMap.containsKey(wordOrPhrase)) {
+				if(probabilityMap.containsKey(wordOrPhrase) && !(genericWords.contains(wordOrPhrase))) {
 					//Calculate probability of spam / real
 					double probSpamWord = probabilityMap.get(wordOrPhrase)[0];
 					double probRealWord = probabilityMap.get(wordOrPhrase)[1];
