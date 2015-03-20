@@ -19,6 +19,7 @@
  */
 package email;
 import java.util.Map;
+import java.util.ArrayList;
 
 public class NaiveBayesEmailAlgorithm implements SpamAlgorithm {
 	private static final double BODY_WEIGHT = 0.35;
