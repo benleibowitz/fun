@@ -45,7 +45,8 @@ public class NaiveBayesEmailAlgorithm implements SpamAlgorithm {
 		System.out.println(weightedProbability);
 		if(weightedProbability > 0.5)
 			return true;
-		return false;
+		else
+			return false;
 	}
 	
 	private double processText(String text, Map<String, double[]> probabilityMap) {
