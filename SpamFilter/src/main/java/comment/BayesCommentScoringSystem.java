@@ -47,27 +47,27 @@ public class BayesCommentScoringSystem {
 		for(String fileName : fileMap.keySet()) {
 			Map<String, double[]> probabilityMap = fileMap.get(fileName);
 			
-			BufferedReader br = null;
+			BufferedReader bufferedReader = null;
 			try {
-				br = new BufferedReader(new FileReader(fileName));
+				bufferedReader = new BufferedReader(new FileReader(fileName));
 				String line;
-				br.readLine();
+				bufferedReader.readLine();
 				
-				while((line = br.readLine()) != null) {
-					String[] ar = line.split(",");
-					double spamMessages = Double.valueOf(ar[1]);
-					double realMessages = Double.valueOf(ar[2]);
+				while((line = bufferedReader.readLine()) != null) {
+					String[] wordTotals = line.split(",");
+					double spamMessages = Double.valueOf(wordTotals[1]);
+					double realMessages = Double.valueOf(wordTotals[2]);
 					double totMessages = spamMessages + realMessages;
-					probabilityMap.put(ar[0], new double[]{spamMessages/totMessages, realMessages/totMessages});
-					trainingCountMap.put(ar[0], new double[]{spamMessages, realMessages});
+					probabilityMap.put(wordTotals[0], new double[]{spamMessages/totMessages, realMessages/totMessages});
+					trainingCountMap.put(wordTotals[0], new double[]{spamMessages, realMessages});
 				}
 				
 			} catch(Exception e) {
 				e.printStackTrace();
 			} finally {
-				if(br != null) {
+				if(bufferedReader != null) {
 					try {
-						br.close();
+						bufferedReader.close();
 					} catch(IOException e) {
 						e.printStackTrace();
 					}
