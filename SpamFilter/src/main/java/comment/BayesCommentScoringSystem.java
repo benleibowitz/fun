@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class BayesCommentScoringSystem {
-    private static final String BASE_URL = "";
+	private static final String BASE_URL = "";
 	private static final String BODYMAP_FILE = BASE_URL + "commentBodyMap.csv";
 	
 	//All words in map are lowercase.
