@@ -22,6 +22,7 @@ import java.util.Map;
 
 public class NaiveBayesCommentAlgorithm implements SpamAlgorithm {
 	private static final double BODY_WEIGHT = 0.35;
+	private static final double LEGITIMATE_WORD_THRESHOLD = 0.35
 	
 	private BayesCommentScoringSystem scoringSystem;
 	
