@@ -2,4 +2,4 @@
 - [ ] separate probabilities for hotwords ?
 - [ ] regex text processing class
 - [ ] fix pom.xml , springbeans, .project file
-- [ ] remove and/if/or/the from probabilities/trainer
+- [ ] remove and/if/or/the from probabilities/trainer (generic words file)
