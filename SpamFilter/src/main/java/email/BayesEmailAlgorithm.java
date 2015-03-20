@@ -20,14 +20,14 @@
 package email;
 import java.util.Map;
 
-public class NaiveBayesEmailAlgorithm implements SpamAlgorithm {
+public class BayesEmailAlgorithm implements SpamAlgorithm {
 	private static final double BODY_WEIGHT = 0.35;
 	private static final double SENDER_WEIGHT = 0.3;
 	private static final double SUBJECT_WEIGHT = 0.35;
 	
 	private BayesEmailScoringSystem scoringSystem;
 	
-	public NaiveBayesEmailAlgorithm(BayesEmailScoringSystem scoringSystem) {
+	public BayesEmailAlgorithm(BayesEmailScoringSystem scoringSystem) {
 		if(scoringSystem == null)
 			throw new IllegalArgumentException("Scoring system cannot be null");
 			
