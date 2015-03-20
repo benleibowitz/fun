@@ -1,3 +1,0 @@
-- [ ] CSV mapping reader class (opencsv?)
-- [ ] Add links
-- [ ] process subject method
