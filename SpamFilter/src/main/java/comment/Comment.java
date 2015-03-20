@@ -15,8 +15,8 @@ public class Comment {
 	* it per regexes below. Punctuation/special chars should be removed,
 	* all letters lowercase, periods replcaed with space,
 	* and all spaces to one space. example:
-	* INPUT:[   foo-bar!..?..$do   #run @run..do run_, run?]
-	* OUTPUT:[foo bar do run run do run run]
+	* INPUT:[   foo-bar!..?..$do   #run @run..do run_, run? C_L_I_c_K h_E-Re]
+	* OUTPUT:[foo bar do run run do run run click here]
 	*/
 	private String processText(String text) {
 		return text.toLowerCase()
