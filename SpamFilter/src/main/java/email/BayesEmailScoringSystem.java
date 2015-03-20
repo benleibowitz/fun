@@ -102,6 +102,7 @@ public class BayesEmailScoringSystem {
 				genericWords.add(line.replace("\n"));
 			}
 		} catch(IOException e) {
+			System.out.println("Could not read generic words file: " + GENERICWORD_FILE);
 			e.printStackTrace();
 		} finally {
 			if(bufferedReader != null) {
