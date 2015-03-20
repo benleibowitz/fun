@@ -74,7 +74,7 @@ public class BayesEmailScoringSystem {
 					probabilityMap.put(ar[0], new double[]{spamMessages/totMessages, realMessages/totMessages});
 				}
 				
-			} catch(Exception e) {
+			} catch(FileNotFoundException e) {
 				e.printStackTrace();
 			} finally {
 				if(br != null) {
@@ -101,7 +101,7 @@ public class BayesEmailScoringSystem {
 			while((line = br.readLine()) != null) {
 				genericWords.add(line.replace("\n"));
 			}
-		} catch(IOException e) {
+		} catch(FileNotFoundException e) {
 			System.out.println("Could not read generic words file: " + GENERICWORD_FILE);
 			e.printStackTrace();
 		} finally {
