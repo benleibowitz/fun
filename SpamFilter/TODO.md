@@ -1,4 +1,4 @@
 - [ ] doubles in maps/csvs to integers
 - [ ] separate probabilities for hotwords ?
 - [ ] regex text processing class
-- [ ] fix pom.xml , springbeans file
+- [ ] fix pom.xml , springbeans, .project file
