@@ -36,7 +36,7 @@ public class BayesCommentScoringSystem {
 	}
 	
 	private void initialize() {
-    bodyProbabilityMap = new HashMap<>();
+		bodyProbabilityMap = new HashMap<>();
 		
 		fileMap.put(BODYMAP_FILE, bodyProbabilityMap);
 		trainingCountMap = new HashMap<>();
