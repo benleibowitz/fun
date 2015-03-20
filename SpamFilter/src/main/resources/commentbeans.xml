@@ -3,7 +3,7 @@
 	
 	<bean id="bayescommentscoringsystem" name="bayescommentscoring" class="comment.BayesCommentScoringSystem"/>
 	
-	<bean id="commentspamalgorithm" name="naivebayes" class="comment.NaiveBayesCommentAlgorithm">
+	<bean id="commentspamalgorithm" name="bayescommentalgorithm" class="comment.BayesCommentAlgorithm">
 		<constructor-arg name="scoringSystem" ref="bayescommentscoringsystem" type="comment.BayesCommentScoringSystem"/>
 	</bean>
 	<bean name="commentprobabilitycalculator" class="comment.ProbabilityCalculator">
