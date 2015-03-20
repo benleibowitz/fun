@@ -59,13 +59,11 @@ public class NaiveBayesEmailAlgorithm implements SpamAlgorithm {
 		 * combo of (previous word + current word) for matches in the mapping.
 		 */
 		for(int i = 0; i < bodyWords.length; i++) {
-			String word = bodyWords[i];
-			String adjacentWords;
 			String[] wordCombos = new String[]{word};
 			
 			if(i > 0) {
-				adjacentWords = bodyWords[i] + " " + word;
-				wordCombos = new String[]{word, adjacentWords};
+				String adjacentWords = bodyWords[i-1] + " " + bodyWords[i];
+				wordCombos = new String[]{bodyWords[i], adjacentWords};
 			}
 				
 			for(String wordOrPhrase : wordCombos) {
