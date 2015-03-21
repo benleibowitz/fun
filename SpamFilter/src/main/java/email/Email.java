@@ -37,6 +37,7 @@ public class Email {
 				.replace("-", " ")
 				.replaceAll("<br>|[^\\w^\\s]|_", "")
 				.replaceAll("[\\s]{2,}", " ")
+				.replaceAll("(?<=[a-z])(?=[A-Z])", " ")
 				//.replaceAll("(?:www|https?)([^\\s])+", "")
 				.trim();
 	}
