@@ -13,16 +13,17 @@ package email;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class BayesEmailScoringSystem {
-	private static final String BASE_URL = "";
+	private static final String BASE_URL = "src/main/resources/";
 	private static final String BODYMAP_FILE = BASE_URL + "bodyMap.csv";
 	private static final String SUBJECTMAP_FILE = BASE_URL + "subjectMap.csv";
 	private static final String SENDERMAP_FILE = BASE_URL + "senderMap.csv";
@@ -49,7 +50,8 @@ public class BayesEmailScoringSystem {
 		readGenericWords();
 		
 		fileMap = new HashMap<>();
-    		bodyProbabilityMap = new HashMap<>();
+    	
+		bodyProbabilityMap = new HashMap<>();
 		senderProbabilityMap = new HashMap<>();
 		subjectProbabilityMap = new HashMap<>();
 		
@@ -78,6 +80,8 @@ public class BayesEmailScoringSystem {
 				
 			} catch(FileNotFoundException e) {
 				e.printStackTrace();
+			} catch(IOException e) {
+				e.printStackTrace();
 			} finally {
 				if(br != null) {
 					try {
@@ -98,13 +102,15 @@ public class BayesEmailScoringSystem {
 			
 			String line;
 			//Read headers
-			br.readLine();
+			bufferedReader.readLine();
 			
-			while((line = br.readLine()) != null) {
-				genericWords.add(line.replace("\n"));
+			while((line = bufferedReader.readLine()) != null) {
+				genericWords.add(line.replace("\n", ""));
 			}
 		} catch(FileNotFoundException e) {
 			System.out.println("Could not read generic words file: " + GENERICWORD_FILE);
+			e.printStackTrace();
+		} catch(IOException e) {
 			e.printStackTrace();
 		} finally {
 			if(bufferedReader != null) {

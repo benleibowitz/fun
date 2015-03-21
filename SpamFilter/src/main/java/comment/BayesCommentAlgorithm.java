@@ -21,7 +21,7 @@ package comment;
 import java.util.Map;
 
 public class BayesCommentAlgorithm implements SpamAlgorithm {
-	private static final double LEGITIMATE_WORD_THRESHOLD = 0.35
+	private static final double LEGITIMATE_WORD_THRESHOLD = 0.35;
 	private static final double PROBABILITY_SPAM_MESSAGE = 0.3;
 	
 	private BayesCommentScoringSystem scoringSystem;
@@ -62,7 +62,7 @@ public class BayesCommentAlgorithm implements SpamAlgorithm {
 			
 			if(i > 0) {
 				String adjacentWords = bodyWords[i-1] + " " + bodyWords[i];
-				wordCombos = new String[]{word, adjacentWords};
+				wordCombos = new String[]{bodyWords[i], adjacentWords};
 			}
 				
 			for(String wordOrPhrase : wordCombos) {
