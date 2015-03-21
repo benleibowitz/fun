@@ -3,11 +3,7 @@
 	
 	<bean id="bayesemailscoringsystem" name="bayesemailscoring" class="email.BayesEmailScoringSystem"/>
 	
-<<<<<<< HEAD
-	<bean id="emailspamalgorithm" name="bayesspamalgorithm" class="email.BayesEmailAlgorithm">
-=======
 	<bean id="emailspamalgorithm" name="bayesemailalgorithm" class="email.BayesEmailAlgorithm">
->>>>>>> probabilityobject
 		<constructor-arg name="scoringSystem" ref="bayesemailscoringsystem" type="email.BayesEmailScoringSystem"/>
 	</bean>
 	<bean name="emailprobabilitycalculator" class="email.ProbabilityCalculator">

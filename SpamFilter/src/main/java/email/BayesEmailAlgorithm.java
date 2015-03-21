@@ -66,20 +66,11 @@ public class BayesEmailAlgorithm implements SpamAlgorithm {
 		 * get P(S|"click") and P(S|"click here")
 		 */
 		for(int i = 0; i < bodyWords.length; i++) {
-<<<<<<< HEAD:SpamFilter/src/main/java/email/BayesEmailAlgorithm.java
-			String word = bodyWords[i];
-			String[] wordCombos = new String[]{word};
-			
-			if(i > 0) {
-				String adjacentWords = bodyWords[i-1] + " " + word;
-				wordCombos = new String[]{word, adjacentWords};
-=======
 			String[] wordCombos = new String[]{bodyWords[i]};
 			
 			if(i > 0) {
 				String adjacentWords = bodyWords[i-1] + " " + bodyWords[i];
 				wordCombos = new String[]{bodyWords[i], adjacentWords};
->>>>>>> probabilityobject:SpamFilter/src/main/java/email/BayesEmailAlgorithm.java
 			}
 				
 			for(String wordOrPhrase : wordCombos) {
