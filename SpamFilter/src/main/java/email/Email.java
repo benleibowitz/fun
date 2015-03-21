@@ -27,8 +27,8 @@ public class Email {
 	* it per regexes below. Punctuation/special chars should be removed,
 	* all letters lowercase, periods replcaed with space,
 	* and all spaces to one space. example:
-	* INPUT:[   foo-bar!..?..$do   #run @run..do run_, run? C_L_I_c_K h_E-Re]
-	* OUTPUT:[foo bar do run run do run run click here]
+	* INPUT:[   foo-bar!..?..$do   #run @run..do run_, run? C_L_I_c_K OneTwoThree h00kup]
+	* OUTPUT:[foo bar do run run do run run click one two three hookup]
 	*/
 	private String processText(String text) {
 		//processLinks(text);
