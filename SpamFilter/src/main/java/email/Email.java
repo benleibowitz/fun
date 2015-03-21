@@ -33,8 +33,9 @@ public class Email {
 	private String processText(String text) {
 		//processLinks(text);
 		
-		return text.toLowerCase()
+		return s.toLowerCase()
 				.replace("-", " ")
+				.replaceAll("(?<=[A-Za-z]{2,})[.](?=[A-Za-z]{2,})", " ")
 				.replaceAll("<br>|[^\\w^\\s]|_", "")
 				.replaceAll("[\\s]{2,}", " ")
 				.replaceAll("(?<=[a-z])(?=[A-Z])", " ")
