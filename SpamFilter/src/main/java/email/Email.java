@@ -35,8 +35,8 @@ public class Email {
 		
 		return s.toLowerCase()
 				.replace("-", " ")
-				.replaceAll("[.]{1,}", ".")
-				.replaceAll("(?<=[A-Za-z]{2,})[.](?=[A-Za-z]{1,})", " ")
+				.replaceAll("([.|_|*|^|$|#|@|!|-|+])\\1+", "$1")
+				.replaceAll("(?<=[A-Za-z]{2,})[^\\w^\\s]|_(?=[A-Za-z]{1,})", " ")
 				.replaceAll("<br>|[^\\w^\\s]|_", "")
 				.replaceAll("[\\s]{2,}", " ")
 				.replaceAll("(?<=[a-z])(?=[A-Z])", " ")
