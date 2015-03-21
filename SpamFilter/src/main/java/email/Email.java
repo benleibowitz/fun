@@ -33,13 +33,13 @@ public class Email {
 	private String processText(String text) {
 		//processLinks(text);
 		
-		return s.toLowerCase()
-				.replace("-", " ")
+		return s.replace("-", " ")
 				.replaceAll("([.|_|*|^|$|#|@|!|-|+])\\1+", "$1")
-				.replaceAll("(?<=[A-Za-z]{2,})[^\\w^\\s]|_(?=[A-Za-z]{1,})", " ")
+				.replaceAll("(?<=[A-Za-z]{2,})[^\\w^\\s](?=[A-Za-z]{1,})", " ")
 				.replaceAll("<br>|[^\\w^\\s]|_", "")
 				.replaceAll("[\\s]{2,}", " ")
-				.replaceAll("(?<=[a-z])(?=[A-Z])", " ")
+				.replaceAll("(?<=[a-z]{2,})(?=[A-Z])", " ")
+				.toLowerCase()
 				//.replaceAll("(?:www|https?)([^\\s])+", "")
 				.trim();
 	}
