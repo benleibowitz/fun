@@ -33,7 +33,7 @@ public class Email {
 	private String processText(String text) {
 		//processLinks(text);
 		
-		return s.replace("-", " ")
+		return s.replaceAll("-", " ")
 				.replaceAll("([.|_|*|^|$|#|@|!|-|+])\\1+", "$1")
 				.replaceAll("(?<=[A-Za-z]{2,})[^\\w^\\s](?=[A-Za-z]{1,})", " ")
 				.replaceAll("<br>|[^\\w^\\s]|_", "")
