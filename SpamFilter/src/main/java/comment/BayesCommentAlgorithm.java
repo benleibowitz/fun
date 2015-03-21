@@ -21,12 +21,8 @@ package comment;
 import java.util.Map;
 
 public class BayesCommentAlgorithm implements SpamAlgorithm {
-<<<<<<< HEAD:SpamFilter/src/main/java/comment/BayesCommentAlgorithm.java
-	private static final double BODY_WEIGHT = 0.35;
-=======
 	private static final double LEGITIMATE_WORD_THRESHOLD = 0.35;
 	private static final double PROBABILITY_SPAM_MESSAGE = 0.3;
->>>>>>> probabilityobject:SpamFilter/src/main/java/comment/BayesCommentAlgorithm.java
 	
 	private BayesCommentScoringSystem scoringSystem;
 	
@@ -62,20 +58,11 @@ public class BayesCommentAlgorithm implements SpamAlgorithm {
 		 * combo of (previous word + current word) for matches in the mapping.
 		 */
 		for(int i = 0; i < bodyWords.length; i++) {
-<<<<<<< HEAD:SpamFilter/src/main/java/comment/BayesCommentAlgorithm.java
-			String word = bodyWords[i];
-			String[] wordCombos = new String[]{word};
-			
-			if(i > 0) {
-				String adjacentWords = bodyWords[i-1] + " " + word;
-				wordCombos = new String[]{word, adjacentWords};
-=======
 			String[] wordCombos = new String[]{bodyWords[i]};
 			
 			if(i > 0) {
 				String adjacentWords = bodyWords[i-1] + " " + bodyWords[i];
 				wordCombos = new String[]{bodyWords[i], adjacentWords};
->>>>>>> probabilityobject:SpamFilter/src/main/java/comment/BayesCommentAlgorithm.java
 			}
 				
 			for(String wordOrPhrase : wordCombos) {
