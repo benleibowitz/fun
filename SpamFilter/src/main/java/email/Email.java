@@ -33,15 +33,16 @@ public class Email {
 	private String processText(String text) {
 		//processLinks(text);
 		
-		return s.replaceAll("-", " ")
-				.replaceAll("([.|_|*|^|$|#|@|!|-|+])\\1+", "$1")
-				.replaceAll("(?<=[A-Za-z]{2,})[^\\w^\\s](?=[A-Za-z]{1,})", " ")
-				.replaceAll("<br>|[^\\w^\\s]|_", "")
-				.replaceAll("[\\s]{2,}", " ")
-				.replaceAll("(?<=[a-z]{2,})(?=[A-Z])", " ")
-				.toLowerCase()
-				//.replaceAll("(?:www|https?)([^\\s])+", "")
-				.trim();
+		//only check the first 10000 characters for the sake of time
+		String shortened = s.substring(0, Math.min(10000, s.length()));
+		return shortened.replaceAll("-", " ")
+			.replaceAll("([.|_|*|^|$|#|@|!|-|+])\\1+", "$1")
+			.replaceAll("(?<=[A-Za-z]{2,})[^\\w^\\s](?=[A-Za-z]{1,})", " ")
+			.replaceAll("<br>|[^\\w^\\s]|_", "")
+			.replaceAll("[\\s]{2,}", " ")
+			.replaceAll("(?<=[a-z]{2,})(?=[A-Z])", " ")
+			.toLowerCase()
+			.trim();
 	}
 	/*
 	private void processLinks(String text) {
