@@ -52,7 +52,7 @@ public class BayesEmailAlgorithm implements SpamAlgorithm {
 			return false;
 	}
 	
-	private double processText(String text, Map<String, double[]> probabilityMap) {
+	private double processText(String text, Map<String, int[]> wordCountMap) {
 		List<String> genericWords = scoringSystem.getGenericWords();
 		double probabilitySpam = 0;
 		double sumLogsSpam = 0;
@@ -74,10 +74,11 @@ public class BayesEmailAlgorithm implements SpamAlgorithm {
 			}
 				
 			for(String wordOrPhrase : wordCombos) {
-				if(probabilityMap.containsKey(wordOrPhrase) && !(genericWords.contains(wordOrPhrase))) {
+				if(wordCountMap.containsKey(wordOrPhrase) && !(genericWords.contains(wordOrPhrase))) {
 					//Calculate probability of spam / real
-					double probSpamWord = probabilityMap.get(wordOrPhrase)[0];
-					double probRealWord = probabilityMap.get(wordOrPhrase)[1];
+					int totalWords = wordCountMap.get(wordOrPhrase)[0] + wordCountMap.get(wordOrPhrase)[1];
+					double probSpamWord = (double)wordCountMap.get(wordOrPhrase)[0] / totalWords;
+					double probRealWord = (double)wordCountMap.get(wordOrPhrase)[1] / totalWords;
 					
 					//Check threshold and add to total probability
 					if(Math.abs(0.5 - probSpamWord) > LEGITIMATE_WORD_THRESHOLD) {
