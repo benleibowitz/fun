@@ -13,17 +13,21 @@ package email;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class BayesEmailScoringSystem {
-    private static final String BASE_URL = "";
+	private static final String BASE_URL = "src/main/resources/";
 	private static final String BODYMAP_FILE = BASE_URL + "bodyMap.csv";
 	private static final String SUBJECTMAP_FILE = BASE_URL + "subjectMap.csv";
 	private static final String SENDERMAP_FILE = BASE_URL + "senderMap.csv";
+	private static final String GENERICWORD_FILE = BASE_URL + "genericWords.csv";
 	
 	//All words in map are lowercase.
 	//Probability map contains: <word, { P(word is in spam message), P(word is in real message) }>
@@ -32,14 +36,22 @@ public class BayesEmailScoringSystem {
 	private Map<String, double[]> senderProbabilityMap;
 	
 	//Contains <MappingFileURLString, respectiveProbabilityMap>
-	private Map<String, Map<String, double[]>> fileMap = new HashMap<>();
+	private Map<String, Map<String, double[]>> fileMap;
+	
+	//Contains words like "if" "and" "the" "I"
+	private List<String> genericWords;
 	
 	public BayesEmailScoringSystem() {
 		initialize();
 	}
 	
 	private void initialize() {
-    	bodyProbabilityMap = new HashMap<>();
+		genericWords = new ArrayList<>();
+		readGenericWords();
+		
+		fileMap = new HashMap<>();
+    	
+		bodyProbabilityMap = new HashMap<>();
 		senderProbabilityMap = new HashMap<>();
 		subjectProbabilityMap = new HashMap<>();
 		
@@ -66,7 +78,9 @@ public class BayesEmailScoringSystem {
 					probabilityMap.put(ar[0], new double[]{spamMessages/totMessages, realMessages/totMessages});
 				}
 				
-			} catch(Exception e) {
+			} catch(FileNotFoundException e) {
+				e.printStackTrace();
+			} catch(IOException e) {
 				e.printStackTrace();
 			} finally {
 				if(br != null) {
@@ -75,6 +89,35 @@ public class BayesEmailScoringSystem {
 					} catch(IOException e) {
 						e.printStackTrace();
 					}
+				}
+			}
+		}
+	}
+	
+	public void readGenericWords() {
+		BufferedReader bufferedReader = null;
+		
+		try {
+			bufferedReader = new BufferedReader(new FileReader(GENERICWORD_FILE));
+			
+			String line;
+			//Read headers
+			bufferedReader.readLine();
+			
+			while((line = bufferedReader.readLine()) != null) {
+				genericWords.add(line.replace("\n", ""));
+			}
+		} catch(FileNotFoundException e) {
+			System.out.println("Could not read generic words file: " + GENERICWORD_FILE);
+			e.printStackTrace();
+		} catch(IOException e) {
+			e.printStackTrace();
+		} finally {
+			if(bufferedReader != null) {
+				try {
+					bufferedReader.close();
+				} catch(IOException e) {
+					e.printStackTrace();
 				}
 			}
 		}
@@ -114,8 +157,6 @@ public class BayesEmailScoringSystem {
 		}
         
 	}
-	
-	
   
 	public void setBodyProbabilityMap(Map<String, double[]> bodyProbabilityMap) {
 		this.bodyProbabilityMap = bodyProbabilityMap;
@@ -139,6 +180,10 @@ public class BayesEmailScoringSystem {
   
 	public Map<String, double[]> getSubjectProbabilityMap() {
 		return subjectProbabilityMap;
+	}
+	
+	public List<String> getGenericWords() {
+		return genericWords;
 	}
   
 }

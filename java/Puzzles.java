@@ -1,6 +1,6 @@
 /*
  *	Below are some implementations of a few basic
- *	interview questions in Java
+ *	puzzles/code challenges in Java
 */
 
 import java.text.DecimalFormat;
@@ -33,7 +33,7 @@ class IllegalArrayLengthException extends Exception {
 	}
 }
 
-public class InterviewQuestions {
+public class Puzzles {
 	static Random r = new Random();
 	
 	public static void main(String[] args) {

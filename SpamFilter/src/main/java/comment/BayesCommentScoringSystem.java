@@ -7,7 +7,9 @@
  *	probSpamMessage = (# spam messages containing word) / (# total messages containing word)
  *	probRealMessage = (# real messages containing word) / (# total messages containing word)
  *
- * trainingCountMap holds <String wordOrPhrase, double[]{TotalSpamMessagesCount, TotalRealMessagesCount}>
+ * trainingCountMap holds <String wordOrPhrase, double[]{TotalSpamMessagesCount, TotalRealMessagesCount}>,
+ * and is used to train the algorithm. Each time a message is entered into the train() method,
+ * it increments the count of spam/real messages found in the trainingCountMap<>
  */
 package comment;
 
@@ -21,7 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class BayesCommentScoringSystem {
-	private static final String BASE_URL = "";
+	private static final String BASE_URL = "src/main/resources/";
 	private static final String BODYMAP_FILE = BASE_URL + "commentBodyMap.csv";
 	
 	//All words in map are lowercase.
@@ -47,27 +49,27 @@ public class BayesCommentScoringSystem {
 		for(String fileName : fileMap.keySet()) {
 			Map<String, double[]> probabilityMap = fileMap.get(fileName);
 			
-			BufferedReader br = null;
+			BufferedReader bufferedReader = null;
 			try {
-				br = new BufferedReader(new FileReader(fileName));
+				bufferedReader = new BufferedReader(new FileReader(fileName));
 				String line;
-				br.readLine();
+				bufferedReader.readLine();
 				
-				while((line = br.readLine()) != null) {
-					String[] ar = line.split(",");
-					double spamMessages = Double.valueOf(ar[1]);
-					double realMessages = Double.valueOf(ar[2]);
+				while((line = bufferedReader.readLine()) != null) {
+					String[] wordTotals = line.split(",");
+					double spamMessages = Double.valueOf(wordTotals[1]);
+					double realMessages = Double.valueOf(wordTotals[2]);
 					double totMessages = spamMessages + realMessages;
-					probabilityMap.put(ar[0], new double[]{spamMessages/totMessages, realMessages/totMessages});
-					trainingCountMap.put(ar[0], new double[]{spamMessages, realMessages});
+					probabilityMap.put(wordTotals[0], new double[]{spamMessages/totMessages, realMessages/totMessages});
+					trainingCountMap.put(wordTotals[0], new double[]{spamMessages, realMessages});
 				}
 				
 			} catch(Exception e) {
 				e.printStackTrace();
 			} finally {
-				if(br != null) {
+				if(bufferedReader != null) {
 					try {
-						br.close();
+						bufferedReader.close();
 					} catch(IOException e) {
 						e.printStackTrace();
 					}

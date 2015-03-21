@@ -35,19 +35,19 @@ public class BayesCommentProbabilityTrainer implements ProbabilityTrainer {
 			if(i == 0)
 				wordOrPhrase = new String[]{ words[i] };
 			else
-				wordOrPhrase = new String[]{ words[i], words[i] + " " + words[i - 1]};
+				wordOrPhrase = new String[]{ words[i], words[i-1] + " " + words[i]};
 				
 			for(String word : wordOrPhrase) {
 				double[] probs;
 				
 				if(probabilityMap.containsKey(word)) {
-					//If word found in map, increment
+					//If word found in map, increment existing array
 					probs = probabilityMap.get(word);
-					System.out.println(probs[0] + "," + probs[1]);
 				} else {
 					//Word is not in map. Add it
 					probs = new double[]{0,0};					
 				}
+				
 				if(spam) 
 					probs[0] += 1;
 				else

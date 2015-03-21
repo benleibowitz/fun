@@ -11,7 +11,7 @@ public class test {
 		ApplicationContext c = new ClassPathXmlApplicationContext("commentbeans.xml");
 		ProbabilityCalculator probCalc = (ProbabilityCalculator)c.getBean("commentprobabilitycalculator");
 		
-		Comment comm = new Comment("kook at me");
+		Comment comm = new Comment("fucking libtards");
 		System.out.println(probCalc.isSpam(comm));
 		Scanner s = new Scanner(System.in);
 		BayesCommentProbabilityTrainer t = (BayesCommentProbabilityTrainer)c.getBean("commentprobabilitytrainer");

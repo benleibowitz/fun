@@ -19,11 +19,12 @@
  */
 package email;
 import java.util.Map;
+import java.util.List;
 
 public class BayesEmailAlgorithm implements SpamAlgorithm {
 	private static final double BODY_WEIGHT = 0.35;
-	private static final double SENDER_WEIGHT = 0.3;
-	private static final double SUBJECT_WEIGHT = 0.35;
+	private static final double SENDER_WEIGHT = 0.2;
+	private static final double SUBJECT_WEIGHT = 0.45;
 	
 	private BayesEmailScoringSystem scoringSystem;
 	
@@ -42,41 +43,54 @@ public class BayesEmailAlgorithm implements SpamAlgorithm {
 		double weightedProbability = BODY_WEIGHT * processText(email.getBody(), scoringSystem.getBodyProbabilityMap())
 				+ SENDER_WEIGHT * processText(email.getSender(), scoringSystem.getSenderProbabilityMap())
 				+ SUBJECT_WEIGHT * processText(email.getSubject(), scoringSystem.getSubjectProbabilityMap());
+		
 		System.out.println(weightedProbability);
+		
 		if(weightedProbability > 0.5)
 			return true;
-		return false;
+		else
+			return false;
 	}
 	
 	private double processText(String text, Map<String, double[]> probabilityMap) {
+		List<String> genericWords = scoringSystem.getGenericWords();
 		double probabilitySpam = 0;
 		double sumLogsSpam = 0;
 		
 		String[] bodyWords = text.split(" ");
 		
 		/*
-		 * For each word in message body, check the word and
+		 * For each word in message body, check the both the current word and
 		 * combo of (previous word + current word) for matches in the mapping.
+		 * EXAMPLE: if word is "here" and previous word is "click",
+		 * get P(S|"click") and P(S|"click here")
 		 */
 		for(int i = 0; i < bodyWords.length; i++) {
+<<<<<<< HEAD:SpamFilter/src/main/java/email/BayesEmailAlgorithm.java
 			String word = bodyWords[i];
 			String[] wordCombos = new String[]{word};
 			
 			if(i > 0) {
 				String adjacentWords = bodyWords[i-1] + " " + word;
 				wordCombos = new String[]{word, adjacentWords};
+=======
+			String[] wordCombos = new String[]{bodyWords[i]};
+			
+			if(i > 0) {
+				String adjacentWords = bodyWords[i-1] + " " + bodyWords[i];
+				wordCombos = new String[]{bodyWords[i], adjacentWords};
+>>>>>>> probabilityobject:SpamFilter/src/main/java/email/BayesEmailAlgorithm.java
 			}
 				
 			for(String wordOrPhrase : wordCombos) {
-				
-				if(probabilityMap.containsKey(wordOrPhrase)) {
+				if(probabilityMap.containsKey(wordOrPhrase) && !(genericWords.contains(wordOrPhrase))) {
 					//Calculate probability of spam / real
 					double probSpamWord = probabilityMap.get(wordOrPhrase)[0];
 					double probRealWord = probabilityMap.get(wordOrPhrase)[1];
 					
 					//Check threshold and add to total probability
 					if(Math.abs(0.5 - probSpamWord) > LEGITIMATE_WORD_THRESHOLD) {
-
+						
 						//Don't want 0 numerator, as Math.log(0) returns negative infinity.
 						if(probSpamWord == 0)
 							probSpamWord = 0.05;
