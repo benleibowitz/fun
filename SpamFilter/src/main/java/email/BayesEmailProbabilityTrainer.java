@@ -26,7 +26,6 @@ public class BayesEmailProbabilityTrainer implements ProbabilityTrainer {
 		train(email.getBody(), spam, scoringSystem.getBodyProbabilityMap());
 		train(email.getSender(), spam, scoringSystem.getSenderProbabilityMap());
 		train(email.getSubject(), spam, scoringSystem.getSubjectProbabilityMap());
-		train(email.getLinks(), spam, scoringSystem.getLinkProbabilityMap());
 	}
 	
 	private void train(String text, boolean spam, Map<String, double[]> probabilityMap) {

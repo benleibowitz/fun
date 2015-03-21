@@ -27,7 +27,6 @@ public class BayesEmailScoringSystem {
 	private static final String BODYMAP_FILE = BASE_URL + "bodyMap.csv";
 	private static final String SUBJECTMAP_FILE = BASE_URL + "subjectMap.csv";
 	private static final String SENDERMAP_FILE = BASE_URL + "senderMap.csv";
-	private static final String LINKMAP_FILE = BASE_URL + "linkMap.csv";
 	private static final String GENERICWORD_FILE = BASE_URL + "genericWords.csv";
 	
 	//All words in map are lowercase.
@@ -35,7 +34,6 @@ public class BayesEmailScoringSystem {
 	private Map<String, double[]> bodyProbabilityMap;
 	private Map<String, double[]> subjectProbabilityMap;
 	private Map<String, double[]> senderProbabilityMap;
-	private Map<String, double[]> linkProbabilityMap;
 	
 	//Contains <MappingFileURLString, respectiveProbabilityMap>
 	private Map<String, Map<String, double[]>> fileMap;
@@ -56,12 +54,10 @@ public class BayesEmailScoringSystem {
 		bodyProbabilityMap = new HashMap<>();
 		senderProbabilityMap = new HashMap<>();
 		subjectProbabilityMap = new HashMap<>();
-		linkProbabilityMap = new HashMap<>();
 		
 		fileMap.put(BODYMAP_FILE, bodyProbabilityMap);
 		fileMap.put(SENDERMAP_FILE, senderProbabilityMap);
 		fileMap.put(SUBJECTMAP_FILE, subjectProbabilityMap);
-		fileMap.put(LINKMAP_FILE, linkProbabilityMap);
 		
 		//TEST read CSV word file
 		//TODO - implement CSV reader class
@@ -184,10 +180,6 @@ public class BayesEmailScoringSystem {
   
 	public Map<String, double[]> getSubjectProbabilityMap() {
 		return subjectProbabilityMap;
-	}
-	
-	public Map<String, double[]> getLinkProbabilityMap() {
-		return linkProbabilityMap;
 	}
 	
 	public List<String> getGenericWords() {

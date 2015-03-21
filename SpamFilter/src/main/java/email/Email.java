@@ -6,8 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Email {
-	//TODO - add url links
-	private String links;
+	//private String links;
 	private String sender;
 	private String subject;
 	private String body;
@@ -16,11 +15,11 @@ public class Email {
 		if(body == null || sender == null || subject == null)
 			throw new IllegalArgumentException("Message arguments cannot be null");
 
-		links = "";
+		//links = "";
 		this.body = processText(body);
 		this.subject = processText(subject);
 		this.sender = processText(sender);
-		links.trim();
+		//links.trim();
 	}
 	
 	/*
@@ -32,16 +31,16 @@ public class Email {
 	* OUTPUT:[foo bar do run run do run run click here]
 	*/
 	private String processText(String text) {
-		processLinks(text);
+		//processLinks(text);
 		
 		return text.toLowerCase()
 				.replace("-", " ")
 				.replaceAll("<br>|[^\\w^\\s]|_", "")
 				.replaceAll("[\\s]{2,}", " ")
-				.replaceAll("(?:www|https?)([^\\s])+", "")
+				//.replaceAll("(?:www|https?)([^\\s])+", "")
 				.trim();
 	}
-	
+	/*
 	private void processLinks(String text) {
 		Pattern pattern = Pattern.compile("(?:www|https?)([^\\s])+");
 		Matcher matcher = pattern.matcher(text);
@@ -50,7 +49,7 @@ public class Email {
 			links += matcher.group();
 		}
 	}
-	
+	*/
 	public String getBody() {
 		return body;
 	}
@@ -61,9 +60,5 @@ public class Email {
 	
 	public String getSubject() {
 		return subject;
-	}
-	
-	public String getLinks() {
-		return links;
 	}
 }

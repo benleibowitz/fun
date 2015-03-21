@@ -25,7 +25,6 @@ public class BayesEmailAlgorithm implements SpamAlgorithm {
 	private static final double BODY_WEIGHT = 0.35;
 	private static final double SENDER_WEIGHT = 0.2;
 	private static final double SUBJECT_WEIGHT = 0.45;
-	private static final double LINK_WEIGHT = 0;
 	
 	private BayesEmailScoringSystem scoringSystem;
 	
@@ -43,8 +42,7 @@ public class BayesEmailAlgorithm implements SpamAlgorithm {
 		
 		double weightedProbability = BODY_WEIGHT * processText(email.getBody(), scoringSystem.getBodyProbabilityMap())
 				+ SENDER_WEIGHT * processText(email.getSender(), scoringSystem.getSenderProbabilityMap())
-				+ SUBJECT_WEIGHT * processText(email.getSubject(), scoringSystem.getSubjectProbabilityMap())
-				+ LINK_WEIGHT * processText(email.getLinks(), scoringSystem.getLinkProbabilityMap());
+				+ SUBJECT_WEIGHT * processText(email.getSubject(), scoringSystem.getSubjectProbabilityMap());
 		
 		System.out.println(weightedProbability);
 		
