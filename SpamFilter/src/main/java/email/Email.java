@@ -34,15 +34,21 @@ public class Email {
 		//processLinks(text);
 		
 		//only check the first 10000 characters for the sake of time
-		String shortened = s.substring(0, Math.min(10000, s.length()));
+		String shortened = text.substring(0, Math.min(10000, text.length()));
+		
 		return shortened.replaceAll("-", " ")
-			.replaceAll("([.|_|*|^|$|#|@|!|-|+])\\1+", "$1")
-			.replaceAll("(?<=[A-Za-z]{2,})[^\\w^\\s](?=[A-Za-z]{1,})", " ")
-			.replaceAll("<br>|[^\\w^\\s]|_", "")
-			.replaceAll("[\\s]{2,}", " ")
-			.replaceAll("(?<=[a-z]{2,})(?=[A-Z])", " ")
-			.toLowerCase()
-			.trim();
+				.replaceAll("([.|_|*|^|$|#|@|!|-|+])\\1+", "$1")
+				.replaceAll("(?<=[A-Za-z]{2,})[^\\w^\\s](?=[A-Za-z]{1,})", " ")
+				.replaceAll("<br>|[^\\w^\\s]|_", "")
+				.replaceAll("[\\s]{2,}", " ")
+				.replaceAll("(?<=[a-z]{2,})(?=[A-Z])", " ")
+				.toLowerCase()
+				.replaceAll("(?<=[a-z0-9])0(?=[a-z0-9])", "o")
+				.replaceAll("(?<=[a-z0-9])4(?=[a-z0-9])", "a")
+				.replaceAll("(?<=[a-z0-9])3(?=[a-z0-9])", "e")
+				.replaceAll("(?<=[a-z0-9])1(?=[a-z0-9])", "i")
+				.replaceAll("(?<=[a-z0-9])5(?=[a-z0-9])", "s")
+				.trim();
 	}
 	/*
 	private void processLinks(String text) {
