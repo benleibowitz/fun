@@ -46,10 +46,7 @@ public class BayesEmailAlgorithm implements SpamAlgorithm {
 		
 		System.out.println(weightedProbability);
 		
-		if(weightedProbability > 0.5)
-			return true;
-		else
-			return false;
+		return (weightedProbability > 0.5);
 	}
 	
 	private double processText(String text, Map<String, int[]> wordCountMap) {
