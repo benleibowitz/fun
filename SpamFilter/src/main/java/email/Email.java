@@ -25,7 +25,7 @@ public class Email {
 	*/
 	private String processText(String text) {
 		//only check the first 10000 characters for the sake of time
-		String shortened = text.substring(0, Math.min(10000, text.length()));
+		String shortened = text.substring(0, Math.min(5000, text.length()));
 		
 		return shortened.replaceAll("-", " ")
 			.replaceAll("([.|_|*|^|$|#|@|!|-|+])\\1+", "$1")
