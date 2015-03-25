@@ -1,0 +1,2 @@
+- [ ] news algorithm
+- [ ] scoring system
