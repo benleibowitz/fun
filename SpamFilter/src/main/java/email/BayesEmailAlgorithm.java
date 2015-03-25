@@ -60,7 +60,7 @@ public class BayesEmailAlgorithm implements SpamAlgorithm {
 		 * For each word in message body, check the both the current word and
 		 * combo of (previous word + current word) for matches in the mapping.
 		 * EXAMPLE: if word is "here" and previous word is "click",
-		 * get P(S|"click") and P(S|"click here")
+		 * get P(S|"here") and P(S|"click here")
 		 */
 		for(int i = 0; i < bodyWords.length; i++) {
 			String[] wordCombos = new String[]{bodyWords[i]};
