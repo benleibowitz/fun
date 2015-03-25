@@ -8,6 +8,6 @@ package news;
  * for all the below types/categories
  */
 public enum Score {
-  CELEBRITY, SARCASTIC, VITRIOLIC, SPAM,
-  PROMOTION
+  CELEBRITY, SARCASM, VITRIOL, SPAM,
+  PROMOTION, SENSATIONALIST
 }
