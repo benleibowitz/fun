@@ -28,7 +28,7 @@ public class BayesEmailProbabilityTrainer implements ProbabilityTrainer {
 		train(email.getSubject(), spam, scoringSystem.getSubjectProbabilityMap());
 	}
 	
-	private void train(String text, boolean spam, Map<String, double[]> probabilityMap) {
+	private void train(String text, boolean spam, Map<String, int[]> wordCountMap) {
 		List<String> genericWords = scoringSystem.getGenericWords();
 		
 		String[] words = text.split(" ");
@@ -43,23 +43,23 @@ public class BayesEmailProbabilityTrainer implements ProbabilityTrainer {
 				wordOrPhrase = new String[]{ words[i], words[i-1] + " " + words[i]};
 				
 			for(String word : wordOrPhrase) {
-				double[] probs;
+				int[] probs;
 				
 				if(!(genericWords.contains(word))) {
 					
-					if(probabilityMap.containsKey(word)) {
+					if(wordCountMap.containsKey(word)) {
 						//If word found in map, increment
-						probs = probabilityMap.get(word);
+						probs = wordCountMap.get(word);
 					} else {
 						//Word is not in map. Add it
-						probs = new double[]{0,0};					
+						probs = new int[]{0,0};					
 					}
 					if(spam) 
 						probs[0] += 1;
 					else
 						probs[1] += 1;
 					
-					probabilityMap.put(word, probs);
+					wordCountMap.put(word, probs);
 				}
 			}
 		}

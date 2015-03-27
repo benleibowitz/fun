@@ -10,11 +10,12 @@ public class test {
 		
 		ApplicationContext c = new ClassPathXmlApplicationContext("emailbeans.xml");
 		ProbabilityCalculator probCalc = (ProbabilityCalculator)c.getBean("emailprobabilitycalculator");
-		
-		Email e = new Email("testsender", "testsubject", "test body");
+
+		Email e = new Email("Robert DeVaux", "Your account information", "Please update your account information");
 		System.out.println(probCalc.isSpam(e));
-		//Scanner s = new Scanner(System.in);
-		//BayesEmailProbabilityTrainer t = (BayesEmailProbabilityTrainer)c.getBean("emailprobabilitytrainer");
+		
+		Scanner s = new Scanner(System.in);
+		BayesEmailProbabilityTrainer t = (BayesEmailProbabilityTrainer)c.getBean("emailprobabilitytrainer");
 		//System.out.println(m.getBody());
 		/*
 		while(true) {

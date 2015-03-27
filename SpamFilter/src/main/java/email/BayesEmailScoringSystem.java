@@ -2,7 +2,7 @@
  * BayesScoringSystem is an object containing probability maps for
  * sender, subject, and message body. Each probability map is in 
  * form:
- * 	Map<String wordOrPhrase, double[]{probSpamMessage, probRealMessage} >
+ * 	Map<String wordOrPhrase, int[]{probSpamMessage, probRealMessage} >
  * WHERE:
  *	probSpamMessage = (# spam messages containing word) / (# total messages containing word)
  *	probRealMessage = (# real messages containing word) / (# total messages containing word)
@@ -31,12 +31,12 @@ public class BayesEmailScoringSystem {
 	
 	//All words in map are lowercase.
 	//Probability map contains: <word, { P(word is in spam message), P(word is in real message) }>
-	private Map<String, double[]> bodyProbabilityMap;
-	private Map<String, double[]> subjectProbabilityMap;
-	private Map<String, double[]> senderProbabilityMap;
+	private Map<String, int[]> bodyProbabilityMap;
+	private Map<String, int[]> subjectProbabilityMap;
+	private Map<String, int[]> senderProbabilityMap;
 	
 	//Contains <MappingFileURLString, respectiveProbabilityMap>
-	private Map<String, Map<String, double[]>> fileMap;
+	private Map<String, Map<String, int[]>> fileMap;
 	
 	//Contains words like "if" "and" "the" "I"
 	private List<String> genericWords;
@@ -62,7 +62,7 @@ public class BayesEmailScoringSystem {
 		//TEST read CSV word file
 		//TODO - implement CSV reader class
 		for(String fileName : fileMap.keySet()) {
-			Map<String, double[]> probabilityMap = fileMap.get(fileName);
+			Map<String, int[]> wordCountMap = fileMap.get(fileName);
 			
 			BufferedReader br = null;
 			try {
@@ -72,10 +72,9 @@ public class BayesEmailScoringSystem {
 				
 				while((line = br.readLine()) != null) {
 					String[] ar = line.split(",");
-					double spamMessages = Double.valueOf(ar[1]);
-					double realMessages = Double.valueOf(ar[2]);
-					double totMessages = spamMessages + realMessages;
-					probabilityMap.put(ar[0], new double[]{spamMessages/totMessages, realMessages/totMessages});
+					int spamMessages = Integer.valueOf(ar[1]);
+					int realMessages = Integer.valueOf(ar[2]);
+					wordCountMap.put(ar[0], new int[]{spamMessages, realMessages});
 				}
 				
 			} catch(FileNotFoundException e) {
@@ -128,7 +127,7 @@ public class BayesEmailScoringSystem {
 		for(String fileName : fileMap.keySet()) {
 			//Write new word map to file
 			BufferedWriter bufferedWriter = null;
-			Map<String, double[]> probabilityMap = fileMap.get(fileName);
+			Map<String, int[]> wordCountMap = fileMap.get(fileName);
                     
 			try {
 				bufferedWriter = new BufferedWriter(new FileWriter(
@@ -137,10 +136,10 @@ public class BayesEmailScoringSystem {
 				//Write headers
 				bufferedWriter.write("Word,SpamMessages,RealMessages\n");
                 
-				for(String w : probabilityMap.keySet()) {
+				for(String word : wordCountMap.keySet()) {
                     
-					bufferedWriter.write(w + "," + probabilityMap.get(w)[0]
-							+ "," + probabilityMap.get(w)[1] + "\n" );
+					bufferedWriter.write(word + "," + wordCountMap.get(word)[0]
+							+ "," + wordCountMap.get(word)[1] + "\n" );
 				}
                 
 			} catch(IOException e) {
@@ -158,27 +157,27 @@ public class BayesEmailScoringSystem {
         
 	}
   
-	public void setBodyProbabilityMap(Map<String, double[]> bodyProbabilityMap) {
+	public void setBodyProbabilityMap(Map<String, int[]> bodyProbabilityMap) {
 		this.bodyProbabilityMap = bodyProbabilityMap;
 	}
   
-	public void setSenderProbabilityMap(Map<String, double[]> senderProbabilityMap) {
+	public void setSenderProbabilityMap(Map<String, int[]> senderProbabilityMap) {
 		this.senderProbabilityMap = senderProbabilityMap;
 	}
   
-	public void setSubjectProbabilityMap(Map<String, double[]> subjectProbabilityMap) {
+	public void setSubjectProbabilityMap(Map<String, int[]> subjectProbabilityMap) {
 		this.subjectProbabilityMap = subjectProbabilityMap;
 	}
   
-	public Map<String, double[]> getBodyProbabilityMap() {
+	public Map<String, int[]> getBodyProbabilityMap() {
 		return bodyProbabilityMap;
 	}
   
-	public Map<String, double[]> getSenderProbabilityMap() {
+	public Map<String, int[]> getSenderProbabilityMap() {
 		return senderProbabilityMap;
 	}
   
-	public Map<String, double[]> getSubjectProbabilityMap() {
+	public Map<String, int[]> getSubjectProbabilityMap() {
 		return subjectProbabilityMap;
 	}
 	
