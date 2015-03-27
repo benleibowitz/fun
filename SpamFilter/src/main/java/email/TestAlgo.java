@@ -4,7 +4,9 @@ package email;
 public class TestAlgo implements SpamAlgorithm {
 	@Override
 	public boolean isSpam(Email email) {
-		System.out.println("Test algorithm");
+		
+		//I call this one, AssumptionAlgorithm :)
+		System.out.println("Running test algorithm");
 		return true;
 	}
 }
