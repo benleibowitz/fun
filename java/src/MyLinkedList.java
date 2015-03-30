@@ -6,7 +6,6 @@ public class MyLinkedList {
 		
 		Node(Object object) {
 			this.object = object;
-			nextNode = null;
 		}
 		
 		private void setNextNode(Node nextNode) {

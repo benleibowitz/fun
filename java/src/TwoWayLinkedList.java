@@ -8,8 +8,6 @@ public class TwoWayLinkedList {
 		private Node prevNode;
 		
 		Node(Object object) {
-			nextNode = null;
-			prevNode = null;
 			this.object = object;
 		}
 		
@@ -39,8 +37,6 @@ public class TwoWayLinkedList {
 	private Node lastNode;
 	
 	public TwoWayLinkedList() {
-		firstNode = null;
-		lastNode = null;
 		size = 0;
 	}
 	
@@ -58,7 +54,6 @@ public class TwoWayLinkedList {
 			newNode.setPrevNode(oldLastNode);
 			
 			lastNode = newNode;
-
 		}
 
 		size++;
