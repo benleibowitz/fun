@@ -1,7 +1,7 @@
 /*
  *  Example of 2 threads deadlocking because
- *  they both are waiting on the other to release
- *  a synchronize
+ *  they both are waiting on the other to exit
+ *  a synchronize block
  */
 
 public class Deadlock {
