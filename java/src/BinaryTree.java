@@ -1,4 +1,4 @@
-package com;
+package alg;
 
 import java.math.BigDecimal;
 
@@ -79,6 +79,35 @@ public class BinaryTree {
 				depth = currentDepth;
 		}
 
+	}
+	
+	public boolean contains(BigDecimal data) {
+	    boolean contains = false;
+	    
+	    if(depth > 0) {
+	        Node currentNode = headNode;
+	        
+    	    if(currentNode.getData().compareTo(data) == 0) {
+    	        contains = true;
+    	    } else {
+    	        while(currentNode != null && !contains) {
+    	            
+    	            switch(data.compareTo(currentNode.getData())) {
+    	                case 1:
+                            currentNode = currentNode.getRightChildNode();
+    	                    break;
+    	                case -1:
+                            currentNode = currentNode.getLeftChildNode();
+    	                    break;
+    	                default:
+                            contains = true;
+    	            }
+    	            
+                }
+    	    }
+	    }
+	    
+	    return contains;
 	}
 	
 	public int getDepth() {
