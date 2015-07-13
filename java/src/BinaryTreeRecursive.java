@@ -6,8 +6,9 @@ import org.junit.Assert;
 
 public class BinaryTreeRecursive {
     private class Node {
-        //LeftChildNode will be <= current node,
+        //LeftChildNode will be < current node,
         //and rightChildNode will be > current Node
+        //adding duplicate value to tree with throw illegalargumentexception
         Node leftChildNode;
         Node rightChildNode;
         BigDecimal data;
