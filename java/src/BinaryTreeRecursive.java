@@ -40,7 +40,7 @@ public class BinaryTreeRecursive {
     Node headNode;
     int depth;
     
-    public BinaryTree() {
+    public BinaryTreeRecursive() {
         depth = 0;
     }
     
