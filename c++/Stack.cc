@@ -1,7 +1,5 @@
-// A stack implementation in C++
-// written using Google Style Guide for
-// style conventions
-// see Stack.h for usage
+// A stack implementation in C++, written using Google Style Guide for
+// style conventions. see Stack.h for usage
 #include "Stack.h"
 #include <iostream>
 using std::cout;
