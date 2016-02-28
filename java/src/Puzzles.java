@@ -34,7 +34,21 @@ class IllegalArrayLengthException extends Exception {
 }
 
 public class Puzzles {
-	static Random r = new Random();
+	private static Random r = new Random();
+	
+	private static final Set<Character> digits = new HashSet<Character>() {{
+		add('1');
+		add('2');
+		add('3');
+		add('4');
+		add('5');
+		add('6');
+		add('7');
+		add('8');
+		add('9');
+		add('0');
+	}};
+    
 	
 	public static void main(String[] args) {
 	}
@@ -334,42 +348,36 @@ public class Puzzles {
 		return duplicate;
 	}
 	
-	public static int stringToInt(String stringIn) throws IllegalArgumentException {
-		final char[] digits = {'0','1','2','3','4','5','6','7','8','9'};
-		int intOut = 0;
-		boolean numNegative;
-		
-		if(stringIn == null || stringIn.length() == 0 || stringIn.length() > 9) 
-			throw new IllegalArgumentException("String cannot be null, 0 length, or greater than 9 digits");
-		
-		char[] stringArray = stringIn.toCharArray();
-		
-		if(stringArray[0] == '-') {
-			numNegative = true;
-			stringArray[0] = '0';
-		}
-		else numNegative = false;
-		
-		for(int i=0; i<stringArray.length; i++) {
-			boolean numIsInt = false;
-			for(int j=0; j<digits.length; j++) {
-				if(digits[j] == stringArray[i]) 
-					numIsInt = true;
-			}
-			
-			if(!numIsInt)
-				throw new IllegalArgumentException("Number must only contain numerical digits");
-			
-			int localNum = stringArray[i] - '0';
-			
-			intOut *= 10;
-			intOut += localNum;
-		}
-		
-		if(numNegative) 
-			intOut *= -1;
-		
-		return intOut;
-	}
+    public static int stringToInt(String stringIn) {
+        int intOut = 0;
+        boolean numNegative = false;
+        
+        if(stringIn == null || stringIn.length() == 0 || stringIn.length() > 9) 
+            throw new IllegalArgumentException("String cannot be null, 0 length, or greater than 9 digits");
+        
+        char[] stringArray = stringIn.toCharArray();
+        
+        if(stringArray[0] == '-') {
+            numNegative = true;
+            stringArray[0] = '0';
+        }
+        
+        for(int i = 0; i < stringArray.length; i++) {
+            char c = (char)stringArray[i];
+            
+            if(!digits.contains(c))
+                throw new NumberFormatException("Number must only contain numerical digits. Fail on: " + c);
+            
+            int localNum = c - '0';
+            
+            intOut *= 10;
+            intOut += localNum;
+        }
+        
+        if(numNegative) 
+            intOut *= -1;
+        
+        return intOut;
+    }
 	
 }
