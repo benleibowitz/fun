@@ -276,9 +276,12 @@ public class Puzzles {
 		if(input < 2) 
 			throw new IllegalArgumentException("Number must be >= 2");
 		
-		for(int i = (input - 1); i > 1; i--) {
-			if(input % i == 0) 
+		int startNum = (int)Math.sqrt((double)input) + 1;
+		
+		for(int i = startNum; i > 1 && prime; i--) {
+			if(input % i == 0) {
 				prime = false;
+			}
 		}
 		
 		return prime;
