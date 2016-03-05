@@ -21,10 +21,12 @@ public class Algo {
 			int[] Rarray = new int[Rlength];
 			
 			//fill our new L and R arrays
-			for(int i=0; i<Llength; i++)
+			for(int i=0; i<Llength; i++) {
 				Larray[i] = inputArray[i];
-			for(int i=0; i<Rlength; i++)
+			}
+			for(int i=0; i<Rlength; i++) {
 				Rarray[i] = inputArray[i + Llength];
+			}
 	
 			//recursively split arrays into smaller subarrays
 			Larray = mergeSort(Larray);
@@ -49,20 +51,23 @@ public class Algo {
 				int Rval = Rarray[Rindex];
 				int Lval = Larray[Lindex];
 				
-				if(Lval < Rval)
+				if(Lval < Rval) {
 					insertLval = true;
-				else 
+				} else {
 					insertRval = true;
+				}
 				
-			} else if(Lindex < Larray.length)
+			} else if(Lindex < Larray.length) {
 				insertLval = true;
-			else if(Rindex < Rarray.length) 
+			} else if(Rindex < Rarray.length) {
 				insertRval = true;
+			}
 			
-			if(insertLval)
+			if(insertLval) {
 				outArray[mainIndex] = Larray[Lindex++];
-			else if(insertRval)
+			} else if(insertRval) {
 				outArray[mainIndex] = Rarray[Rindex++];
+			}
 			
 		}
 		
@@ -81,18 +86,18 @@ public class Algo {
 			for(int j = i; j > 0 && !inserted; j--) {
 				int prevKey = inArr[j-1];
 				
-				if(prevKey > key) 
+				if(prevKey > key) {
 					inArr[j] = prevKey;
-				else {
+				} else {
 					inArr[j] = key;
 					inserted = true;
 				}
 				
 			}
 			
-			if(!inserted)
+			if(!inserted) {
 				inArr[0] = key;
-			
+			}
 		}//close outer loop
 	}
 }
