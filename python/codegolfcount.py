@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# ignores newline, tab, and space. not a true code golf count, but fun nonetheless
 
 import sys
 
