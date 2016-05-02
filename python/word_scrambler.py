@@ -1,4 +1,10 @@
 #!/usr/bin/python
+# Meant to take in a document as command
+# line argument, and scramble each word.
+# (I read an article once that said something
+# about how even if words were scrambled,
+# if you keep the first and last letter
+# in tact, people can still read it).
 
 import sys
 import random
