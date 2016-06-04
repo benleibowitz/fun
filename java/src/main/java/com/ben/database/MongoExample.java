@@ -1,4 +1,4 @@
-package com.ben;
+package com.ben.database;
 
 /**
  * This class connects to a MongoDB instance running

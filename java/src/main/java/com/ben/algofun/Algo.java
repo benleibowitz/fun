@@ -1,4 +1,4 @@
-package com.ben;
+package com.ben.algofun;
 /*
  *  A class which contains a few basic algorithm implementations.
  *  Algo has the following functions, which modify arrays (* insertSort modifies array in place *)

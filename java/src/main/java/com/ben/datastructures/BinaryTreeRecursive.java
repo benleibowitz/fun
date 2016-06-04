@@ -1,15 +1,12 @@
-package com.ben;
+package com.ben.datastructures;
 
 import java.math.BigDecimal;
 
-import lombok.Builder;
-import lombok.Data;
-
-public class BinaryTree {
-    
+public class BinaryTreeRecursive {
     private class Node {
-        //LeftChildNode will be <= current node,
+        //LeftChildNode will be < current node,
         //and rightChildNode will be > current Node
+        //adding duplicate value to tree with throw illegalargumentexception
         Node leftChildNode;
         Node rightChildNode;
         BigDecimal data;
@@ -42,7 +39,7 @@ public class BinaryTree {
     Node headNode;
     int depth;
     
-    public BinaryTree() {
+    public BinaryTreeRecursive() {
         depth = 0;
     }
     
@@ -51,42 +48,46 @@ public class BinaryTree {
             headNode = new Node(data);
             depth++;
         } else {
-            int currentDepth = 1;
-            Node currentNode = headNode;
+            add(null, headNode, data, 1);
+        }
+    }
+    
+    private void add(Node parentNode, Node currentNode, BigDecimal data, int currentDepth) {
+        if(currentNode == null) {
+            currentNode = new Node(data);
             
-            boolean placedNode = false;
-            while(!placedNode) {
-                currentDepth++;
-
-                if(data.compareTo(currentNode.getData()) == 1) {
-                    //New node is bigger than currentNode, set on right side if
-                    //right side is null. else, traverse the right child node
-                    if(currentNode.getRightChildNode() == null) {
-                        currentNode.setRightChildNode(new Node(data));
-                        placedNode = true;
-                    } else {
-                        currentNode = currentNode.getRightChildNode();
-                    }
-                } else {
-                    //New node is <= currentNode, set on left side 
-                    if(currentNode.getLeftChildNode() == null) {
-                        currentNode.setLeftChildNode(new Node(data));
-                        placedNode = true;
-                    } else {
-                        currentNode = currentNode.getLeftChildNode();
-                    }
-                    
-                }
+            switch(parentNode.getData().compareTo(data)) {
+                case -1:
+                    parentNode.setRightChildNode(currentNode);
+                    break;
+                case 1:
+                    parentNode.setLeftChildNode(currentNode);
+                    break;
+                default:
+                    throw new IllegalArgumentException("Duplicate element cannot be added for: " + data);
             }
-
+            
             if(currentDepth > depth)
                 depth = currentDepth;
+        } else {
+            switch(currentNode.getData().compareTo(data)) {
+                case -1:
+                    add(currentNode, currentNode.getRightChildNode(), data, currentDepth + 1);
+                    break;
+                case 1:
+                    add(currentNode, currentNode.getLeftChildNode(), data, currentDepth + 1);
+                    break;
+                default:
+                    throw new IllegalArgumentException("Duplicate element cannot be added for: " + data);
+            }
         }
-
     }
     
     public boolean contains(BigDecimal data) {
         boolean contains = false;
+        
+        if(data == null)
+            throw new IllegalArgumentException("Data cannot be null");
         
         if(depth > 0)
             contains = lookup(headNode, data);
@@ -98,11 +99,11 @@ public class BinaryTree {
         boolean contains = false;
 
         if(node != null) {
-            switch(data.compareTo(node.getData())) {
-                case 1:
+            switch(node.getData().compareTo(data)) {
+                case -1:
                     contains = lookup(node.getRightChildNode(), data);
                     break;
-                case -1:
+                case 1:
                     contains = lookup(node.getLeftChildNode(), data);
                     break;
                 default:
@@ -116,5 +117,6 @@ public class BinaryTree {
     public int getDepth() {
         return depth;
     }
+    
     
 }

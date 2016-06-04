@@ -1,4 +1,4 @@
-package com.ben;
+package com.ben.frameworktesting;
 /*
  * Testing Google's Snappy compression algorithm
  * by compressing a test CSV file.

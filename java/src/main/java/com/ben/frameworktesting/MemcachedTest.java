@@ -3,7 +3,7 @@
  * using Google Snappy to compress the objects
  * before writing to cache.
  */
-package com.ben;
+package com.ben.frameworktesting;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -14,6 +14,8 @@ import net.spy.memcached.AddrUtil;
 import net.spy.memcached.MemcachedClient;
 
 import org.xerial.snappy.Snappy;
+
+import com.ben.datastructures.Node;
 
 public class MemcachedTest {
     public static void main(String[] args) {

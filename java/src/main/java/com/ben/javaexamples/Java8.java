@@ -1,4 +1,4 @@
-package com.ben;
+package com.ben.javaexamples;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;

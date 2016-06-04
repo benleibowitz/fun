@@ -1,4 +1,4 @@
-package com.ben;
+package com.ben.algofun;
 /*
  *	Below are some implementations of a few basic
  *	puzzles/code challenges in Java

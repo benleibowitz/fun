@@ -1,4 +1,4 @@
-package com.ben;
+package com.ben.frameworktesting;
 
 import lombok.Builder;
 import lombok.Data;

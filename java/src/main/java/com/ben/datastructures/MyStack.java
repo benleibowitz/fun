@@ -1,4 +1,4 @@
-package com.ben;
+package com.ben.datastructures;
 
 
 public class MyStack<E> {

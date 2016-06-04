@@ -1,4 +1,4 @@
-package com.ben;
+package com.ben.javaexamples;
 /*
  * 
  *  Implementation of producer / consumer issue.

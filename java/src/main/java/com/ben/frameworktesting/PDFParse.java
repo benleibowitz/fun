@@ -1,4 +1,4 @@
-package com.ben;
+package com.ben.frameworktesting;
 /*
  *
  *  PDFParse.java takes a PDF file as input and

@@ -6,7 +6,7 @@
  *  finds the factorial by increasing (ie, 1 * 2 * 3 * 4)
  */
 
-package com.ben;
+package com.ben.javaexamples;
 
 public class Factorial {
 	public static long findFactorial(int num) {

@@ -1,4 +1,4 @@
-package com.ben;
+package com.ben.datastructures;
 
 import java.io.Serializable;
 
@@ -11,7 +11,7 @@ import lombok.Data;
  */
 @Data
 @Builder
-class Node<E> implements Serializable {
+public class Node<E> implements Serializable {
 
     /**
      *  Serializable

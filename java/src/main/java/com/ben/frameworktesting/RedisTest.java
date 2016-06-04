@@ -1,7 +1,7 @@
 /*
  * Testing Redis with Jedis client
  */
-package com.ben;
+package com.ben.frameworktesting;
 
 import redis.clients.jedis.Jedis;
 

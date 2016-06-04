@@ -1,4 +1,4 @@
-package com.ben;
+package com.ben.datastructures;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -8,6 +8,8 @@ import java.util.Random;
 
 import org.junit.Assert;
 import org.junit.Test;
+
+import com.ben.datastructures.BinaryTree;
 
 public class BinaryTreeTest {
 
