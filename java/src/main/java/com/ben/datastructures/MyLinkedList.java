@@ -1,46 +1,46 @@
 package com.ben.datastructures;
-public class MyLinkedList {
+public class MyLinkedList<E> {
 	
-	private class Node {
-		private Object object;
-		private Node nextNode;
+	private class Node<E> {
+		private E data;
+		private Node<E> nextNode;
 		
-		Node(Object object) {
-			this.object = object;
+		Node(E object) {
+			this.data = object;
 		}
 		
-		private void setNextNode(Node nextNode) {
+		private void setNextNode(Node<E> nextNode) {
 			this.nextNode = nextNode;
 		}
 		
-		private Object getObject() {
-			return object;
+		private E getObject() {
+			return data;
 		}
 		
-		private Node getNextNode() {
+		private Node<E> getNextNode() {
 			return nextNode;
 		}
 	}
 	
 	private int size;
-	private Node firstNode;
+	private Node<E> firstNode;
 	
 	public MyLinkedList() {
 		firstNode = null;
 		size = 0;
 	}
 	
-	public void add(Object element) {
+	public void add(E element) {
 		if(firstNode == null) {
-			firstNode = new Node(element);
+			firstNode = new Node<>(element);
 		} else {
-			Node currentNode = firstNode;
+			Node<E> currentNode = firstNode;
 			
 			while(currentNode.getNextNode() != null) {
 				currentNode = currentNode.getNextNode();
 			}
 			
-			currentNode.setNextNode(new Node(element));
+			currentNode.setNextNode(new Node<>(element));
 		}
 		
 		size++;
@@ -50,7 +50,7 @@ public class MyLinkedList {
 		if(index >= size || index < 0)
 			throw new IndexOutOfBoundsException();
 		
-		Node currentNode = firstNode;
+		Node<E> currentNode = firstNode;
 		
 		if(index == 0) {
 			firstNode = firstNode.getNextNode();
@@ -70,7 +70,7 @@ public class MyLinkedList {
 		if(index >= size || index < 0)
 			throw new IndexOutOfBoundsException();
 		
-		Node currentNode = firstNode;
+		Node<E> currentNode = firstNode;
 		
 		for(int i = 0; i < index; i++) {
 			currentNode = currentNode.getNextNode();
@@ -80,7 +80,7 @@ public class MyLinkedList {
 	}
 	
 	public void clear() {
-		Node currentNode = firstNode;
+		Node<E> currentNode = firstNode;
 		
 		while(currentNode.getNextNode() != null) {
 			currentNode.setNextNode(null);
@@ -94,7 +94,7 @@ public class MyLinkedList {
 
 	
 	public void print() {
-		Node currentNode = firstNode;
+		Node<E> currentNode = firstNode;
 		
 		while(currentNode != null) {
 			System.out.println(currentNode.getObject());
@@ -107,7 +107,7 @@ public class MyLinkedList {
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("[");
 		
-		Node currentNode = firstNode;
+		Node<E> currentNode = firstNode;
 		
 		for(int i = 0; i < size; i++) {
 			stringBuilder.append(currentNode.getObject());
