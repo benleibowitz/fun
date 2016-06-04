@@ -47,10 +47,11 @@ public class MongoExample {
                 while (cursor.hasNext()) {
 
                     Document doc = cursor.next();
+                    
                     String city = doc.get("city").toString();
                     String state = doc.get("state").toString();
                     String zip = doc.get("_id").toString();
-                    int pop = Double.valueOf(doc.get("pop").toString()).intValue();
+                    int pop = (int)doc.get("pop");
                     
                     System.out.println(zip + "- " + city + ", " + state + "= " + pop);
                 }
