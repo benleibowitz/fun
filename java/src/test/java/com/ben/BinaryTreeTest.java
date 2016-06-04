@@ -1,4 +1,4 @@
-package test;
+package com.ben;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -8,8 +8,6 @@ import java.util.Random;
 
 import org.junit.Assert;
 import org.junit.Test;
-
-import alg.BinaryTree;
 
 public class BinaryTreeTest {
 

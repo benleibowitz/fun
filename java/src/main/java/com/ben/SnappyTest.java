@@ -1,9 +1,9 @@
+package com.ben;
 /*
  * Testing Google's Snappy compression algorithm
  * by compressing a test CSV file.
  */
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

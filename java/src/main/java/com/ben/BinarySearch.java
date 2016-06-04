@@ -5,7 +5,7 @@
  * if null has been passed into function as the input array.
  */
 
-package com;
+package com.ben;
 
 public class BinarySearch {
 	public static int search(int[] inArray, int searchKey) {

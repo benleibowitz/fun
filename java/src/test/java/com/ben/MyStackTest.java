@@ -1,6 +1,8 @@
-package test;
+package com.ben;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -10,8 +12,6 @@ import java.util.Stack;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import com.MyStack;
 
 public class MyStackTest {
     private MyStack<String> myStack;

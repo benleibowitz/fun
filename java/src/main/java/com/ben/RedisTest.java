@@ -1,33 +1,9 @@
 /*
  * Testing Redis with Jedis client
  */
-package redis;
-
-import java.io.Serializable;
-import java.util.List;
+package com.ben;
 
 import redis.clients.jedis.Jedis;
-
-class Node implements Serializable {
-
-    /**
-     * 
-     */
-    private static final long serialVersionUID = -2791375802729648470L;
-    private int data;
-    
-    public Node(int d) {
-        this.data = d;
-    }
-    
-    public int getData() {
-        return data;
-    }
-    public void setData(int data) {
-        this.data = data;
-    }
-    
-}
 
 public class RedisTest {
     public static void main(String[] args) {
@@ -39,8 +15,8 @@ public class RedisTest {
             jedis = new Jedis("localhost");
             System.out.println(jedis.ping());
             
-            jedis.set("merp", "berp");
-            System.out.println(jedis.get("merp"));
+            jedis.set("myKey", "myVal");
+            System.out.println(jedis.get("myKey"));
             
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,0 +1,4 @@
+java/.classpath
+java/.settings/*
+java/bin/*
+java/target/*

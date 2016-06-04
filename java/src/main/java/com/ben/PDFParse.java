@@ -1,3 +1,4 @@
+package com.ben;
 /*
  *
  *  PDFParse.java takes a PDF file as input and
@@ -11,15 +12,9 @@
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.util.PDFTextStripper;
-import org.apache.pdfbox.io.RandomAccess;
-import org.apache.pdfbox.io.RandomAccessFile;
-import org.apache.tika.io.TemporaryResources;
-
 import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
 
 public class PDFParse {
     static final Logger log = Logger.getLogger(PDFParse.class);
@@ -30,12 +25,13 @@ public class PDFParse {
             System.out.println("Usage: ConvertPDF [PDF File]");
             System.exit(1);
         }
+        
+        String filePath = args[0];
 
-	PropertyConfigurator.configure("/home/ben/Documents/Code/JavaJars/apache-log4j-1.2.17/buildfile.writetofile");   
-	PDDocument doc = null;
+        PDDocument doc = null;
         
         try {
-            doc = readInputFile(args[0]);
+            doc = readInputFile(filePath);
                         
             PDFTextStripper textStrip = new PDFTextStripper();
             textStrip.setStartPage(1);
@@ -49,7 +45,7 @@ public class PDFParse {
 
             if(doc != null) {
                 try {
-		    doc.close();
+                    doc.close();
                 } catch(Exception e) {
                     e.printStackTrace();
                 }
@@ -58,15 +54,12 @@ public class PDFParse {
     
     }
     
-    public static PDDocument readInputFile(String fileURL) {
+    public static PDDocument readInputFile(String fileURL) throws IOException {
         if(fileURL == null || fileURL.length() < 1)
             throw new IllegalArgumentException("File URL cannot be null or empty");
 	
-	TemporaryResources tmp = new TemporaryResources();
-	RandomAccess scratchFile = new RandomAccessFile(tmp.createTemporaryFile(), "rw");
-	
-	File inputFile = new File(fileURL);
-	return PDDocument.loadNonSeq(inputFile, scratchFile);
+        File inputFile = new File(fileURL);
+        return PDDocument.load(inputFile);
     }
     
 }
