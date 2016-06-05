@@ -75,5 +75,61 @@
   		<artifactId>mongo-java-driver</artifactId>
   		<version>3.2.2</version>
   	</dependency>
+  	<dependency>
+  		<groupId>org.apache.hadoop</groupId>
+  		<artifactId>hadoop-hdfs</artifactId>
+  		<version>2.7.1</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.apache.hadoop</groupId>
+  		<artifactId>hadoop-client</artifactId>
+  		<version>2.7.1</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>commons-logging</groupId>
+  		<artifactId>commons-logging</artifactId>
+  		<version>1.2</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.apache.hadoop</groupId>
+  		<artifactId>hadoop-core</artifactId>
+  		<version>1.2.1</version>
+  	</dependency> 
+  	<dependency>
+  		<groupId>org.apache.cassandra</groupId>
+  		<artifactId>cassandra-all</artifactId>
+  		<version>3.1.1</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.datastax.cassandra</groupId>
+  		<artifactId>cassandra-driver-core</artifactId>
+  		<version>3.0.0-alpha5</version>
+  		<classifier>shaded</classifier>
+  	</dependency>
+  	<dependency>
+        <groupId>org.mongodb</groupId>
+        <artifactId>mongodb-driver</artifactId>
+        <version>3.2.0</version>
+    </dependency>
+    <dependency>
+	    <groupId>org.mongodb.mongo-hadoop</groupId>
+	    <artifactId>mongo-hadoop-core</artifactId>
+	    <version>1.4.2</version>
+	</dependency>
+    <dependency>
+    	<groupId>org.apache.kafka</groupId>
+    	<artifactId>kafka_2.9.2</artifactId>
+    	<version>0.8.2.2</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.apache.httpcomponents</groupId>
+    	<artifactId>httpclient</artifactId>
+    	<version>4.5.2</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.json</groupId>
+    	<artifactId>json</artifactId>
+    	<version>20160212</version>
+    </dependency>
   </dependencies>
 </project>
