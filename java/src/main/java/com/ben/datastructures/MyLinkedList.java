@@ -2,19 +2,19 @@ package com.ben.datastructures;
 public class MyLinkedList<E> {
 	
 	private class Node<E> {
-		private E data;
+		private E element;
 		private Node<E> nextNode;
 		
-		Node(E object) {
-			this.data = object;
+		Node(E element) {
+			this.element = element;
 		}
 		
 		private void setNextNode(Node<E> nextNode) {
 			this.nextNode = nextNode;
 		}
 		
-		private E getObject() {
-			return data;
+		private E getElement() {
+			return element;
 		}
 		
 		private Node<E> getNextNode() {
@@ -46,6 +46,10 @@ public class MyLinkedList<E> {
 		size++;
 	}
 	
+	public boolean contains(E element) {
+		return (get(element) != -1);
+	}
+	
 	public void remove(int index) {
 		if(index >= size || index < 0)
 			throw new IndexOutOfBoundsException();
@@ -66,7 +70,32 @@ public class MyLinkedList<E> {
 		size--;
 	}
 	
-	public Object get(int index) {
+	public int get(E element) {
+		int index = -1;
+		
+		Node<E> currentNode = firstNode;
+		
+		int count = 0;
+		while(currentNode != null && index == -1) {
+			E currentElement = currentNode.getElement();
+			
+			if(currentElement == null) {
+				if(element == null) {
+					index = count;
+				}
+			} else if(currentElement.equals(element)) {
+				index = count;
+			}
+
+			System.out.println(index + " " + count);
+			currentNode = currentNode.getNextNode();
+			count++;
+		}
+		
+		return index;
+	}
+	
+	public E get(int index) {
 		if(index >= size || index < 0)
 			throw new IndexOutOfBoundsException();
 		
@@ -76,7 +105,7 @@ public class MyLinkedList<E> {
 			currentNode = currentNode.getNextNode();
 		}
 		
-		return currentNode.getObject();
+		return currentNode.getElement();
 	}
 	
 	public void clear() {
@@ -97,7 +126,7 @@ public class MyLinkedList<E> {
 		Node<E> currentNode = firstNode;
 		
 		while(currentNode != null) {
-			System.out.println(currentNode.getObject());
+			System.out.println(currentNode.getElement());
 			currentNode = currentNode.getNextNode();
 		}
 	}
@@ -110,7 +139,7 @@ public class MyLinkedList<E> {
 		Node<E> currentNode = firstNode;
 		
 		for(int i = 0; i < size; i++) {
-			stringBuilder.append(currentNode.getObject());
+			stringBuilder.append(currentNode.getElement());
 			currentNode = currentNode.getNextNode();
 			
 			if(i < size-1)

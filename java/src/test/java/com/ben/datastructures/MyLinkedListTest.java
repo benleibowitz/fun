@@ -1,8 +1,6 @@
 package com.ben.datastructures;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +39,7 @@ public class MyLinkedListTest {
     }
     
     @Test
-    public void testSizeIncrements() {
+    public void testSizeIncrementsProperly() {
         linkedList.add("foo");
         assertEquals(1, linkedList.size());
         linkedList.add("foo");
@@ -84,6 +82,34 @@ public class MyLinkedListTest {
         linkedList.add("foo");
         exception.expect(IndexOutOfBoundsException.class);
         linkedList.get(1);
+    }
+    
+    @Test
+    public void testContainsWhenDoesnt() {
+    	linkedList.add("foobar");
+    	assertFalse(linkedList.contains("Wu Tang"));
+    }
+    
+    @Test
+    public void testContainsWhenDoes() {
+    	linkedList.add("tom jones");
+    	linkedList.add("foo bar");
+    	assertTrue(linkedList.contains("foo bar"));
+    }
+    
+    @Test
+    public void testContainsNullWhenDoes() {
+    	linkedList.add("tom jones");
+    	linkedList.add(null);
+    	linkedList.add("woo");
+    	assertTrue(linkedList.contains(null));
+    }
+    
+    @Test
+    public void testContainsNullWhenDoesnt() {
+    	linkedList.add("foo");
+    	linkedList.add("fodo");
+    	assertFalse(linkedList.contains(null));
     }
 
 }
