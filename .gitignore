@@ -1,4 +1,6 @@
 java/.classpath
+java/.idea
+java/*.iml
 java/.settings/*
 java/bin/*
 java/target/*
