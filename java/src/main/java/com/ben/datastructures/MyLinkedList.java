@@ -131,8 +131,9 @@ public class MyLinkedList<E> {
 			stringBuilder.append(currentNode.getElement());
 			currentNode = currentNode.getNextNode();
 			
-			if(i < size-1)
+			if(i < size-1) {
 				stringBuilder.append(", ");
+			}
 		}
 		
 		stringBuilder.append("]");

@@ -31,7 +31,7 @@ public class MemcachedTest {
                         ("myobj found in cache:" + cache.get("myobj") + " -> data=" + readAndUncompress(cache).getData()));
             
             //Create new node, compress it, and write it to cache
-            Node<Integer> n = Node.<Integer>builder()
+            Node n = Node.builder()
                     .data(14)
                     .build();
             System.out.println("Writing to cache: " + n.getClass().getName() + "(" + n.getData() + ")");
@@ -50,7 +50,7 @@ public class MemcachedTest {
         
     }
     
-    public static void compressAndCache(MemcachedClient cache, Node<Integer> n) throws IOException {
+    public static void compressAndCache(MemcachedClient cache, Node n) throws IOException {
         //compress object to byte array
         ByteArrayOutputStream b = new ByteArrayOutputStream();
         ObjectOutputStream o = new ObjectOutputStream(b);
@@ -63,13 +63,13 @@ public class MemcachedTest {
         b.close();
     }
     
-    public static Node<Integer> readAndUncompress(MemcachedClient cache) throws IOException, ClassNotFoundException {
+    public static Node readAndUncompress(MemcachedClient cache) throws IOException, ClassNotFoundException {
         byte[] bytes = (byte[])cache.get("myobj");
         byte[] uncompressed = Snappy.uncompress(bytes);
         
         ByteArrayInputStream b = new ByteArrayInputStream(uncompressed);
         ObjectInputStream o = new ObjectInputStream(b);
-        Node<Integer> n = (Node<Integer>) o.readObject();
+        Node<Integer> n = (Node) o.readObject();
         
         o.close();
         b.close();

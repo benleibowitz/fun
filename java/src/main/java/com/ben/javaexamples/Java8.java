@@ -7,8 +7,13 @@ import java.util.Map;
 
 public class Java8 {
 	public static void main(String[] args) {
-		List<String> list = new ArrayList<>();
-		list.add("foo");list.add("bar");list.add("penny");list.add("apple");list.add("bar");
+		List<String> list = new ArrayList<String>() {{
+			add("foo");
+			add("bar");
+			add("penny");
+			add("apple");
+			add("bar");
+		}};
 		useIterate(list);
 		useJava8ForEach(list);
 	}

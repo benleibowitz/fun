@@ -79,8 +79,9 @@ public class BinaryTree {
                 }
             }
 
-            if(currentDepth > depth)
+            if(currentDepth > depth) {
                 depth = currentDepth;
+            }
         }
 
     }
@@ -88,9 +89,10 @@ public class BinaryTree {
     public boolean contains(BigDecimal data) {
         boolean contains = false;
         
-        if(depth > 0)
+        if(depth > 0) {
             contains = lookup(headNode, data);
-        
+        }
+
         return contains;
     }
     

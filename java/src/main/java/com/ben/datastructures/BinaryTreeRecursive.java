@@ -67,8 +67,9 @@ public class BinaryTreeRecursive {
                     throw new IllegalArgumentException("Duplicate element cannot be added for: " + data);
             }
             
-            if(currentDepth > depth)
+            if(currentDepth > depth) {
                 depth = currentDepth;
+            }
         } else {
             switch(currentNode.getData().compareTo(data)) {
                 case -1:
@@ -84,14 +85,16 @@ public class BinaryTreeRecursive {
     }
     
     public boolean contains(BigDecimal data) {
-        boolean contains = false;
-        
-        if(data == null)
+        if(data == null) {
             throw new IllegalArgumentException("Data cannot be null");
-        
-        if(depth > 0)
+        }
+
+        boolean contains = false;
+
+        if(depth > 0) {
             contains = lookup(headNode, data);
-        
+        }
+
         return contains;
     }
     

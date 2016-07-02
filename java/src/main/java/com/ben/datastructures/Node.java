@@ -1,23 +1,19 @@
 package com.ben.datastructures;
 
-import java.io.Serializable;
-
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Builder;
 import lombok.Data;
 
 /**
  * Use Lombok to generate getters, setters,
- * and builder pattern instead of constructor
+ * and builder pattern instead of constructor.
+ * (You might need to install Lombok on your IDE to
+ * remove the errors)
  */
 @Data
 @Builder
-public class Node<E> implements Serializable {
-
-    /**
-     *  Serializable
-     */
-    private static final long serialVersionUID = -2791375802729648470L;
-    
+@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+public class Node<E> {
     /**
      * Data contained in Node
      */
@@ -32,5 +28,4 @@ public class Node<E> implements Serializable {
      * Left node
      */
     private Node<E> leftNode;
-    
 }
