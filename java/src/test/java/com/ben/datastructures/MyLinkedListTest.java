@@ -112,4 +112,57 @@ public class MyLinkedListTest {
     	assertFalse(linkedList.contains(null));
     }
 
+    @Test
+    public void testRemoveFirst() {
+        linkedList.add("foo");
+        linkedList.add("bar");
+        linkedList.remove(0);
+        assertEquals(linkedList.get(0), "bar");
+        assertEquals(linkedList.size(), 1);
+    }
+
+    @Test
+    public void testRemoveElementInMiddle() {
+        linkedList.add("foo");
+        linkedList.add("bar");
+        linkedList.add("merp");
+        linkedList.remove(1);
+        assertEquals(linkedList.get(0), "foo");
+        assertEquals(linkedList.get(1), "merp");
+        assertEquals(linkedList.size(), 2);
+    }
+
+    @Test
+    public void testRemoveLastElement() {
+        linkedList.add("foo");
+        linkedList.add("bar");
+        linkedList.add("merp");
+        linkedList.remove(2);
+        assertEquals(linkedList.get(0), "foo");
+        assertEquals(linkedList.get(1), "bar");
+        assertEquals(linkedList.size(), 2);
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testThrowsExceptionWhenRemoveOutOfBoundsEmpty() {
+        linkedList.remove(0);
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testThrowsExceptionWhenRemoveOutOfBoundsNotEmpty() {
+        linkedList.add("foo");
+        linkedList.remove(1);
+    }
+
+    @Test
+    public void testToStringEmpty() {
+        assertEquals(linkedList.toString(), "[]");
+    }
+
+    @Test
+    public void testToStringNotEmpty() {
+        linkedList.add("foo");
+        linkedList.add("bar");
+        assertEquals(linkedList.toString(), "[foo, bar]");
+    }
 }

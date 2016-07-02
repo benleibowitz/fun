@@ -87,7 +87,6 @@ public class MyLinkedList<E> {
 				index = count;
 			}
 
-			System.out.println(index + " " + count);
 			currentNode = currentNode.getNextNode();
 			count++;
 		}
@@ -119,16 +118,6 @@ public class MyLinkedList<E> {
 		currentNode = null;
 		
 		size = 0;
-	}
-
-	
-	public void print() {
-		Node<E> currentNode = firstNode;
-		
-		while(currentNode != null) {
-			System.out.println(currentNode.getElement());
-			currentNode = currentNode.getNextNode();
-		}
 	}
 	
 	@Override
