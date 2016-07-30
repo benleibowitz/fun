@@ -13,8 +13,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.ben.datastructures.MyStack;
-
 public class MyStackTest {
     private MyStack<String> myStack;
     private Stack<String> jStack;
@@ -28,7 +26,7 @@ public class MyStackTest {
     
     @Before
     public void setUp() throws Exception {
-        myStack = new MyStack<>();
+        myStack = new MyStack();
         jStack = new Stack<>();
         rawMyStack = new MyStack();
         rawJStack = new Stack();
@@ -112,6 +110,11 @@ public class MyStackTest {
             
             assertEquals(rawJStack.size(), rawMyStack.size());
         }
+    }
+
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void testPopEmptyArrayThrowsException() {
+        myStack.pop();
     }
 
 }

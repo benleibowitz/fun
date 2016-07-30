@@ -1,20 +1,16 @@
 package com.ben.datastructures;
 
-import static org.junit.Assert.*;
+import org.apache.cassandra.index.Index;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
+import static org.junit.Assert.*;
 
 public class MyLinkedListTest {
-    @Rule
-    public ExpectedException exception = ExpectedException.none();
-    
     private MyLinkedList<String> linkedList;
     private List<String> correctList;
 
@@ -54,11 +50,7 @@ public class MyLinkedListTest {
             String element = correctList.get(i);
             linkedList.add(element);
             for(int j = 0; j <= i; j++) {
-                if(correctList.get(j) == null) {
-                    assertNull(linkedList.get(j));
-                } else {
-                    assertTrue(correctList.get(j).equals(linkedList.get(j)));
-                }
+                assertEquals(linkedList.get(j), correctList.get(j));
             }
         }
     }
@@ -71,16 +63,14 @@ public class MyLinkedListTest {
         assertEquals(0, linkedList.size());
     }
     
-    @Test
+    @Test(expected = IndexOutOfBoundsException.class)
     public void testGetWhenEmptyThrowsException() {
-        exception.expect(IndexOutOfBoundsException.class);
         linkedList.get(0);
     }
 
-    @Test
+    @Test(expected = IndexOutOfBoundsException.class)
     public void testGetOutOfBoundsThrowsException() {
         linkedList.add("foo");
-        exception.expect(IndexOutOfBoundsException.class);
         linkedList.get(1);
     }
     

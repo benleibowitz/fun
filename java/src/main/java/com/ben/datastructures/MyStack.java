@@ -31,20 +31,18 @@ public class MyStack<E> {
     }
     
     public void add(E obj) {
-        Node currentFirst = firstNode;
-        firstNode = new Node(obj);
-        
-        if(firstNode != null) {
-            firstNode.setNextNode(currentFirst);
-        }
+        Node newNode = new Node(obj);
+        newNode.setNextNode(firstNode);
+        firstNode = newNode;
         
         size++;
     }
     
     public E pop() {
-        if(size == 0)
+        if(isEmpty()) {
             throw new ArrayIndexOutOfBoundsException("Cannot pop from empty stack");
-        
+        }
+
         Node oldFirstNode = firstNode;
         firstNode = firstNode.getNextNode();
         

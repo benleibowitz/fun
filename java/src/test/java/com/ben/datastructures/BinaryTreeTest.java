@@ -15,7 +15,7 @@ public class BinaryTreeTest {
 
 	@Test
 	public void testAdd() {
-		BinaryTree bt = new BinaryTree();
+		BinaryTree<BigDecimal> bt = new BinaryTree<>();
 		Random r = new Random();
 		for(int i = 0; i < 50; i++) {
 			bt.add(new BigDecimal(r.nextInt(40)));

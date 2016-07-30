@@ -1,41 +1,21 @@
 package com.ben.datastructures;
 
-import java.math.BigDecimal;
-
-import lombok.Builder;
 import lombok.Data;
 
-public class BinaryTree {
-    
-    private class Node {
-        //LeftChildNode will be <= current node,
-        //and rightChildNode will be > current Node
+public class BinaryTree<E extends Comparable> {
+    /**
+     * Left child <= current node.
+     * Right child > current node.
+     * @param <E>
+     */
+    @Data
+    private class Node<E> {
         Node leftChildNode;
         Node rightChildNode;
-        BigDecimal data;
-        
-        Node(BigDecimal data) {
+        E data;
+
+        public Node(E data) {
             this.data = data;
-        }
-        
-        public void setLeftChildNode(Node newNode) {
-            leftChildNode = newNode;
-        }
-        
-        public void setRightChildNode(Node newNode) {
-            rightChildNode = newNode;
-        }
-        
-        public Node getLeftChildNode() {
-            return leftChildNode;
-        }
-
-        public Node getRightChildNode() {
-            return rightChildNode;
-        }
-
-        private BigDecimal getData() {
-            return data;
         }
     }
     
@@ -46,7 +26,7 @@ public class BinaryTree {
         depth = 0;
     }
     
-    public void add(BigDecimal data) {
+    public void add(E data) {
         if(headNode == null) {
             headNode = new Node(data);
             depth++;
@@ -86,7 +66,7 @@ public class BinaryTree {
 
     }
     
-    public boolean contains(BigDecimal data) {
+    public boolean contains(E data) {
         boolean contains = false;
         
         if(depth > 0) {
@@ -96,7 +76,7 @@ public class BinaryTree {
         return contains;
     }
     
-    private boolean lookup(Node node, BigDecimal data) {
+    private boolean lookup(Node node, E data) {
         boolean contains = false;
 
         if(node != null) {
