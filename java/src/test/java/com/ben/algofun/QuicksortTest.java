@@ -35,9 +35,14 @@ public class QuicksortTest {
     private void sortAndAssertCorrect(int[] numbers) {
         int[] expectedSortedArray = Arrays.copyOf(numbers, numbers.length);
 
+        int[] numbers2 = Arrays.copyOf(numbers, numbers.length);
+
         Arrays.sort(expectedSortedArray);
         Quicksort.sort(numbers);
-
+        Quicksort.randomizedSort(numbers2);
         assertArrayEquals(expectedSortedArray, numbers);
+        assertArrayEquals(expectedSortedArray, numbers2);
+
+
     }
 }

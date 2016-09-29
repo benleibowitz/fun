@@ -26,8 +26,6 @@ public class MyLinkedList<E> {
 	private Node<E> firstNode;
 	
 	public MyLinkedList() {
-		firstNode = null;
-		size = 0;
 	}
 	
 	public void add(E element) {
@@ -51,8 +49,9 @@ public class MyLinkedList<E> {
 	}
 	
 	public void remove(int index) {
-		if(index >= size || index < 0)
+		if(index >= size || index < 0) {
 			throw new IndexOutOfBoundsException();
+		}
 		
 		Node<E> currentNode = firstNode;
 		
