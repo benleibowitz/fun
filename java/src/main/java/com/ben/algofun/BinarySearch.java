@@ -8,11 +8,11 @@ public class BinarySearch {
      * Search returns the index of the given element in the given array if it is found.
      * If it is not found, it returns -1.
      */
-    public static <E extends Comparable> int search(E[] array, int element) {
+    public static <E extends Comparable> int search(E[] array, E element) {
         return search(array, element, 0, array.length - 1);
     }
 
-    private static <E extends Comparable> int search(E[] array, int element, int startIdx, int endIdx) {
+    private static <E extends Comparable> int search(E[] array, E element, int startIdx, int endIdx) {
         int result = -1;
 
         //base case
