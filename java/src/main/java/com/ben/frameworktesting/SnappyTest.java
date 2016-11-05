@@ -28,6 +28,13 @@ public class SnappyTest {
             oStream.write(compressedBytes);
 
             System.out.println("Compressed file written");
+
+            byte[] compressedBytesFromFile = Files.readAllBytes(Paths.get("/Users/ben/Documents/Code/CSV/testcsv_encoded.txt"));
+            byte[] uncompressedBytesFromFile = Snappy.uncompress(compressedBytesFromFile);
+            String uncompressedString = new String(uncompressedBytesFromFile, StandardCharsets.UTF_8);
+
+            System.out.println("Uncompressed");
+            System.out.println(uncompressedString);
         
         } catch(Exception e) {
             e.printStackTrace();

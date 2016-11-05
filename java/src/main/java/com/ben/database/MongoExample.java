@@ -45,7 +45,6 @@ public class MongoExample {
             
             try (MongoCursor<Document> cursor = collection.find(searchQuery).iterator()) {
                 while (cursor.hasNext()) {
-
                     Document doc = cursor.next();
                     
                     String city = doc.get("city").toString();

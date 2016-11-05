@@ -39,20 +39,6 @@ class IllegalArrayLengthException extends Exception {
 public class Puzzles {
 	private static Random r = new Random();
 	
-	private static final Set<Character> digits = new HashSet<Character>() {{
-		add('1');
-		add('2');
-		add('3');
-		add('4');
-		add('5');
-		add('6');
-		add('7');
-		add('8');
-		add('9');
-		add('0');
-	}};
-    
-	
 	public static void main(String[] args) {
 	}
 		
@@ -117,24 +103,27 @@ public class Puzzles {
 		foo[5] = 12;
 		findDistinctEle(foo);
 	}
-	
-	//implementation of basic "fizzbuzz" question
-	//for 1 through 100 inclusive, if divisible by 3, print "fizz"
-	//if divisible by 5, print "buzz". if both, print "fizzbuzz"
+
+    /**
+     * implementation of basic "fizzbuzz" question
+     * for 1 through 100 inclusive, if divisible by 3, print "fizz"
+     * if divisible by 5, print "buzz". if both, print "fizzbuzz"
+     */
 	public static void fizzBuzz() {
 		
 		for(int i = 1; i <= 100; i++) {
 			String outStr;
 			
-			if(i % 3 == 0 && i % 5 == 0)
-				outStr = "fizzbuzz";
-			else if(i % 3 == 0)
-				outStr = "fizz";
-			else if(i % 5 == 0)
-				outStr = "buzz";
-			else
-				outStr = String.valueOf(i);
-			
+			if(i % 3 == 0 && i % 5 == 0) {
+                outStr = "fizzbuzz";
+            } else if(i % 3 == 0) {
+                outStr = "fizz";
+            } else if(i % 5 == 0) {
+                outStr = "buzz";
+            } else {
+                outStr = String.valueOf(i);
+            }
+
 			System.out.println(outStr);
 		}
 		
@@ -153,21 +142,23 @@ public class Puzzles {
 			// (if our index positions have not "used up" all the elements
 			if(a.length > aIndex && b.length > bIndex) {
 				  
-				if(a[aIndex].toLowerCase().compareTo(b[bIndex]) < 0)
-					outArray[i] = a[aIndex++];
-				else if(a[aIndex].toLowerCase().compareTo(b[bIndex]) > 0)
-					outArray[i] = b[bIndex++];
-				else
-					outArray[i] = a[aIndex++];
+				if(a[aIndex].toLowerCase().compareTo(b[bIndex]) < 0) {
+                    outArray[i] = a[aIndex++];
+                } else if(a[aIndex].toLowerCase().compareTo(b[bIndex]) > 0) {
+                    outArray[i] = b[bIndex++];
+                } else {
+                    outArray[i] = a[aIndex++];
+                }
 			
 			//if only b is long enough
-			} else if(b.length > bIndex)
-				outArray[i] = b[bIndex++];
-			else if(a.length > aIndex)
-				outArray[i] = a[aIndex++];
-			else
-				throw new IllegalArrayLengthException("Cannot make array of length " + n + " with given input arrays");
-		}
+			} else if(b.length > bIndex) {
+                outArray[i] = b[bIndex++];
+            } else if(a.length > aIndex) {
+                outArray[i] = a[aIndex++];
+            } else {
+                throw new IllegalArrayLengthException("Cannot make array of length " + n + " with given input arrays");
+            }
+        }
 		  
 		return outArray;
 	}
@@ -370,8 +361,8 @@ public class Puzzles {
         
         for(int i = 0; i < stringArray.length; i++) {
             char c = (char)stringArray[i];
-            
-            if(!digits.contains(c))
+
+            if(!Character.isDigit(c))
                 throw new NumberFormatException("Number must only contain numerical digits. Fail on: " + c);
             
             int localNum = c - '0';

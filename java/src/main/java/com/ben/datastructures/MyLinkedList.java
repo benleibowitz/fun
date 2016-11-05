@@ -94,8 +94,9 @@ public class MyLinkedList<E> {
 	}
 	
 	public E get(int index) {
-		if(index >= size || index < 0)
+		if(index >= size || index < 0) {
 			throw new IndexOutOfBoundsException();
+		}
 		
 		Node<E> currentNode = firstNode;
 		

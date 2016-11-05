@@ -11,11 +11,11 @@ public class Quickselect {
      * @param k - the k^th smallest element to select
      * @return k^th smallest element
      */
-    public static int select(int[] array, int k) {
+    public static <E extends Comparable> E select(E[] array, int k) {
         return select(array, 0, array.length - 1, k);
     }
 
-    private static int select(int[] array, int leftIdx, int rightIdx, int k) {
+    private static <E extends Comparable> E select(E[] array, int leftIdx, int rightIdx, int k) {
         if(array.length == 0) {
             throw new IllegalArgumentException("Array length must be > 0");
         } else if(array.length < k) {
@@ -37,12 +37,12 @@ public class Quickselect {
         return array[leftIdx];
     }
 
-    private static int partition(int[] array, int leftIdx, int rightIdx) {
-        int pivot = array[rightIdx];
+    private static <E extends Comparable> int partition(E[] array, int leftIdx, int rightIdx) {
+        E pivot = array[rightIdx];
         int wallIdx = leftIdx - 1;
 
         for (int i = leftIdx; i < rightIdx; i++) {
-            if (array[i] <= pivot) {
+            if (array[i].compareTo(pivot) <= 0) {
                 wallIdx++;
                 switchElements(array, wallIdx, i);
             }
@@ -58,10 +58,9 @@ public class Quickselect {
      * @param index1 index of item 1 to switch
      * @param index2 index of item 2 to switch
      */
-    private static void switchElements(int[] array, int index1, int index2) {
-        int val1 = array[index1];
-        int val2 = array[index2];
-        array[index1] = val2;
+    private static <E extends Comparable> void switchElements(E[] array, int index1, int index2) {
+        E val1 = array[index1];
+        array[index1] = array[index2];
         array[index2] = val1;
     }
 }
