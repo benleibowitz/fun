@@ -12,6 +12,9 @@ public class Quickselect {
      * @return k^th smallest element
      */
     public static <E extends Comparable> E select(E[] array, int k) {
+        if(array == null) {
+            throw new IllegalArgumentException("Array cannot be null");
+        }
         return select(array, 0, array.length - 1, k);
     }
 

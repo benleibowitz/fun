@@ -11,7 +11,9 @@ public class Countingsort {
      * @return sorted array
      */
     public static int[] sort(int[] input) {
-        if(input.length < 2) {
+        if(input == null) {
+            throw new IllegalArgumentException("Input cannot be null");
+        } else if(input.length < 2) {
             return input;
         }
 
