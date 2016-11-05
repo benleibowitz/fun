@@ -1,44 +1,35 @@
 package com.ben.datastructures;
+
+import lombok.Getter;
+
 public class MyLinkedList<E> {
-	
-	private class Node<E> {
+	private class Node {
 		private E element;
-		private Node<E> nextNode;
+		private Node nextNode;
 		
 		Node(E element) {
 			this.element = element;
 		}
-		
-		private void setNextNode(Node<E> nextNode) {
-			this.nextNode = nextNode;
-		}
-		
-		private E getElement() {
-			return element;
-		}
-		
-		private Node<E> getNextNode() {
-			return nextNode;
-		}
 	}
-	
+
+	@Getter
 	private int size;
-	private Node<E> firstNode;
+	private Node firstNode;
 	
 	public MyLinkedList() {
 	}
 	
 	public void add(E element) {
 		if(firstNode == null) {
-			firstNode = new Node<>(element);
+			firstNode = new Node(element);
 		} else {
-			Node<E> currentNode = firstNode;
+			Node currentNode = firstNode;
 			
-			while(currentNode.getNextNode() != null) {
-				currentNode = currentNode.getNextNode();
+			while(currentNode.nextNode != null) {
+				currentNode = currentNode.nextNode;
 			}
 			
-			currentNode.setNextNode(new Node<>(element));
+			currentNode.nextNode = new Node(element);
 		}
 		
 		size++;
@@ -53,17 +44,17 @@ public class MyLinkedList<E> {
 			throw new IndexOutOfBoundsException();
 		}
 		
-		Node<E> currentNode = firstNode;
+		Node currentNode = firstNode;
 		
 		if(index == 0) {
-			firstNode = firstNode.getNextNode();
+			firstNode = firstNode.nextNode;
 		} else {
 			
 			for(int i = 0; i < index-1; i++) {
-				currentNode = currentNode.getNextNode();
+				currentNode = currentNode.nextNode;
 			}
 
-			currentNode.setNextNode(currentNode.getNextNode().getNextNode());
+			currentNode.nextNode = currentNode.nextNode.nextNode;
 		}
 		
 		size--;
@@ -72,11 +63,11 @@ public class MyLinkedList<E> {
 	public int get(E element) {
 		int index = -1;
 		
-		Node<E> currentNode = firstNode;
+		Node currentNode = firstNode;
 		
 		int count = 0;
 		while(currentNode != null && index == -1) {
-			E currentElement = currentNode.getElement();
+			E currentElement = currentNode.element;
 			
 			if(currentElement == null) {
 				if(element == null) {
@@ -86,7 +77,7 @@ public class MyLinkedList<E> {
 				index = count;
 			}
 
-			currentNode = currentNode.getNextNode();
+			currentNode = currentNode.nextNode;
 			count++;
 		}
 		
@@ -98,20 +89,20 @@ public class MyLinkedList<E> {
 			throw new IndexOutOfBoundsException();
 		}
 		
-		Node<E> currentNode = firstNode;
+		Node currentNode = firstNode;
 		
 		for(int i = 0; i < index; i++) {
-			currentNode = currentNode.getNextNode();
+			currentNode = currentNode.nextNode;
 		}
 		
-		return currentNode.getElement();
+		return currentNode.element;
 	}
 	
 	public void clear() {
-		Node<E> currentNode = firstNode;
+		Node currentNode = firstNode;
 		
-		while(currentNode.getNextNode() != null) {
-			currentNode.setNextNode(null);
+		while(currentNode.nextNode != null) {
+			currentNode.nextNode = null;
 		}
 		
 		firstNode = null;
@@ -125,11 +116,11 @@ public class MyLinkedList<E> {
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("[");
 		
-		Node<E> currentNode = firstNode;
+		Node currentNode = firstNode;
 		
 		for(int i = 0; i < size; i++) {
-			stringBuilder.append(currentNode.getElement());
-			currentNode = currentNode.getNextNode();
+			stringBuilder.append(currentNode.element);
+			currentNode = currentNode.nextNode;
 			
 			if(i < size-1) {
 				stringBuilder.append(", ");
@@ -139,9 +130,5 @@ public class MyLinkedList<E> {
 		stringBuilder.append("]");
 		
 		return stringBuilder.toString();
-	}
-	
-	public int size() {
-		return size;
 	}
 }

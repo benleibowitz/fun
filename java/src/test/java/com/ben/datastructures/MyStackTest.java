@@ -56,20 +56,20 @@ public class MyStackTest {
     @Test
     public void testAdd() {
         //Test parameterized
-        assertEquals(0, myStack.size());
+        assertEquals(0, myStack.getSize());
         
         for(String testStr : testAr) {
             jStack.add(testStr);
             myStack.add(testStr);
-            assertEquals(jStack.size(), myStack.size());
+            assertEquals(jStack.size(), myStack.getSize());
         }
      
         //Test raw
-        assertEquals(0, rawMyStack.size());
+        assertEquals(0, rawMyStack.getSize());
         for(Object obj : rawList) {
             rawMyStack.add(obj);
             rawJStack.add(obj);
-            assertEquals(rawJStack.size(), rawMyStack.size());
+            assertEquals(rawJStack.size(), rawMyStack.getSize());
         }
         
     }
@@ -96,7 +96,7 @@ public class MyStackTest {
             else if(jPop == null ^ myPop == null)
                 fail("Only 1 of pop outputs is null");
             
-            assertEquals(jStack.size(), myStack.size());
+            assertEquals(jStack.size(), myStack.getSize());
         }
 
         while(!rawJStack.isEmpty()) {
@@ -108,7 +108,7 @@ public class MyStackTest {
             else if(jPop == null ^ myPop == null)
                 fail("Only 1 of pop outputs is null");
             
-            assertEquals(rawJStack.size(), rawMyStack.size());
+            assertEquals(rawJStack.size(), rawMyStack.getSize());
         }
     }
 

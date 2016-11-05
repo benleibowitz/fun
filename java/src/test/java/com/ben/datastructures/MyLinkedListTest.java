@@ -31,17 +31,17 @@ public class MyLinkedListTest {
 
     @Test
     public void testSizeIs0WhenEmpty() {
-        assertEquals(0, linkedList.size());
+        assertEquals(0, linkedList.getSize());
     }
     
     @Test
     public void testSizeIncrementsProperly() {
         linkedList.add("foo");
-        assertEquals(1, linkedList.size());
+        assertEquals(1, linkedList.getSize());
         linkedList.add("foo");
-        assertEquals(2, linkedList.size());
+        assertEquals(2, linkedList.getSize());
         linkedList.add(null);
-        assertEquals(3, linkedList.size());
+        assertEquals(3, linkedList.getSize());
     }
     
     @Test
@@ -60,7 +60,7 @@ public class MyLinkedListTest {
         linkedList.add("foo");
         linkedList.add("bar");
         linkedList.clear();
-        assertEquals(0, linkedList.size());
+        assertEquals(0, linkedList.getSize());
     }
     
     @Test(expected = IndexOutOfBoundsException.class)
@@ -108,7 +108,7 @@ public class MyLinkedListTest {
         linkedList.add("bar");
         linkedList.remove(0);
         assertEquals(linkedList.get(0), "bar");
-        assertEquals(linkedList.size(), 1);
+        assertEquals(linkedList.getSize(), 1);
     }
 
     @Test
@@ -119,7 +119,7 @@ public class MyLinkedListTest {
         linkedList.remove(1);
         assertEquals(linkedList.get(0), "foo");
         assertEquals(linkedList.get(1), "merp");
-        assertEquals(linkedList.size(), 2);
+        assertEquals(linkedList.getSize(), 2);
     }
 
     @Test
@@ -130,7 +130,7 @@ public class MyLinkedListTest {
         linkedList.remove(2);
         assertEquals(linkedList.get(0), "foo");
         assertEquals(linkedList.get(1), "bar");
-        assertEquals(linkedList.size(), 2);
+        assertEquals(linkedList.getSize(), 2);
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
