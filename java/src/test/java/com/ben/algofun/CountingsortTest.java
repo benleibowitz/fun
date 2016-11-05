@@ -10,6 +10,11 @@ import static org.junit.Assert.assertArrayEquals;
  * Created by ben on 10/25/16.
  */
 public class CountingsortTest {
+    @Test(expected = IllegalArgumentException.class)
+    public void testSortNullArray() {
+        Countingsort.sort(null);
+    }
+
     @Test
     public void testSortEmptyArray() {
         int[] x = {};
