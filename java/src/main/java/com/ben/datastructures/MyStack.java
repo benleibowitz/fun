@@ -1,6 +1,8 @@
 package com.ben.datastructures;
 
 
+import lombok.Getter;
+
 public class MyStack<E> {
     private class Node {
         private Node nextNode;
@@ -10,21 +12,11 @@ public class MyStack<E> {
             nextNode = null;
             this.data = data;
         }
-        
-        private Node getNextNode() {
-            return nextNode;
-        }
-        
-        private void setNextNode(Node nextNode) {
-            this.nextNode = nextNode;
-        }
-        
-        private E getData() {
-            return data;
-        }
     }
     
     private Node firstNode;
+
+    @Getter
     private int size;
     
     public MyStack() {
@@ -32,7 +24,7 @@ public class MyStack<E> {
     
     public void add(E obj) {
         Node newNode = new Node(obj);
-        newNode.setNextNode(firstNode);
+        newNode.nextNode = firstNode;
         firstNode = newNode;
         
         size++;
@@ -44,14 +36,10 @@ public class MyStack<E> {
         }
 
         Node oldFirstNode = firstNode;
-        firstNode = firstNode.getNextNode();
+        firstNode = firstNode.nextNode;
         
         size--;
-        return oldFirstNode.getData();
-    }
-    
-    public int size() {
-        return size;
+        return oldFirstNode.data;
     }
     
     public boolean isEmpty() {
