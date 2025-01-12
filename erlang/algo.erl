@@ -1,5 +1,5 @@
 -module(algo).
--export([merge_sort/1, split/1]).
+-export([merge_sort/1, split/1, sum_list/1, filter/2]).
 
 merge_sort(InList) when length(InList) =< 1 ->
     InList;
@@ -40,3 +40,18 @@ split(InArr, LArr)  when length(InArr) > length(LArr) ->
     split(T, [H|LArr]);
 split(InArr, LArr) ->
     {lists:reverse(LArr), InArr}.
+
+sum_list(X) -> sum_list(X, 0).
+
+sum_list([], Acc) -> Acc;
+sum_list([H|T], Acc) -> sum_list(T, Acc + H).
+
+filter(X, Fn) -> filter(X, Fn, []).
+
+filter([], _, Acc) -> {ok, lists:reverse(Acc)};
+filter([H|T], Fn, Acc) ->
+    case Fn(H) of
+        true -> filter(T, Fn, [H|Acc]);
+        false -> filter(T, Fn, Acc);
+        _ -> error
+    end.
